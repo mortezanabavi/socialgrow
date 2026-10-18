@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ثبت تیکت پشتیبانی</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="{% static 'assets/css/submit-ticket.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+	</head>
+	<body>
+		<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+		<div class="sidebar" id="sidebar">
+		<div>
+			<div class="logo">داشبورد</div>
+				<div class="menu">
+					<button onclick="goHome()">🏠 صفحه اصلی</button>
+					<button onclick="buy()">🛍️ ثبت سفارش</button>
+					<button onclick="orders()">🛒 سفارشات من</button>
+					<button onclick="increaseBalance()">💰 شارژ حساب</button>
+					<button onclick="tickets()">📞 تیکت ها</button>
+					<button >📄 اطلاعات کاربری</button>
+					<button onclick="logout()">🚪 خروج از حساب</button>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="header">
+					<h1>🎫 ثبت تیکت پشتیبانی</h1>
+					<p>در صورت وجود هرگونه مشکل، سوال یا درخواست، فرم زیر را تکمیل کنید. کارشناسان ما در سریع‌ترین زمان ممکن پاسخگوی شما خواهند بود.</p>
+				</div>
+				<form class="ticket-box" method="POST" enctype="multipart/form-data" action="/post-ticket">
+					{% csrf_token %}
+					<div class="form-grid">
+						<div class="field">
+							<label>عنوان تیکت</label>
+							<input type="text" name="title" placeholder="عنوان تیکت را وارد کنید">
+						</div>
+						<div class="field">
+							<label>اولویت</label>
+							<select name="priority">
+								<option value="low">🟢 کم</option>
+								<option value="normal" selected>🟡 معمولی</option>
+								<option value="high">🟠 زیاد</option>
+								<option value="urgent">🔴 فوری</option>
+							</select>
+						</div>
+						<div class="field full">
+							<label>بخش مربوطه</label>
+							<select name="department">
+								<option>💳 امور مالی</option>
+								<option>🛒 سفارشات</option>
+								<option>📱 خدمات اینستاگرام</option>
+								<option>✈️ خدمات تلگرام</option>
+								<option>⚙️ پشتیبانی فنی</option>
+								<option>📌 سایر موارد</option>
+							</select>
+						</div>
+						<div class="field full">
+							<label>متن تیکت</label>
+							<textarea name="message" placeholder="لطفاً مشکل یا درخواست خود را با جزئیات کامل بنویسید..."></textarea>
+						</div>
+						<div class="field full">
+							<label>پیوست فایل</label>
+							<div class="upload">
+								<input type="file" id="attachment" name="attachment">
+								<label for="attachment"><i class="fa-solid fa-paperclip"></i>انتخاب فایل</label>
+								<span class="filename">فایلی انتخاب نشده است</span>
+							</div>
+						</div>
+					</div>
+					<button class="submit" type="submit"><i class="fa-solid fa-paper-plane"></i>ثبت تیکت</button>
+				</form>
+			</div>
+		</div>
+		<script>
+			const attachment=document.getElementById("attachment");
+			const filename=document.querySelector(".filename");
+			attachment.addEventListener("change",function(){
+				if(this.files.length){
+				filename.innerHTML=this.files[0].name;
+				}else{
+				filename.innerHTML="فایلی انتخاب نشده است";
+				}
+			});
+			function toggleMenu(){
+			  document.getElementById("sidebar")
+			  .classList.toggle("active");
+			}
+			function goHome(){
+			  window.location.href = "/";
+			}
+			function submitTicket(){
+				window.location.href = "/submit-ticket";
+			}
+			function buy(){
+				window.location.href = "/new-order";
+			}
+			function tickets(){
+				window.location.href = "/tickets";
+			}
+			function viewTicket(id){
+				window.location.href = `/view-ticket/${id}`;
+			}
+			function increaseBalance(){
+			  window.location.href = "/payment";
+			}
+			function orders(){
+			  window.location.href = "/orders";
+			}
+			function logout(){
+			  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+			  if(confirmExit){
+				window.location.href = "/accounts/logout";
+			  }
+			}
+		</script>
+	</body>
+</html>

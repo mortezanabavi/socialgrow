@@ -1,0 +1,521 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیگیری سفارشات | سوشال گرو</title>
+    <meta name="description" content="در صفحه پیگیری سفارشات سوشال گرو می‌توانید وضعیت لحظه‌ای سفارش‌های اینستاگرام، تلگرام، یوتیوب و سایر خدمات خود را به سادگی مشاهده و پیگیری نمایید.">
+    <link rel="canonical" href="https://socialgrow.ir/track-order">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Fonts & Base Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{ current_time }}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}?v={{ current_time }}">
+    <link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    {% if recaptcha_enabled %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {% endif %}
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+        }
+
+        body {
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Perfectly Centered Page Wrapper */
+        .track-center-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 55px 20px 65px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .track-card {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 38px 32px;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.07), 0 5px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            text-align: right;
+        }
+
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0284c7, #38bdf8, #2563eb);
+        }
+
+        .track-header {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .track-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .track-title {
+            font-size: 23px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 8px 0;
+        }
+
+        .track-subtitle {
+            font-size: 13.5px;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Alert Box */
+        .track-alert {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .track-alert-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Override any rogue form styles from main.css */
+        .track-card form,
+        main.track-center-wrapper form {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+        }
+
+        .track-card .form-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 7px !important;
+            margin-bottom: 18px !important;
+            text-align: right !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .track-card .form-label {
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            color: #334155 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            margin-bottom: 2px !important;
+        }
+
+        .track-card .input-wrapper {
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .track-card .input-icon {
+            position: absolute !important;
+            top: 50% !important;
+            right: 16px !important;
+            transform: translateY(-50%) !important;
+            color: #94a3b8 !important;
+            font-size: 16px !important;
+            pointer-events: none !important;
+            transition: color 0.2s ease !important;
+            z-index: 2 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .track-card .form-control,
+        .track-card input.form-control,
+        .track-card input {
+            width: 100% !important;
+            height: 52px !important;
+            padding: 0 46px 0 16px !important;
+            border-radius: 12px !important;
+            border: 1.5px solid #cbd5e1 !important;
+            background: #f8fafc !important;
+            color: #0f172a !important;
+            font-family: inherit !important;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            transition: all 0.25s ease !important;
+            direction: ltr !important;
+            text-align: right !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+        }
+
+        .track-card .form-control:focus,
+        .track-card input:focus {
+            background: #ffffff !important;
+            outline: none !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15) !important;
+        }
+
+        .track-card .form-control:focus + .input-icon,
+        .track-card input:focus + .input-icon {
+            color: #0284c7 !important;
+        }
+
+        .track-card .form-hint {
+            font-size: 11.5px !important;
+            color: #64748b !important;
+            margin-top: 3px !important;
+        }
+
+        /* reCAPTCHA & Submit */
+        .track-card .recaptcha-wrapper {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin: 16px 0 22px 0 !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        @media (max-width: 420px) {
+            .track-card .recaptcha-wrapper .g-recaptcha {
+                transform: scale(0.92);
+                transform-origin: center center;
+            }
+        }
+
+        .track-card .btn-submit-track {
+            width: 100% !important;
+            height: 52px !important;
+            border-radius: 12px !important;
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            font-family: inherit !important;
+            font-size: 15.5px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            transition: all 0.25s ease !important;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.3) !important;
+            box-sizing: border-box !important;
+            margin-top: 4px !important;
+        }
+
+        .track-card .btn-submit-track:hover {
+            background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 12px 24px rgba(2, 132, 199, 0.4) !important;
+        }
+
+        /* Bottom Centered Hint */
+        .track-footer-hints {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 480px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .track-footer-hints a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .track-footer-hints a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .track-center-wrapper {
+                padding: 35px 16px 50px 16px !important;
+            }
+            .track-card {
+                padding: 30px 20px !important;
+                border-radius: 18px !important;
+                max-width: 100% !important;
+            }
+            .track-title {
+                font-size: 21px !important;
+            }
+            .track-subtitle {
+                font-size: 13px !important;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+                <span>{{ settings.name|default:'سوشال گرو' }}</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="/">خانه</a>
+                <a href="/products/">تعرفه‌ها و خدمات</a>
+                <a href="/new-order">ثبت سفارش</a>
+                <a href="/track-order" class="active">پیگیری سفارش</a>
+                <a href="/blog">وبلاگ</a>
+                <a href="/inquiry">استعلام قیمت</a>
+                <a href="/terms">قوانین</a>
+                <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+            </nav>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                    <div class="user-menu" id="userMenu">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                                <span class="status"></span>
+                            </div>
+                            <div class="user-info">
+                                <span class="welcome">خوش آمدید</span>
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                            <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                            <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                            <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                            <hr>
+                            <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/login" class="login">ورود / ثبت نام</a>
+                {% endif %}
+                <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Centered Form Container -->
+    <main class="track-center-wrapper">
+        <div class="track-card">
+            <div class="track-header">
+                <span class="track-badge">
+                    <i class="fa-solid fa-bolt"></i>
+                    سامانه آنلاین پیگیری
+                </span>
+                <h1 class="track-title">پیگیری وضعیت سفارش</h1>
+                <p class="track-subtitle">
+                    جهت بررسی آخرین وضعیت، شماره همراه و کد پیگیری خود را وارد نمایید.
+                </p>
+            </div>
+
+            {% if errors %}
+                <div class="track-alert">
+                    <i class="fa-solid fa-triangle-exclamation track-alert-icon"></i>
+                    <div>
+                        <strong>خطا در بررسی سفارش:</strong>
+                        <p style="margin: 4px 0 0 0;">{{ errors }}</p>
+                        <small style="display: block; margin-top: 6px; color: inherit; opacity: 0.9;">
+                            💡 راهنما: شماره موبایل را به صورت ۰۹... و کد پیگیری را همانند پیامک دریافتی وارد نمایید. ارقام فارسی و انگلیسی پشتیبانی می‌شوند.
+                        </small>
+                    </div>
+                </div>
+            {% endif %}
+
+            <form method="POST" action="/find-order">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label" for="code">
+                        <i class="fa-solid fa-hashtag" style="color: #0284c7;"></i>
+                        کد پیگیری سفارش
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="code" name="code" class="form-control" placeholder="مثال: AB12CD34" value="{{ entered_code|default:'' }}" required autocomplete="off">
+                        <i class="fa-solid fa-hashtag input-icon"></i>
+                    </div>
+                    <span class="form-hint">کد پیگیری ۸ رقمی که پس از ثبت سفارش دریافت نموده‌اید.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="receiver_phone">
+                        <i class="fa-solid fa-mobile-screen" style="color: #0284c7;"></i>
+                        شماره موبایل ثبت‌شده
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="receiver_phone" name="receiver_phone" class="form-control" placeholder="مثال: 09123456789" maxlength="11" value="{{ entered_phone|default:'' }}" required autocomplete="tel">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                    </div>
+                    <span class="form-hint">شماره همراهی که در مرحله خرید وارد کرده بودید.</span>
+                </div>
+
+                {% if recaptcha_enabled %}
+                <div class="recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="{{ settings.recaptcha_site_key }}"></div>
+                </div>
+                {% endif %}
+
+                <button type="submit" class="btn-submit-track">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    استعلام و مشاهده وضعیت سفارش
+                </button>
+            </form>
+        </div>
+
+        <div class="track-footer-hints">
+            مشکلی در پیگیری سفارش دارید؟ 
+            <a href="#" onclick="openSocialGrowChat(event)">با پشتیبانی آنلاین گفتگو کنید</a>{% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %} یا با شماره <a href="tel:{{ settings.admin_phone_number }}">{{ settings.admin_phone_number }}</a> تماس حاصل نمایید{% endif %}.
+        </div>
+    </main>
+
+    <!-- Floating Phone Call Button -->
+    {% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+    <a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+        <i class="fa-solid fa-phone"></i>
+        <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+    </a>
+    {% endif %}
+
+    <!-- Unified Footer -->
+    <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="site-footer-inner">
+            <div class="footer-col">
+                <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+                <p>{{ settings.footer_description }}</p>
+            </div>
+            {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+            <div class="footer-col">
+                <p class="footer-col-title">پشتیبانی و راهنما</p>
+                <ul>
+                    <li><a href="/track-order">پیگیری سفارش</a></li>
+                    <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                    <li><a href="/faq">سوالات متداول</a></li>
+                    <li><a href="/terms">قوانین و مقررات</a></li>
+                    <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+                <div class="enamad">
+                    {{ settings.enamad|safe }}
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                    <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuBtn = document.getElementById('menuBtn');
+            var nav = document.getElementById('nav');
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+            var userMenu = document.getElementById('userMenu');
+            if (userMenu) {
+                userMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userMenu.classList.toggle('active');
+                });
+                document.addEventListener('click', function() {
+                    userMenu.classList.remove('active');
+                });
+            }
+        });
+        function openSocialGrowChat(e) {
+            if (e) e.preventDefault();
+            if (window.$crisp) {
+                window.$crisp.push(['do', 'chat:open']);
+            }
+        }
+    </script>
+<script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

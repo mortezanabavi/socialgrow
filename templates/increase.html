@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>افزایش موجودی</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/increase.css' %}?v={{current_time}}">
+<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+<body>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<div class="sidebar" id="sidebar">
+<div>
+<div class="logo">داشبورد</div>
+<div class="menu">
+<button onclick="goHome()">🏠 صفحه اصلی</button>
+<button onclick="buy()">🛍️ ثبت سفارش</button>
+<button onclick="orders()">🛒 سفارشات من</button>
+<button onclick="increaseBalance()">💰 شارژ حساب</button>
+<button onclick="tickets()">📞 تیکت ها</button>
+<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+<button onclick="logout()">🚪 خروج از حساب</button>
+</div>
+</div>
+</div>
+<div class="main">
+<div class="container">
+<div class="header">
+<h1>💳 افزایش موجودی حساب</h1>
+<p>موجودی حساب خود را با درگاه ریالی یا ارز دیجیتال افزایش دهید و سفارش‌های خود را سریع‌تر ثبت کنید.</p>
+<p style="color:red">{{ error }}</p>
+</div>
+<div class="wallet-box">
+<div class="balance">
+<span>موجودی فعلی حساب</span>
+<strong>{{ user.balance|floatformat:0 }} تومان</strong>
+</div>
+<form method="POST" action="/addbalance">
+{% csrf_token %}
+<div class="form-group">
+<label>مبلغ افزایش موجودی</label>
+<input type="number" name="amount" placeholder="مبلغ را وارد کنید">
+</div>
+<h2 class="payment-title">انتخاب روش پرداخت</h2>
+<div class="payment-methods">
+<div class="payment-card bank">
+<input type="radio" name="method" id="Zibal" value="Zibal" checked>
+<label for="Zibal">
+<i class="fa-solid fa-building-columns"></i>
+<div>
+<span>درگاه بانکی</span>
+<small>پرداخت ریالی با کارت بانکی</small>
+</div>
+</label>
+</div>
+<div class="payment-card tron">
+<input type="radio" name="method" id="Trx" value="Trx">
+<label for="Trx">
+<i class="fa-brands fa-bitcoin"></i>
+<div>
+<span>شبکه TRON (TRX)</span>
+<small>پرداخت با ارز دیجیتال</small>
+</div>
+</label>
+</div>
+</div>
+<button type="submit" class="submit">
+<i class="fa-solid fa-wallet"></i>
+افزایش موجودی و پرداخت
+</button>
+</div>
+</div>
+<script>
+	function toggleMenu(){
+	  document.getElementById("sidebar")
+	  .classList.toggle("active");
+	}
+	function goHome(){
+	  window.location.href = "/";
+	}
+	function buy(){
+	  window.location.href = "/new-order";
+	}
+	function submitTicket(){
+		window.location.href = "/submit-ticket";
+	}
+	function tickets(){
+		window.location.href = "/tickets";
+	}
+	function userinfo(){
+		window.location.href="/userinfo";
+	}
+	function viewTicket(id){
+		window.location.href = `/view-ticket/${id}`;
+	}
+	function increaseBalance(){
+	  window.location.href = "/payment";
+	}
+	function orders(){
+	  window.location.href = "/orders";
+	}
+	function logout(){
+	  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+	  if(confirmExit){
+		window.location.href = "/accounts/logout";
+	  }
+	}
+</script>
+</body>
+</html>

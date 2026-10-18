@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>صفحه پیدا نشد | سوشال گرو</title>
+    <meta name="description"
+          content="صفحه مورد نظر شما در SocialGrow پیدا نشد. می‌توانید به صفحه اصلی برگردید یا از جستجوی سایت استفاده کنید.">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/404.css' %}">
+    <meta name="robots"
+          content="noindex, follow">
+    <meta name="theme-color"
+          content="#0693E3">
+    <meta property="og:title"
+          content="صفحه پیدا نشد | SocialGrow">
+    <meta property="og:description"
+          content="صفحه مورد نظر شما پیدا نشد. به صفحه اصلی SocialGrow برگردید.">
+    <meta property="og:type"
+          content="website">
+</head>
+<body>
+
+    <div class="background">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+    </div>
+    
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <span>SG</span>
+                </div>
+                <div class="logo-text">
+                    <strong>SocialGrow</strong>
+                    <span>رشد هوشمند شبکه‌های اجتماعی</span>
+                </div>
+            </a>
+            <a href="/" class="home-link">بازگشت به خانه<span>←</span></a>
+        </div>
+    </header>
+
+<main>
+    <div class="error-container">
+        <!-- 404 -->
+
+        <div
+            class="error-number"
+            aria-label="404">
+
+            404
+
+        </div>
+
+
+
+        <h1 class="error-title">
+
+            این صفحه پیدا نشد! 😕
+
+
+        </h1>
+
+
+
+        <p class="error-description">
+
+            متأسفانه صفحه‌ای که به دنبال آن هستید
+            وجود ندارد، حذف شده یا آدرس آن تغییر کرده است.
+            <br>
+
+            نگران نباشید؛ می‌توانید از گزینه‌های زیر
+            برای ادامه استفاده کنید.
+
+
+        </p>
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+
+            <a
+                href="/"
+                class="btn btn-primary">
+
+                <span>
+                    صفحه اصلی
+                </span>
+
+                <span>
+                    ←
+                </span>
+
+            </a>
+
+
+
+            <button
+                type="button"
+                onclick="goBack()"
+                class="btn btn-secondary">
+
+                <span>
+                    بازگشت به صفحه قبل
+                </span>
+
+                <span>
+                    ↩
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="quick-links">
+
+            <div class="quick-title">
+
+                دسترسی سریع
+
+            </div>
+
+
+            <div class="quick-list">
+
+
+                <a href="/">
+                    خانه
+                </a>
+
+
+                <a href="/new-order">
+                    ثبت سفارش
+                </a>
+
+
+                <a href="/blog">
+                    وبلاگ
+                </a>
+
+
+                <a href="/track-order">
+                    پیگیری سفارش
+                </a>
+
+
+                <a href="/inquiry">
+                    استعلام
+                </a>
+
+
+                <a href="/terms">
+                    قوانین
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
+
+<script>
+
+
+    /*
+    =====================================
+    سال فعلی
+    =====================================
+    */
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+
+    /*
+    =====================================
+    بازگشت به صفحه قبل
+    =====================================
+    */
+
+    function goBack() {
+
+        if (
+            document.referrer &&
+            document.referrer !== window.location.href
+        ) {
+
+            window.history.back();
+
+        } else {
+
+            window.location.href = "/";
+
+        }
+
+    }
+
+
+
+    /*
+    =====================================
+    انیمیشن 404
+    =====================================
+    */
+
+    const errorNumber =
+        document.querySelector(".error-number");
+
+
+    errorNumber.animate(
+
+        [
+            {
+                opacity: 0,
+                transform:
+                    "translateY(-20px) scale(.96)"
+            },
+
+            {
+                opacity: 1,
+                transform:
+                    "translateY(0) scale(1)"
+            }
+
+        ],
+
+        {
+            duration: 700,
+            easing: "cubic-bezier(.2,.8,.2,1)",
+            fill: "forwards"
+        }
+
+    );
+
+
+
+    /*
+    =====================================
+    جلوگیری از جستجوی خالی
+    =====================================
+    */
+
+    const searchForm =
+        document.querySelector(".search-form");
+
+
+    const searchInput =
+        document.querySelector(".search-input");
+
+
+    searchForm.addEventListener(
+        "submit",
+        function(event) {
+
+            if (
+                !searchInput.value.trim()
+            ) {
+
+                event.preventDefault();
+
+                searchInput.focus();
+
+            }
+
+        }
+    );
+
+
+
+    /*
+    =====================================
+    افکت حرکت پس زمینه
+    =====================================
+    */
+
+    document.addEventListener(
+        "mousemove",
+        function(event) {
+
+            const x =
+                (event.clientX /
+                window.innerWidth - .5) * 15;
+
+            const y =
+                (event.clientY /
+                window.innerHeight - .5) * 15;
+
+
+            document
+                .querySelector(".shape.one")
+                .style.transform =
+                    `translate(${x}px, ${y}px)`;
+
+
+            document
+                .querySelector(".shape.two")
+                .style.transform =
+                    `translate(${-x}px, ${-y}px)`;
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

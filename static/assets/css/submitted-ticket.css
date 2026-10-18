@@ -1,0 +1,137 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:dana;
+}
+body {
+    background:linear-gradient(180deg,#1e293b,#0f172a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px;
+    color:#fff;
+}
+.success-box {
+    width:100%;
+    max-width:650px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(16px);
+    border-radius:24px;
+    padding:20px 30px;
+    text-align:center;
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+    animation:show .5s ease;
+}
+@keyframes show {
+    from {
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.icon {
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    background:rgba(34,197,94,.15);
+    border:2px solid rgba(34,197,94,.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+.icon i {
+    font-size:46px;
+    color:#22c55e;
+}
+h1 {
+    font-size:18px;
+    margin-bottom:16px;
+}
+.description {
+    color:#cbd5e1;
+    line-height:20px;
+    font-size:13px;
+    margin-bottom:30px;
+}
+.ticket-info {
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:30px;
+}
+.ticket-info .title {
+    color:#94a3b8;
+    font-size:14px;
+    margin-bottom:10px;
+}
+.ticket-code {
+    font-size:24px;
+    color:#60a5fa;
+    font-weight:bold;
+    letter-spacing:2px;
+    word-break:break-word;
+}
+.alert {
+    background:rgba(37,99,235,.12);
+    border:1px solid rgba(59,130,246,.25);
+    color:#cbd5e1;
+    border-radius:14px;
+    padding:18px;
+    line-height:30px;
+    margin-bottom:30px;
+}
+.actions {
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.btn {
+    padding:15px 28px;
+    border-radius:14px;
+    text-decoration:none;
+    font-size:15px;
+    transition:.3s;
+}
+.primary {
+    background:#2563eb;
+    color:#fff;
+}
+.primary:hover {
+    background:#1d4ed8;
+}
+.secondary {
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+}
+.secondary:hover {
+    background:rgba(255,255,255,.12);
+}
+@media(max-width:600px) {
+    .success-box {
+        padding:10px 20px;
+    }
+    h1 {
+        font-size:24px;
+    }
+    .ticket-code {
+        font-size:18px;
+    }
+    .actions {
+        flex-direction:column;
+    }
+    .btn {
+        width:100%;
+        text-align:center;
+    }
+}

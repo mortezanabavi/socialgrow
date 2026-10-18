@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>تایید شماره موبایل</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="{% static 'assets/css/verify-otp.css' %}?v={{current_time}}">
+	<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+	<style>
+		.resend-link.disabled {
+			pointer-events: none;
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="icon">
+			<i class="fa-solid fa-mobile-screen-button"></i>
+		</div>
+		<h1>تایید شماره موبایل</h1>
+		<p>کد تایید پیامک شده به شماره <span class="phone" style="direction:ltr">{{ phone }}</span> را وارد کنید.</p>
+		{% if error %}
+		<small id="message" style="color:#e53e3e;font-size:13px;display:block;margin-bottom:12px;font-weight:600;">{{ error }}</small>
+		{% endif %}
+		<form method="POST" action="/accounts/verifyotp/" id="otp-form">
+			{% csrf_token %}
+			<input type="hidden" name="phone" value="{{ phone }}">
+			<input type="hidden" name="code" id="otp-code">
+			<div class="code-box">
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" autofocus>
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+				<input class="code" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+			</div>
+			<button type="submit" id="submit-btn"><i class="fa-solid fa-check"></i> تایید شماره موبایل</button>
+		</form>
+		<div class="bottom">
+			<a id="resend-btn" class="resend-link disabled" href="/accounts/resendotp/?phone={{ phone }}"><i class="fa-solid fa-rotate-right"></i>ارسال مجدد کد</a>
+			<div class="timer">01:59</div>
+		</div>
+		<div class="security">
+			<i class="fa-solid fa-shield-halved"></i>
+			<div>برای حفظ امنیت حساب، کد تایید تنها تا <b>۲ دقیقه</b> معتبر است.</div>
+		</div>
+	</div>
+	<script>
+		function toEnglishDigits(str) {
+			if (!str) return "";
+			const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+			const arabicDigits  = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+			let res = String(str);
+			for (let i = 0; i < 10; i++) {
+				res = res.replace(new RegExp(persianDigits[i], 'g'), i).replace(new RegExp(arabicDigits[i], 'g'), i);
+			}
+			return res;
+		}
+
+		const inputs = document.querySelectorAll(".code");
+		const hiddenInput = document.getElementById("otp-code");
+		const form = document.getElementById("otp-form");
+
+		function updateOTP() {
+			hiddenInput.value = [...inputs].map(input => input.value).join("");
+			if (hiddenInput.value.length === 6) {
+				form.submit();
+			}
+		}
+
+		inputs.forEach((input, index) => {
+			input.addEventListener("input", (e) => {
+				let val = toEnglishDigits(input.value).replace(/\D/g, "");
+				input.value = val.slice(0, 1);
+				updateOTP();
+				if (input.value && index < inputs.length - 1) {
+					inputs[index + 1].focus();
+				}
+			});
+			input.addEventListener("keydown", (e) => {
+				if (e.key === "Backspace" && input.value === "" && index > 0) {
+					inputs[index - 1].focus();
+				}
+			});
+			input.addEventListener("paste", (e) => {
+				e.preventDefault();
+				const clip = (e.clipboardData || window.clipboardData).getData("text");
+				const data = toEnglishDigits(clip).replace(/\D/g, "").slice(0, 6);
+
+				data.split("").forEach((char, i) => {
+					if (inputs[i]) {
+						inputs[i].value = char;
+					}
+				});
+				updateOTP();
+				if (data.length > 0) {
+					inputs[Math.min(data.length - 1, 5)].focus();
+				}
+			});
+		});
+
+		let sec = 119;
+		const timer = document.querySelector(".timer");
+		const resendBtn = document.getElementById("resend-btn");
+		const countdown = setInterval(() => {
+			if (sec > 0) {
+				let m = Math.floor(sec / 60);
+				let s = sec % 60;
+				timer.innerHTML = String(m).padStart(2, '0') + ":" + String(s).padStart(2, '0');
+				sec--;
+			} else {
+				timer.innerHTML = "00:00";
+				resendBtn.classList.remove("disabled");
+				clearInterval(countdown);
+			}
+		}, 1000);
+	</script>
+</body>
+</html>

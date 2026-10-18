@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>تیکت ها</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="{% static 'assets/css/tickets.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+	</head>
+	<body>
+		<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+		<div class="sidebar" id="sidebar">
+		<div>
+			<div class="logo">داشبورد</div>
+				<div class="menu">
+					<button onclick="goHome()">🏠 صفحه اصلی</button>
+					<button onclick="buy()">🛍️ ثبت سفارش</button>
+					<button onclick="orders()">🛒 سفارشات من</button>
+					<button onclick="increaseBalance()">💰 شارژ حساب</button>
+					<button onclick="tickets()">📞 تیکت ها</button>
+					<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+					<button onclick="logout()">🚪 خروج از حساب</button>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="header">
+					<h3><i class="fa-solid fa-headset"></i> بخش پشتیبانی</h2>
+					<button onclick="submitTicket()" class="new-ticket">
+					<i class="fa-solid fa-plus"></i> ثبت تیکت جدید</button>
+				</div>
+				<div class="stats">
+					<div class="card">
+						<h3>{{ total_tickets }}</h3>
+						<span>کل تیکت‌ها</span>
+					</div>
+				<div class="card">
+					<h3 style="color:#22c55e;">{{ open_tickets }}</h3>
+					<span>تیکت باز</span>
+				</div>
+				<div class="card">
+					<h3 style="color:#ef4444;">{{ closed_tickets }}</h3>
+					<span>تیکت بسته</span>
+				</div>
+			</div>
+			<div class="ticket-list">
+				{% for ticket in tickets %}
+					<div class="ticket">
+						<div class="ticket-info">
+							<h3>{{ ticket.title }}</h3>
+							<div class="detail">
+								<p>کد تیکت : #{{ ticket.tracking_code }}</p>
+								<p>آخرین بروزرسانی : {{ ticket.get_lastup_date }}</p>
+							</div>
+						</div>
+						<div class="ticket-actions">
+							<span class="status {{ ticket.status|lower }}">
+								{% if ticket.status == "Open" %}
+									باز
+								{% elif ticket.status == "Answered" %}
+									پاسخ داده شده
+								{% elif ticket.status == "Review" %}
+									درحال بررسی
+								{% elif ticket.status == "Closed" %}
+									بسته
+								{% endif %}
+							</span>
+							<button class="reply" onclick="viewTicket('{{ticket.tracking_code}}');"><i class="fa-solid fa-eye"></i> مشاهده</button>
+						</div> 
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+		<script>
+			document.querySelectorAll(".close-btn").forEach(function(button){
+				button.addEventListener("click",function(){
+					if(this.classList.contains("disabled")) return;
+					this.innerHTML='<i class="fa-solid fa-check"></i> بسته شده';
+					this.classList.add("disabled");
+					this.disabled=true;
+					const status=this.parentElement.querySelector(".status");
+					status.innerHTML="بسته";
+					status.classList.remove("open");
+					status.classList.add("closed");
+				});
+			});
+			function toggleMenu(){
+			  document.getElementById("sidebar")
+			  .classList.toggle("active");
+			}
+			function goHome(){
+			  window.location.href = "/";
+			}
+			function buy(){
+			  window.location.href = "/new-order";
+			}
+			function submitTicket(){
+				window.location.href = "/submit-ticket";
+			}
+			function tickets(){
+				window.location.href = "/tickets";
+			}
+			function userinfo(){
+			window.location.href="/userinfo";
+			}
+			function viewTicket(id){
+				window.location.href = `/view-ticket/${id}`;
+			}
+			function increaseBalance(){
+			  window.location.href = "/payment";
+			}
+			function orders(){
+			  window.location.href = "/orders";
+			}
+			function logout(){
+			  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+			  if(confirmExit){
+				window.location.href = "/accounts/logout";
+			  }
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,801 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محصولات | سوشال گرو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --blue: #0693E3;
+    --blue-dark: #0578bd;
+    --green: #61CE70;
+    --green-dark: #4fb85e;
+    --pink: #E1306C;
+    --bg: #f7f7f7;
+    --ink: #343A40;
+    --ink-soft: #69727d;
+    --line: #eef1f4;
+    --footer-bg: #1f2937;
+    --footer-line: #374151;
+    --footer-text: #d1d5db;
+    --footer-text-dim: #9ca3af;
+    --header-h: 74px;
+  }
+ 
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Vazirmatn', Tahoma, sans-serif;
+    font-size:14px;
+    direction:rtl;
+    line-height:1.8;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow-x:hidden;
+  }
+  a{ text-decoration:none; color:inherit; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; }
+ 
+  body::-webkit-scrollbar{ width:6px; }
+  body::-webkit-scrollbar-track{ background:transparent; }
+  body::-webkit-scrollbar-thumb{ background:#b8b8b8; border-radius:4px; }
+ 
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+  a:focus-visible, button:focus-visible, select:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:2px;
+  }
+ 
+  /* ===== Header ===== */
+  .header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,.85);
+    border-bottom:1px solid rgba(6,147,227,.15);
+  }
+  .header .container{
+    max-width:1300px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 20px;
+    min-height:var(--header-h);
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#222;
+    font-size:22px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .logo-mark{
+    width:42px; height:42px;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    font-size:19px;
+    font-weight:800;
+    flex-shrink:0;
+  }
+  .nav{
+    display:flex;
+    gap:35px;
+  }
+  .nav a{
+    color:#555;
+    font-size:15px;
+    position:relative;
+    transition:.3s;
+    padding-bottom:4px;
+    white-space:nowrap;
+  }
+  .nav a:hover{ color:var(--blue); }
+  .nav a::after{
+    content:"";
+    position:absolute;
+    bottom:-8px;
+    right:0;
+    width:0;
+    height:3px;
+    border-radius:50px;
+    background:var(--blue);
+    transition:.3s;
+  }
+  .nav a:hover::after, .nav a.current::after{ width:100%; }
+  .nav a.current{ color:var(--blue); }
+ 
+  .actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+  }
+  .login{
+    background:var(--blue);
+    color:#fff;
+    padding:11px 20px;
+    border-radius:12px;
+    font-size:13.5px;
+    transition:.3s;
+    white-space:nowrap;
+  }
+  .login:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(6,147,227,.3);
+  }
+  .menu-btn{
+    display:none;
+    border:none;
+    background:none;
+    font-size:22px;
+    color:#333;
+    padding:4px 6px;
+  }
+ 
+  @media (max-width:860px){
+    :root{ --header-h:64px; }
+    .header .container{ padding:12px 16px; }
+    .logo{ font-size:19px; }
+    .logo-mark{ width:36px; height:36px; font-size:16px; }
+    .nav{
+      position:absolute;
+      top:100%;
+      right:0; left:0;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      gap:14px;
+      padding:16px 20px;
+      display:none;
+      box-shadow:0 12px 24px rgba(0,0,0,.06);
+    }
+    .nav.active{ display:flex; }
+    .menu-btn{ display:block; }
+    .actions .login{ display:none; }
+  }
+ 
+  /* ===== Page intro ===== */
+  .page-intro{
+    background: linear-gradient(180deg, #eaf6fd 0%, var(--bg) 100%);
+    padding:46px 20px 34px;
+    text-align:center;
+  }
+  .page-intro h1{
+    font-size:clamp(22px, 5vw, 32px);
+    margin:0 0 12px;
+    color:var(--ink);
+    font-weight:800;
+    line-height:1.5;
+  }
+  .page-intro p{
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 auto;
+    font-size:clamp(13px, 3vw, 14.5px);
+  }
+  .intro-stats{
+    display:flex;
+    justify-content:center;
+    gap:36px;
+    margin-top:26px;
+    flex-wrap:wrap;
+  }
+  .intro-stats div b{
+    display:block;
+    font-size:19px;
+    color:var(--blue);
+    font-weight:800;
+  }
+  .intro-stats div span{
+    color:var(--ink-soft);
+    font-size:12px;
+  }
+ 
+  @media (max-width:480px){
+    .page-intro{ padding:32px 16px 26px; }
+    .intro-stats{ gap:22px; }
+  }
+ 
+  /* ===== Filter bar ===== */
+  .filter-bar{
+    position:sticky;
+    top:var(--header-h);
+    z-index:100;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    padding:14px 20px;
+  }
+  .filter-row{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .chip-group{
+    display:flex;
+    gap:8px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .chip-group::-webkit-scrollbar{ display:none; }
+  .chip{
+    padding:8px 16px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:#f5f7f9;
+    color:var(--ink-soft);
+    font-size:12.5px;
+    font-weight:500;
+    transition:.25s;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .chip:hover{ color:var(--ink); }
+  .chip.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+  }
+  .filter-secondary{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-shrink:0;
+  }
+  .sort-select{
+    background:#f5f7f9;
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:9px 12px;
+    border-radius:10px;
+    font-family:inherit;
+    font-size:12.5px;
+    max-width:100%;
+  }
+  .result-count{
+    color:var(--ink-soft);
+    font-size:12px;
+    white-space:nowrap;
+  }
+ 
+  @media (max-width:640px){
+    .filter-bar{ padding:12px 14px; }
+    .filter-row{ flex-direction:column; align-items:stretch; gap:10px; }
+    .filter-secondary{ justify-content:space-between; }
+  }
+ 
+  /* ===== Product section ===== */
+  .products-section{
+    padding:36px 16px 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:#fff;
+    gap:10px;
+  }
+  .products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:22px;
+    width:100%;
+    max-width:1200px;
+  }
+ 
+  .product-card{
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.06);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 28px rgba(6,147,227,.15);
+  }
+  .product-image{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:#f2f4f6;
+  }
+  .product-image img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .4s ease;
+  }
+  .product-card:hover .product-image img{ transform:scale(1.08); }
+  .product-badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:rgba(6,147,227,.9);
+    color:#fff;
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:20px;
+    backdrop-filter:blur(4px);
+  }
+  .product-badge.instagram{ background:rgba(225,48,108,.9); }
+  .stock-badge{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:rgba(0,0,0,.55);
+    color:#f87171;
+    font-size:10px;
+    font-weight:600;
+    padding:4px 9px;
+    border-radius:20px;
+  }
+ 
+  .product-body{
+    display:flex;
+    flex-direction:column;
+    padding:16px;
+    gap:8px;
+    flex-grow:1;
+  }
+  .product-body h3{
+    font-size:15px;
+    color:var(--ink);
+    margin:0;
+    font-weight:700;
+    line-height:1.5;
+  }
+  .product-desc{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:justify;
+    line-height:1.8;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    flex-grow:1;
+  }
+  .product-price{
+    font-size:13.5px;
+    font-weight:bold;
+    color:var(--blue);
+    margin-top:4px;
+  }
+  .product-price span{
+    font-size:10.5px;
+    font-weight:normal;
+    color:var(--footer-text-dim);
+  }
+  .product-price.out{ color:#ef4444; }
+ 
+  .order-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:var(--green);
+    color:#fff;
+    text-decoration:none;
+    box-sizing:border-box;
+    border:none;
+    border-radius:0 0 14px 14px;
+    padding:13px;
+    font-size:13.5px;
+    transition:background-color .3s ease;
+  }
+  .order-btn:hover{ background:var(--green-dark); }
+  .order-btn.disabled{
+    background:#e5e7eb;
+    color:#9ca3af;
+    pointer-events:none;
+  }
+ 
+  .empty-state{
+    display:none;
+    text-align:center;
+    padding:60px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state.show{ display:block; }
+ 
+  @media (max-width:768px){
+    .products-grid{ grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:14px; }
+    .product-body{ padding:12px; gap:6px; }
+    .product-body h3{ font-size:13.5px; }
+    .product-desc{ font-size:11.5px; -webkit-line-clamp:2; }
+  }
+  @media (max-width:420px){
+    .products-grid{ grid-template-columns:1fr 1fr; gap:10px; }
+    .products-section{ padding:28px 10px 10px; }
+  }
+ 
+  /* ===== CTA banner ===== */
+  .cta-banner{ background:#fff; padding:10px 16px 50px; }
+  .cta-inner{
+    max-width:1200px;
+    margin:auto;
+    background:linear-gradient(120deg, #eaf6fd 0%, #fdeaf1 100%);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:32px 26px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .cta-inner h2{
+    font-size:clamp(16px, 4vw, 19px);
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  .cta-inner p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:13px;
+    max-width:46ch;
+  }
+  .cta-btn{
+    background:var(--blue);
+    color:#fff;
+    padding:12px 22px;
+    border-radius:12px;
+    font-size:13.5px;
+    white-space:nowrap;
+    transition:.3s;
+    text-align:center;
+  }
+  .cta-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(6,147,227,.3); }
+ 
+  @media (max-width:560px){
+    .cta-inner{ flex-direction:column; align-items:stretch; text-align:center; padding:26px 20px; }
+    .cta-inner p{ max-width:none; }
+    .cta-btn{ width:100%; }
+  }
+ 
+  /* ===== Footer ===== */
+  .site-footer{
+    background:var(--footer-bg);
+    color:#e5e7eb;
+    padding:3rem 5% 1.5rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:2rem;
+  }
+  .footer-col h4{
+    font-size:1.02rem;
+    margin-bottom:1.1rem;
+    color:#fff;
+    position:relative;
+    display:inline-block;
+  }
+  .footer-col h4::after{
+    content:"";
+    position:absolute;
+    width:35px;
+    height:3px;
+    background:#fd1d1d;
+    bottom:-6px;
+    right:0;
+  }
+  .footer-col ul li{ margin-bottom:.5rem; }
+  .footer-col a{
+    color:var(--footer-text);
+    font-size:.85rem;
+    transition:all .3s ease-in-out;
+  }
+  .footer-col a:hover{ color:#fff; padding-right:4px; }
+  .footer-col p{
+    font-size:.85rem;
+    color:var(--footer-text-dim);
+    margin-bottom:.5rem;
+  }
+  .enamad{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#fff;
+    border-radius:8px;
+    padding:10px;
+    width:80px;
+  }
+  .footer-bottom{
+    grid-column:1/-1;
+    text-align:center;
+    border-top:1px solid var(--footer-line);
+    padding-top:1.5rem;
+    font-size:.78rem;
+    color:var(--footer-text-dim);
+  }
+ 
+  @media (max-width:600px){
+    .site-footer{ padding:2.4rem 6% 1.2rem; gap:1.8rem; text-align:center; }
+    .footer-col h4{ display:block; }
+    .footer-col h4::after{ right:50%; transform:translateX(50%); }
+    .enamad{ margin:0 auto; }
+  }
+ 
+  /* toast */
+  .toast{
+    position:fixed;
+    bottom:20px;
+    right:50%;
+    transform:translateX(50%) translateY(10px);
+    background:#222;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:12.5px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:1000;
+    max-width:90vw;
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .toast.show{ opacity:1; transform:translateX(50%) translateY(0); }
+ 
+  @media (max-width:420px){
+    .toast{ bottom:14px; padding:10px 16px; font-size:12px; max-width:94vw; }
+  }
+</style>
+
+<link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+            <span>{{ settings.name|default:'سوشال گرو' }}</span>
+        </a>
+        <nav class="nav" id="nav">
+            <a href="/">خانه</a>
+            <a href="/products/">تعرفه‌ها و خدمات</a>
+            <a href="/new-order">ثبت سفارش</a>
+            <a href="/track-order">پیگیری سفارش</a>
+            <a href="/blog">وبلاگ</a>
+            <a href="/inquiry">استعلام قیمت</a>
+            <a href="/terms">قوانین</a>
+            <a href="#" onclick="openCrispChat(event)">پشتیبانی</a>
+        </nav>
+        <div class="actions">
+            {% if user.is_authenticated %}
+                <div class="user-menu" id="userMenu">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                            <span class="status"></span>
+                        </div>
+                        <div class="user-info">
+                            <span class="welcome">خوش آمدید</span>
+                            <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="profile-dropdown">
+                        <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                        <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                        <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                        <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                        <hr>
+                        <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/login" class="login">ورود / ثبت نام</a>
+            {% endif %}
+            <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<section class="page-intro">
+  <h1>محصولات افزایش فالوور، ممبر و بازدید</h1>
+  <p>سرویس‌های تلگرام و اینستاگرام را با بهترین قیمت و سریع‌ترین زمان تحویل انتخاب کنید؛ پرداخت آنی و بدون نیاز به ثبت‌نام.</p>
+  <div class="intro-stats">
+    <div><b>آنی</b><span>شروع سفارش</span></div>
+    <div><b>بدون ثبت‌نام</b><span>پرداخت مستقیم</span></div>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="filter-row">
+    <div class="chip-group" id="filterChips">
+      <button class="chip active" data-filter="all">همه</button>
+      <button class="chip" data-filter="telegram"><i class="fab fa-telegram" style="margin-left:4px"></i>تلگرام</button>
+      <button class="chip" data-filter="instagram"><i class="fab fa-instagram" style="margin-left:4px"></i>اینستاگرام</button>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span class="result-count" id="resultCount"></span>
+      <select class="sort-select" id="sortSelect">
+        <option value="default">مرتب‌سازی پیش‌فرض</option>
+        <option value="price-asc">ارزان‌ترین</option>
+        <option value="price-desc">گران‌ترین</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<section class="products-section" id="products">
+  <div class="products-grid" id="grid"></div>
+  <div class="empty-state" id="emptyState">هیچ محصولی در این دسته پیدا نشد.</div>
+</section>
+
+
+<!-- Floating Phone Call Button -->
+{% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+<a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+    <i class="fa-solid fa-phone"></i>
+    <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+</a>
+{% endif %}
+
+<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="site-footer-inner">
+        <div class="footer-col">
+            <h4>درباره {{ settings.name|default:'ما' }}</h4>
+            <p>{{ settings.footer_description }}</p>
+        </div>
+        {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <div class="footer-col">
+            <h4>پشتیبانی و راهنما</h4>
+            <ul>
+                <li><a href="/track-order">پیگیری سفارش</a></li>
+                <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                <li><a href="/faq">سوالات متداول</a></li>
+                <li><a href="/terms">قوانین و مقررات</a></li>
+                <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>مجوز و نمادهای اعتماد</h4>
+            <div class="enamad">
+                {{ settings.enamad|safe }}
+            </div>
+            <div class="footer-social-links">
+                <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                <a href="#" onclick="openCrispChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+    </div>
+</footer>
+
+<div class="toast" id="toast">سرویس به سبد سفارش اضافه شد ✅</div>
+
+<script>
+(function(){
+  const products = {{ p|safe }};
+
+  const grid = document.getElementById('grid');
+  const emptyState = document.getElementById('emptyState');
+  const resultCount = document.getElementById('resultCount');
+  const chips = document.querySelectorAll('.chip');
+  const sortSelect = document.getElementById('sortSelect');
+  const toast = document.getElementById('toast');
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+
+  let currentFilter = 'all';
+  let currentSort = 'default';
+
+  function formatPrice(n){ return n.toLocaleString('fa-IR'); }
+  function platformLabel(p){ return p === 'telegram' ? 'تلگرام' : 'اینستاگرام'; }
+
+  function render(){
+    let list = products.filter(p => currentFilter === 'all' || p.en === currentFilter);
+
+    if(currentSort === 'price-asc'){
+      list = list.slice().sort((a,b) => a.toman_price - b.toman_price);
+    } else if(currentSort === 'price-desc'){
+      list = list.slice().sort((a,b) => b.toman_price - a.toman_price);
+    }
+
+    grid.innerHTML = '';
+
+    list.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+    
+      card.innerHTML = `
+        <div class="product-image">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <span class="product-badge ${p.en}">${platformLabel(p.en)}</span>
+          ${!p.is_available ? '<span class="stock-badge">ناموجود</span>' : ''}
+        </div>
+    
+        <div class="product-body">
+          <h3>${p.name}</h3>
+          <p class="product-desc">${p.description}</p>
+    
+          ${p.is_available
+            ? (p.is_premium
+                ? `<div class="product-price">${formatPrice(p.toman_price)} تومان<span> / اشتراک</span></div>`
+                : (p.exact_count > 0
+                    ? `<div class="product-price">${formatPrice(Math.floor(p.exact_count * p.toman_price / 1000))} تومان<span> / ${p.exact_count} عدد</span></div>`
+                    : `<div class="product-price">${formatPrice(p.price_500 || Math.floor(p.toman_price / 2))} تومان<span> / هر ۵۰۰ عدد</span></div>`
+                  )
+              )
+            : `<div class="product-price out">ناموجود</div>`
+          }
+        </div>
+    
+        <a
+          class="order-btn"
+          href="/services/${p.slug}/"
+        >
+          مشاهده محصول
+        </a>
+      `;
+    
+      grid.appendChild(card);
+    });
+
+    emptyState.classList.toggle('show', list.length === 0);
+    resultCount.textContent = list.length + ' سرویس';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      currentFilter = chip.dataset.filter;
+      render();
+    });
+  });
+
+  sortSelect.addEventListener('change', e => {
+    currentSort = e.target.value;
+    render();
+  });
+
+  menuBtn.addEventListener('click', () => nav.classList.toggle('active'));
+
+  render();
+})();
+</script>
+
+</body>
+</html>

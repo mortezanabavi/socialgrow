@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>مشاهده تیکت</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="{% static 'assets/css/view-ticket.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+	</head>
+	<body>
+		<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+		<div class="sidebar" id="sidebar">
+		<div>
+			<div class="logo">داشبورد</div>
+				<div class="menu">
+					<button onclick="goHome()">🏠 صفحه اصلی</button>
+					<button onclick="buy()">🛍️ ثبت سفارش</button>
+					<button onclick="orders()">🛒 سفارشات من</button>
+					<button onclick="increaseBalance()">💰 شارژ حساب</button>
+					<button onclick="tickets()">📞 تیکت ها</button>
+					<button >📄 اطلاعات کاربری</button>
+					<button onclick="logout()">🚪 خروج از حساب</button>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="ticket-header">
+					<div class="ticket-title">
+						<h2>{{ ticket.title }}</h2>
+						<div class="ticket-detail">
+							<p><i class="fa-solid fa-hashtag"></i> کد تیکت : #{{ ticket.tracking_code }}</p>
+							<p><i class="fa-regular fa-clock"></i> ایجاد شده در : {{ ticket.get_create_date }}</p>
+						</div>
+					</div>
+					<div class="status {{ ticket.status|lower }}"><i class="fa-solid fa-circle"></i> {{ ticket.get_status }}</div>
+				</div>
+			<div class="chat">
+			{% for message in messages %}
+				{% if message.ticket.user == message.sender %}
+					<div class="message user">
+				{% else %}
+					<div class="message admin">
+				{% endif %}
+				{% if message.ticket.user == message.sender %}
+					<div class="message-header">
+						<span>شما</span>
+				{% else %}
+					<div class="message-header">
+						<span>مدیر</span>
+				{% endif %}
+						<span> {{ message.get_message_date }} </span>
+					</div>
+					<div class="message-text">
+					{{ message.message }}
+					</div>
+				{% if message.attachment %}
+					<div class="file"><i class="fa-solid fa-paperclip"></i><a href="{{ message.attachment.url }}" target="_blank">{{ message.attachment.name }}</a></div>
+				{% endif %}
+				</div>
+			{% endfor %}
+				</div>
+				{% if ticket.status == 'Closed' %}
+					<div class="reply-box" style="display:none;">
+				{% else %}
+					<form
+						class="reply-box"
+						method="POST"
+						enctype="multipart/form-data"
+						action="/view-ticket/{{ticket.tracking_code}}/reply">
+				{% endif %}
+						{% csrf_token %}
+
+						<textarea
+							name="message"
+							placeholder="پاسخ خود را بنویسید..."
+							required></textarea>
+
+						<div class="reply-footer">
+
+							<div class="file-upload">
+
+								<input
+									type="file"
+									id="attachment"
+									name="attachment">
+
+								<label for="attachment">
+									<i class="fa-solid fa-paperclip"></i>
+									انتخاب فایل
+								</label>
+
+								<span class="filename">
+									فایلی انتخاب نشده است
+								</span>
+
+							</div>
+
+							<button type="submit" class="send">
+								<i class="fa-solid fa-paper-plane"></i>
+								ارسال پاسخ
+							</button>
+
+						</div>
+
+					</form>
+				</div>
+			</div>
+		<script>
+			const attachment=document.getElementById("attachment");
+			const filename=document.querySelector(".filename");
+			attachment.addEventListener("change",function(){
+				if(this.files.length){
+					filename.textContent=this.files[0].name;
+				} else {
+					filename.textContent="فایلی انتخاب نشده است";
+			}});
+			const chat=document.querySelector(".chat");
+			chat.scrollTop=chat.scrollHeight;
+			function toggleMenu(){
+			  document.getElementById("sidebar")
+			  .classList.toggle("active");
+			}
+			function goHome(){
+			  window.location.href = "/";
+			}
+			function buy(){
+			  window.location.href = "/new-order";
+			}
+			function orders(){
+			  window.location.href = "/orders";
+			}
+			function tickets(){
+				window.location.href = "/tickets";
+			}
+			function viewTicket(id){
+				window.location.href = `/view-ticket/${id}`;
+			}
+			function increaseBalance(){
+			  window.location.href = "/payment";
+			}
+			function logout(){
+			  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+			  if(confirmExit){
+				window.location.href = "/accounts/logout";
+			  }
+			}
+		</script>
+	</body>
+</html>

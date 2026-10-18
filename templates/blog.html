@@ -1,0 +1,1319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجله تخصصی و وبلاگ سوشال گرو | مقالات رشد اینستاگرام و تلگرام</title>
+    <meta name="description" content="آموزش‌های تخصصی، الگوریتم‌های جدید و ترفندهای کاربردی برای افزایش فالوور، لایک، ویو ریلز اینستاگرام و ممبر تلگرام در وبلاگ رسمی سوشال گرو.">
+    <link rel="canonical" href="https://socialgrow.ir/blog/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="مجله تخصصی و وبلاگ سوشال گرو | آموزش رشد شبکه‌های اجتماعی">
+    <meta property="og:description" content="جدیدترین مقالات آموزشی سئومحور الگوریتم اکسپلور، رفع ریزش فالوور، افزایش تعامل و رشد کسب‌وکار آنلاین.">
+    <meta property="og:url" content="https://socialgrow.ir/blog/">
+    <meta property="og:image" content="https://socialgrow.ir/static/images/social.png">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:site_name" content="سوشال گرو">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="وبلاگ سوشال گرو - مقالات رشد شبکه‌های اجتماعی">
+    <meta name="twitter:description" content="آموزش و ترفندهای افزایش ممبر، فالوور و ارتقای کانال و پیج.">
+    <meta name="twitter:image" content="https://socialgrow.ir/static/images/social.png">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+    <link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "وبلاگ تخصصی سوشال گرو",
+        "description": "آموزش‌های جامع الگوریتم اینستاگرام، ممبر تلگرام و ارتقای کسب‌وکارهای دیجیتال",
+        "url": "https://socialgrow.ir/blog/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "سوشال گرو",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{% static 'images/logo.png' %}?v={{ current_time }}"
+            }
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "خانه",
+                "item": "https://socialgrow.ir/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "وبلاگ",
+                "item": "https://socialgrow.ir/blog/"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --primary-light: #e0f2fe;
+            --secondary: #6366f1;
+            --accent: #10b981;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --border-hover: #93c5fd;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 10px 28px rgba(2, 132, 199, 0.12);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'kalameh', 'dana', 'vazir', 'Vazirmatn', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        /* Hero Section */
+        .blog-hero {
+            position: relative;
+            background: linear-gradient(135deg, #0b1329 0%, #172554 50%, #0369a1 100%);
+            color: #ffffff;
+            padding: 55px 20px 75px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .blog-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #bae6fd;
+            margin-bottom: 18px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0 0 14px 0;
+            color: #ffffff;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-desc {
+            font-size: 15.5px;
+            color: #cbd5e1;
+            margin: 0 0 28px 0;
+            line-height: 1.7;
+        }
+
+        /* Modern Search Box */
+        .search-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 6px 10px 6px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 2px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .search-box-card:focus-within {
+            border-color: #38bdf8;
+            box-shadow: 0 12px 35px rgba(2, 132, 199, 0.35);
+        }
+
+        .search-box-card i.fa-magnifying-glass {
+            color: var(--primary);
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: inherit;
+            color: #0f172a;
+            padding: 10px 4px;
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-clear-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #64748b;
+            font-size: 12px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .search-clear-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .search-submit-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+
+        .search-submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+        }
+
+        /* Keyword Suggestion Chips */
+        .quick-keywords {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .quick-keywords span.label {
+            font-size: 12.5px;
+            color: #94a3b8;
+        }
+
+        .keyword-chip {
+            background: rgba(255, 255, 255, 0.12);
+            color: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .keyword-chip:hover {
+            background: #ffffff;
+            color: #0369a1;
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Container Layout */
+        .blog-container {
+            max-width: 1260px;
+            margin: -35px auto 60px;
+            padding: 0 18px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Filter Bar */
+        .filter-nav-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 12px 18px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            padding: 2px 0;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            background: #f1f5f9;
+            border: 1px solid transparent;
+            color: #475569;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .filter-counter {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-counter strong {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* Featured Spotlight Article */
+        .spotlight-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-md);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transition: all 0.3s ease;
+        }
+
+        .spotlight-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .spotlight-media {
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            background: #0f172a;
+        }
+
+        .spotlight-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .spotlight-card:hover .spotlight-img {
+            transform: scale(1.04);
+        }
+
+        .spotlight-content {
+            padding: 34px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spotlight-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .spotlight-pill {
+            background: #fef3c7;
+            color: #b45309;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .spotlight-category {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #ffffff;
+        }
+
+        .cat-instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+        .cat-telegram { background: linear-gradient(135deg, #24a1de, #0284c7); }
+        .cat-youtube { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        .cat-default { background: #64748b; }
+
+        .spotlight-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            line-height: 1.5;
+        }
+
+        .spotlight-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .spotlight-title a:hover {
+            color: var(--primary);
+        }
+
+        .spotlight-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .spotlight-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .spotlight-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 12.5px;
+            color: var(--text-light);
+        }
+
+        .spotlight-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 800;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .spotlight-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+        }
+
+        /* Section Headings */
+        .section-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 35px 0 20px;
+        }
+
+        .section-bar h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-bar h2 i {
+            color: var(--primary);
+        }
+
+        /* Post Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 22px;
+        }
+
+        .article-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-thumbnail-box {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .article-thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .article-card:hover .article-thumbnail-img {
+            transform: scale(1.05);
+        }
+
+        .article-fallback-banner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            gap: 10px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+        }
+
+        .article-fallback-banner.fallback-instagram {
+            background: linear-gradient(135deg, #4c1d95 0%, #be185d 50%, #f97316 100%);
+        }
+
+        .article-fallback-banner.fallback-telegram {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%);
+        }
+
+        .article-fallback-banner i {
+            font-size: 42px;
+            opacity: 0.9;
+        }
+
+        .article-fallback-banner span {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            opacity: 0.85;
+        }
+
+        .card-category-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            color: #ffffff;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .card-read-time {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+        }
+
+        .article-body {
+            padding: 20px 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .article-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.5;
+            margin: 0 0 10px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 50px;
+        }
+
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .article-title a:hover {
+            color: var(--primary);
+        }
+
+        .article-excerpt {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .article-date {
+            font-size: 12px;
+            color: var(--text-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .article-btn-link:hover {
+            color: var(--primary-hover);
+            transform: translateX(-4px);
+        }
+
+        /* No Results Box */
+        .no-results-box {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 2px dashed #e2e8f0;
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+
+        .no-results-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 16px;
+        }
+
+        .no-results-box h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .no-results-box p {
+            color: var(--text-muted);
+            font-size: 13.5px;
+            margin-bottom: 18px;
+        }
+
+        .no-results-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .no-results-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Banner CTA at Bottom of Articles */
+        .blog-cta-banner {
+            background: linear-gradient(135deg, #0369a1 0%, #2563eb 50%, #4338ca 100%);
+            border-radius: 20px;
+            padding: 35px 30px;
+            color: #ffffff;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 14px 30px rgba(2, 132, 199, 0.25);
+            flex-wrap: wrap;
+        }
+
+        .blog-cta-content h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+        }
+
+        .blog-cta-content p {
+            font-size: 14px;
+            color: #e0f2fe;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .blog-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            color: #0369a1;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 12px 26px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.25s;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .blog-cta-btn:hover {
+            background: #f8fafc;
+            color: #075985;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .spotlight-card { grid-template-columns: 1fr; }
+            .spotlight-media { height: 240px; min-height: 240px; }
+            .spotlight-content { padding: 24px; }
+            .hero-title { font-size: 26px; }
+            .posts-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+
+        @media (max-width: 640px) {
+            .blog-hero { padding: 40px 16px 65px; }
+            .hero-title { font-size: 22px; }
+            .hero-desc { font-size: 13.5px; }
+            .search-box-card { padding: 4px 6px 4px 14px; }
+            .search-submit-btn { padding: 8px 14px; font-size: 13px; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .filter-nav-card { padding: 10px 12px; }
+            .blog-cta-banner { padding: 25px 20px; text-align: center; justify-content: center; }
+            .blog-cta-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER (UNTOUCHED) -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+                <span>{{ settings.name|default:'سوشال گرو' }}</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="/">خانه</a>
+                <a href="/products/">تعرفه‌ها و خدمات</a>
+                <a href="/new-order">ثبت سفارش</a>
+                <a href="/track-order">پیگیری سفارش</a>
+                <a href="/blog">وبلاگ</a>
+                <a href="/inquiry">استعلام قیمت</a>
+                <a href="/terms">قوانین</a>
+                <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+            </nav>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                    <div class="user-menu" id="userMenu">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                                <span class="status"></span>
+                            </div>
+                            <div class="user-info">
+                                <span class="welcome">خوش آمدید</span>
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                            <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                            <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                            <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                            <hr>
+                            <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/login" class="login">ورود / ثبت نام</a>
+                {% endif %}
+                <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MODERN MAIN CONTENT -->
+    <main>
+        <!-- HERO & LIVE SEARCH BANNER -->
+        <section class="blog-hero">
+            <div class="hero-inner">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-graduation-cap"></i> مجله آموزشی و تخصصی رشد شبکه‌های اجتماعی
+                </div>
+                <h1 class="hero-title">
+                    آموزش‌ها و راهنمای جامع رشد اینستاگرام و تلگرام
+                </h1>
+                <p class="hero-desc">
+                    آخرین ترفندهای الگوریتمی، راهکارهای تضمینی افزایش فالوور، لایک، ویو ریلز و ممبر برای ارتقای کسب‌وکارهای آنلاین
+                </p>
+
+                <!-- LIVE SEARCH INPUT -->
+                <div class="search-wrapper">
+                    <form action="/blog/" method="GET" id="searchForm" onsubmit="event.preventDefault(); triggerClientSearch();">
+                        <div class="search-box-card">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text"
+                                   id="blogSearchInput"
+                                   name="q"
+                                   class="search-input"
+                                   placeholder="جستجو در بین مقالات (مثلاً: الگوریتم اکسپلور، ریزش فالوور، هوک ریلز)..."
+                                   value="{{ search_query|default:'' }}"
+                                   autocomplete="off"
+                                   oninput="handleSearchInput(this)">
+                            <button type="button" id="searchClearBtn" class="search-clear-btn" onclick="clearSearch()" title="پاک کردن جستجو">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <button type="submit" class="search-submit-btn">
+                                <span>جستجو</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- QUICK KEYWORD SUGGESTION CHIPS -->
+                    <div class="quick-keywords">
+                        <span class="label"><i class="fa-solid fa-fire" style="color: #f59e0b;"></i> بیشترین جستجوها:</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('الگوریتم')">الگوریتم ۲۰۲۶</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('ریزش')">رفع ریزش فالوور</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('پرمیوم')">تلگرام پرمیوم</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('کامنت')">کامنت مارکتینگ</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('فروشگاهی')">پیج فروشگاهی</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('استارز')">استارز تلگرام</span>
+                        <span class="keyword-chip" onclick="searchByKeyword('ریلز')">اکسپلور ریلز</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="blog-container">
+
+            <!-- FILTER BAR -->
+            <div class="filter-nav-card">
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all" onclick="filterArticles('all', this)">
+                        <i class="fa-solid fa-border-all"></i> همه مقالات
+                    </button>
+                    <button class="filter-btn" data-filter="instagram" onclick="filterArticles('instagram', this)">
+                        <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> اینستاگرام
+                    </button>
+                    <button class="filter-btn" data-filter="telegram" onclick="filterArticles('telegram', this)">
+                        <i class="fa-brands fa-telegram" style="color: #24a1de;"></i> تلگرام
+                    </button>
+                    <button class="filter-btn" data-filter="top" onclick="filterArticles('top', this)">
+                        <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> پربازدیدترین‌ها
+                    </button>
+                    <button class="filter-btn" data-filter="offer" onclick="filterArticles('offer', this)">
+                        <i class="fa-solid fa-award" style="color: #10b981;"></i> پیشنهاد سردبیر
+                    </button>
+                </div>
+
+                <div class="filter-counter">
+                    <span>مجموع مقالات:</span>
+                    <strong id="visibleCount">{{ posts|length }}</strong>
+                    <span>مطلب آموزشی</span>
+                </div>
+            </div>
+
+            <!-- SPOTLIGHT / FEATURED ARTICLE -->
+            {% if featured_post and not search_query %}
+            <article class="spotlight-card" id="spotlightCard">
+                <div class="spotlight-media">
+                    {% if featured_post.image %}
+                        {% if ".webp" in featured_post.image.url %}
+                            <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}" class="spotlight-img" loading="eager" fetchpriority="high">
+                        {% else %}
+                            <picture>
+                                <source srcset="{{ featured_post.image.url }}.webp?v=3" type="image/webp">
+                                <img src="{{ featured_post.image.url }}?v=3" alt="{{ featured_post.title }}" class="spotlight-img" loading="eager" fetchpriority="high">
+                            </picture>
+                        {% endif %}
+                    {% else %}
+                        <div class="article-fallback-banner fallback-{{ featured_post.category.slug|default:'default' }}">
+                            <i class="fab fa-{{ featured_post.category.slug|default:'instagram' }}"></i>
+                            <span>{{ settings.name|default:'سوشال گرو' }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="spotlight-content">
+                    <div>
+                        <div class="spotlight-badge-row">
+                            <span class="spotlight-pill"><i class="fa-solid fa-star"></i> مقاله ویژه</span>
+                            {% if featured_post.category %}
+                            <span class="spotlight-category cat-{{ featured_post.category.slug }}">
+                                <i class="fab fa-{{ featured_post.category.slug }}"></i> {{ featured_post.category.title }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <h2 class="spotlight-title">
+                            <a href="/{{ featured_post.slug }}/">{{ featured_post.title }}</a>
+                        </h2>
+                        <p class="spotlight-desc">{{ featured_post.short_description }}</p>
+                    </div>
+                    <div class="spotlight-footer">
+                        <div class="spotlight-meta">
+                            <span><i class="far fa-calendar-alt"></i> {{ featured_post.get_date }}</span>
+                            <span><i class="far fa-clock"></i> {{ featured_post.reading_time|default:"۶" }} دقیقه مطالعه</span>
+                            <span><i class="far fa-eye"></i> {{ featured_post.views }} بازدید</span>
+                        </div>
+                        <a href="/{{ featured_post.slug }}/" class="spotlight-btn">
+                            <span>مطالعه مقاله</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+
+            <!-- SECTION BAR -->
+            <div class="section-bar">
+                <h2 id="gridSectionHeading">
+                    <i class="fa-solid fa-newspaper"></i> مقالات و آموزش‌های تخصصی
+                </h2>
+                <div id="searchResultNote" style="display: none; font-size: 13px; color: var(--primary); font-weight: 700;"></div>
+            </div>
+
+            <!-- ARTICLES GRID -->
+            <div class="posts-grid" id="articlesGrid">
+                {% for post in posts %}
+                <article class="article-card"
+                         data-category="{{ post.category.slug|default:'other' }}"
+                         data-is-top="{% if post in top %}true{% else %}false{% endif %}"
+                         data-is-offer="{% if post in offer or post.is_featured %}true{% else %}false{% endif %}"
+                         itemscope itemtype="https://schema.org/BlogPosting">
+                    
+                    <div class="article-thumbnail-box">
+                        {% if post.category %}
+                        <span class="card-category-tag cat-{{ post.category.slug }}">
+                            <i class="fab fa-{{ post.category.slug }}"></i> {{ post.category.title }}
+                        </span>
+                        {% endif %}
+
+                        <span class="card-read-time">
+                            <i class="far fa-clock"></i> {{ post.reading_time|default:"۵" }} دقیقه
+                        </span>
+
+                        {% if post.image %}
+                            {% if ".webp" in post.image.url %}
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="article-thumbnail-img" itemprop="image" loading="lazy" width="360" height="200">
+                            {% else %}
+                                <picture>
+                                    <source srcset="{{ post.image.url }}.webp?v=3" type="image/webp">
+                                    <img src="{{ post.image.url }}?v=3" alt="{{ post.title }}" class="article-thumbnail-img" itemprop="image" loading="lazy" width="360" height="200">
+                                </picture>
+                            {% endif %}
+                        {% else %}
+                            <div class="article-fallback-banner fallback-{{ post.category.slug|default:'default' }}">
+                                <i class="fab fa-{{ post.category.slug|default:'hashtag' }}"></i>
+                                <span>{{ settings.name|default:'سوشال گرو' }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="article-body">
+                        <div>
+                            <h3 class="article-title" itemprop="headline">
+                                <a href="/{{ post.slug }}/">{{ post.title }}</a>
+                            </h3>
+                            <p class="article-excerpt" itemprop="description">
+                                {{ post.short_description }}
+                            </p>
+                        </div>
+
+                        <div class="article-card-footer">
+                            <span class="article-date">
+                                <i class="far fa-calendar-alt"></i> {{ post.get_date }}
+                            </span>
+                            <a href="/{{ post.slug }}/" class="article-btn-link">
+                                <span>مطالعه کامل</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+
+                <!-- NO RESULTS PLACEHOLDER -->
+                <div class="no-results-box" id="noResultsBox">
+                    <div class="no-results-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3>مقاله‌ای با این مشخصات یافت نشد!</h3>
+                    <p>لطفاً عبارت جستجو را تغییر دهید یا دکمه زیر را برای نمایش همه مقالات لمس کنید.</p>
+                    <button class="no-results-btn" onclick="clearSearch()">
+                        <i class="fa-solid fa-rotate-right"></i> نمایش تمام مقالات
+                    </button>
+                </div>
+            </div>
+
+            <!-- BLOG BOTTOM CTA BANNER -->
+            <div class="blog-cta-banner">
+                <div class="blog-cta-content">
+                    <h3>به دنبال ارتقای سریع و بی‌دردسر پیج یا کانال خود هستید؟</h3>
+                    <p>خدمات سوشال گرو با شروع آنی، کیفیت درجه‌یک و بدون نیاز به پسورد اکانت در دسترس شماست.</p>
+                </div>
+                <a href="/products/" class="blog-cta-btn">
+                    <span>مشاهده تمام تعرفه‌ها و خدمات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FLOATING CALL BUTTON -->
+    {% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+    <a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+        <i class="fa-solid fa-phone"></i>
+        <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+    </a>
+    {% endif %}
+
+    <!-- FOOTER (UNTOUCHED) -->
+    <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="site-footer-inner">
+            <div class="footer-col">
+                <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+                <p>{{ settings.footer_description }}</p>
+            </div>
+            {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+            <div class="footer-col">
+                <p class="footer-col-title">پشتیبانی و راهنما</p>
+                <ul>
+                    <li><a href="/track-order">پیگیری سفارش</a></li>
+                    <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                    <li><a href="/faq">سوالات متداول</a></li>
+                    <li><a href="/terms">قوانین و مقررات</a></li>
+                    <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+                <div class="enamad">
+                    {{ settings.enamad|safe }}
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                    <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT FOR SEARCH & FILTERING -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+        if (menuBtn && nav) {
+            menuBtn.onclick = () => {
+                nav.classList.toggle("active");
+            };
+        }
+
+        let currentCategory = 'all';
+
+        // Filter articles by category or tags
+        function filterArticles(category, btnElement) {
+            currentCategory = category;
+
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+
+            applyFilters();
+        }
+
+        // Live input typing handler
+        function handleSearchInput(input) {
+            const clearBtn = document.getElementById('searchClearBtn');
+            if (input.value.trim().length > 0) {
+                clearBtn.style.display = 'inline-flex';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+            applyFilters();
+        }
+
+        // Search by quick keyword chips
+        function searchByKeyword(keyword) {
+            const input = document.getElementById('blogSearchInput');
+            input.value = keyword;
+            handleSearchInput(input);
+            input.focus();
+        }
+
+        // Clear search
+        function clearSearch() {
+            const input = document.getElementById('blogSearchInput');
+            input.value = '';
+            document.getElementById('searchClearBtn').style.display = 'none';
+            filterArticles('all', document.querySelector('.filter-btn[data-filter="all"]'));
+            input.focus();
+        }
+
+        function triggerClientSearch() {
+            applyFilters();
+        }
+
+        // Core filter & search logic
+        function applyFilters() {
+            const query = document.getElementById('blogSearchInput').value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.article-card');
+            const noResultsBox = document.getElementById('noResultsBox');
+            const spotlightCard = document.getElementById('spotlightCard');
+            const visibleCountEl = document.getElementById('visibleCount');
+            const searchResultNote = document.getElementById('searchResultNote');
+
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = (card.querySelector('.article-title') ? card.querySelector('.article-title').textContent : '').toLowerCase();
+                const excerpt = (card.querySelector('.article-excerpt') ? card.querySelector('.article-excerpt').textContent : '').toLowerCase();
+                const category = card.getAttribute('data-category');
+                const isTop = card.getAttribute('data-is-top') === 'true';
+                const isOffer = card.getAttribute('data-is-offer') === 'true';
+
+                // Check Category
+                let matchesCategory = false;
+                if (currentCategory === 'all') {
+                    matchesCategory = true;
+                } else if (currentCategory === 'top') {
+                    matchesCategory = isTop;
+                } else if (currentCategory === 'offer') {
+                    matchesCategory = isOffer;
+                } else if (category === currentCategory) {
+                    matchesCategory = true;
+                }
+
+                // Check Search Query
+                let matchesQuery = true;
+                if (query.length > 0) {
+                    matchesQuery = title.includes(query) || excerpt.includes(query);
+                }
+
+                if (matchesCategory && matchesQuery) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update visible counter
+            if (visibleCountEl) {
+                visibleCountEl.textContent = visibleCount;
+            }
+
+            // Hide spotlight card when searching
+            if (spotlightCard) {
+                if (query.length > 0 || currentCategory !== 'all') {
+                    spotlightCard.style.display = 'none';
+                } else {
+                    spotlightCard.style.display = 'grid';
+                }
+            }
+
+            // Show / Hide No Results
+            if (visibleCount === 0) {
+                noResultsBox.style.display = 'block';
+            } else {
+                noResultsBox.style.display = 'none';
+            }
+
+            // Search result indicator
+            if (query.length > 0) {
+                searchResultNote.style.display = 'inline-block';
+                searchResultNote.textContent = `نتایج جستجو برای: «${query}» (${visibleCount} مقاله)`;
+            } else {
+                searchResultNote.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load (in case URL has search query)
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('blogSearchInput');
+            if (input && input.value.trim().length > 0) {
+                document.getElementById('searchClearBtn').style.display = 'inline-flex';
+                applyFilters();
+            }
+        });
+    </script>
+    <script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

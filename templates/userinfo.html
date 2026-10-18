@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ویرایش اطلاعات کاربری</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/userinfo.css' %}?v={{current_time}}">
+<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+<body>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+<div class="sidebar" id="sidebar">
+<div>
+<div class="logo">داشبورد</div>
+<div class="menu">
+<button onclick="goHome()">🏠 صفحه اصلی</button>
+<button onclick="buy()">🛍️ ثبت سفارش</button>
+<button onclick="orders()">🛒 سفارشات من</button>
+<button onclick="increaseBalance()">💰 شارژ حساب</button>
+<button onclick="tickets()">📞 تیکت ها</button>
+<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+<button onclick="logout()">🚪 خروج از حساب</button>
+</div>
+</div>
+</div>
+
+
+<div class="main">
+<div class="container">
+<div class="header">
+<h1>👤 تنظیمات حساب کاربری</h1>
+<p>مشاهده و ویرایش اطلاعات شخصی حساب کاربری شما</p>
+</div>
+<div class="profile-box">
+<div class="user-card">
+<div class="avatar">
+<i class="fa-solid fa-user"></i>
+</div>
+<div class="info">
+<div class="info-item">
+<span>نام و نام خانوادگی</span>
+<strong>{{ user.first_name }} {{ user.last_name }}</strong>
+</div>
+<div class="info-item">
+<span>شماره تماس</span>
+<strong>{{ user.phone_number }}</strong>
+</div>
+<div class="info-item">
+<span>ایمیل</span>
+<strong>{{ user.email }}</strong>
+</div>
+</div>
+</div>
+<div class="edit-box">
+<h2>ویرایش اطلاعات</h2>
+<form method="POST" action="/changeinfo">
+{% csrf_token %}
+<div class="form-group">
+<label>نام</label>
+<input type="text" name="first_name" value="{{ user.first_name }}" placeholder="نام">
+</div>
+<div class="form-group">
+<label>نام خانوادگی</label>
+<input type="text" name="last_name" value="{{ user.last_name }}" placeholder="نام خانوادگی">
+</div>
+<div class="form-group">
+<label>شماره تماس</label>
+<input type="text" value="{{ user.phone_number }}" disabled class="disabled">
+</div>
+<div class="form-group">
+<label>ایمیل</label>
+<input type="email" value="{{ user.email }}" disabled class="disabled">
+</div>
+<button class="save-btn" type="submit">
+<i class="fa-solid fa-check"></i>
+ذخیره تغییرات
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<script>
+function toggleMenu(){
+
+document.getElementById("sidebar")
+.classList.toggle("active");
+
+}
+
+
+function goHome(){
+window.location.href="/";
+}
+
+
+function buy(){
+window.location.href="/new-order";
+}
+
+
+function orders(){
+window.location.href="/orders";
+}
+
+
+function tickets(){
+window.location.href="/tickets";
+}
+
+
+function increaseBalance(){
+window.location.href="/payment";
+}
+
+function userinfo(){
+window.location.href="/userinfo";
+}
+
+
+function logout(){
+
+if(confirm("آیا میخواهید خارج شوید؟")){
+window.location.href="/accounts/logout";
+}
+
+}
+</script>
+</body>
+</html>

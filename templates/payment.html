@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if is_wallet %}افزایش موجودی کیف پول{% else %}ثبت سفارش{% endif %}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/payment.css' %}?v={{current_time}}">
+<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+<body>
+ 
+<div class="success-card">
+
+<div class="success-icon">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+
+{% if is_wallet %}
+<h1>موجودی کیف پول شما با موفقیت شارژ شد 🎉</h1>
+<p class="subtitle">
+پرداخت شما با موفقیت تایید شد و مبلغ به موجودی کیف پول حساب کاربری شما افزوده گردید. اکنون می‌توانید به راحتی از اعتبار خود برای ثبت سفارش استفاده کنید.
+</p>
+{% else %}
+<h1>سفارش شما با موفقیت ثبت شد 🎉</h1>
+<p class="subtitle">
+پرداخت شما با موفقیت انجام شد و سفارش در صف پردازش قرار گرفت. وضعیت سفارش از طریق پنل کاربری قابل مشاهده خواهد بود.
+</p>
+{% endif %}
+
+<div class="info-box">
+
+<div class="item">
+<span>{% if is_wallet %}شناسه تراکنش{% else %}کد سفارش{% endif %}</span>
+<strong>#{{ ref_id }}</strong>
+</div>
+
+<div class="item">
+<span>وضعیت</span>
+<strong style="color:#22c55e;">{% if is_wallet %}شارژ موفق کیف پول{% else %}در انتظار پردازش{% endif %}</strong>
+</div>
+
+<div class="item">
+<span>مبلغ پرداخت شده</span>
+<strong>{{ amount }} تومان</strong>
+</div>
+
+</div>
+
+<div class="note">
+<i class="fa-solid fa-circle-info"></i>
+{% if is_wallet %}
+شارژ با موفقیت در حساب کاربری شما اعمال شد. از طریق بخش <strong>داشبورد کاربری</strong> می‌توانید موجودی و سفارشات خود را مدیریت کنید.
+{% else %}
+در صورت نیاز به پیگیری سفارش، کد سفارش خود را نگهداری کنید. همچنین می‌توانید وضعیت سفارش را از بخش <strong>سفارشات من</strong> مشاهده نمایید.
+{% endif %}
+</div>
+
+<div class="actions">
+
+{% if is_wallet %}
+	<button class="btn primary" onclick="window.location.href='/dashboard'">
+	<i class="fa-solid fa-house"></i>
+	بازگشت به داشبورد
+	</button>
+
+	<button class="btn secondary" onclick="window.location.href='/new-order'">
+	<i class="fa-solid fa-cart-plus"></i>
+	ثبت سفارش جدید
+	</button>
+
+	<button class="btn secondary" onclick="window.location.href='/orders'">
+	<i class="fa-solid fa-list-check"></i>
+	سفارشات من
+	</button>
+{% elif user.is_authenticated %}
+	<button class="btn primary" onclick="window.location.href='/orders'">
+	<i class="fa-solid fa-list-check"></i>
+	مشاهده سفارشات
+	</button>
+
+	<button class="btn secondary" onclick="window.location.href='/new-order'">
+	<i class="fa-solid fa-cart-plus"></i>
+	ثبت سفارش جدید
+	</button>
+
+	<button class="btn secondary" onclick="window.location.href='/dashboard'">
+	<i class="fa-solid fa-house"></i>
+	بازگشت به داشبورد
+	</button>
+{% else %}
+	<button class="btn primary" onclick="window.location.href='/'">
+	<i class="fa-solid fa-list-check"></i>
+	صفحه اصلی
+	</button>
+	
+	<button class="btn secondary" onclick="window.location.href='/track-order'">
+	<i class="fa-solid fa-cart-plus"></i>
+	پیگیری سفارش
+	</button>
+	
+	<button class="btn secondary" onclick="window.location.href='/accounts/signin/'">
+	<i class="fa-solid fa-house"></i>
+	ورود به حساب کاربری
+	</button>
+{% endif %}
+
+</div>
+
+<div class="success-text">
+از اعتماد شما سپاسگزاریم ❤️
+</div>
+
+</div>
+
+</body>
+</html>

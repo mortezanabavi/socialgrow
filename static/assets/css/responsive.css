@@ -1,0 +1,277 @@
+/* ==========================================================================
+   SocialGrow - Unified Responsive Stylesheet (Clean, Mobile-Optimized)
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .body .images,
+    .images {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    select, input {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* Home Hero Section */
+    .body {
+        height: auto !important;
+        min-height: unset !important;
+        padding: 28px 16px 20px 16px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .text {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .text h1 {
+        font-size: 20px !important;
+        line-height: 1.45 !important;
+        margin-bottom: 12px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+    }
+
+    .text p {
+        font-size: 12.5px !important;
+        line-height: 1.6 !important;
+        margin: 6px 0 !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .text a {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 9px 18px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        margin: 8px 4px 0 4px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+        transition: transform 0.2s ease !important;
+        transform: none !important;
+    }
+
+    .text a:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* Wave Dividers on Mobile (Eliminates 1468px bleed and 200px void) */
+    .custom-shape-divider-top-1737105622,
+    .custom-shape-divider-top-1737167902,
+    .custom-shape-divider-top-1737184980,
+    .custom-shape-divider-bottom-1737185522 {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+
+    .custom-shape-divider-top-1737105622 svg,
+    .custom-shape-divider-top-1737167902 svg,
+    .custom-shape-divider-top-1737184980 svg,
+    .custom-shape-divider-bottom-1737185522 svg {
+        height: 50px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* How to start Section (.what) */
+    .what {
+        padding: 26px 14px 15px 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .what p {
+        font-size: 18px !important;
+        margin: 0 0 16px 0 !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+    }
+
+    /* 2x2 Grid for Steps on Mobile */
+    .options {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 480px !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .dbox {
+        width: 100% !important;
+        padding: 12px 8px !important;
+        background: #ffffff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        border: 1px solid #eef2f6 !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+    }
+
+    .dbox span {
+        font-size: 20px !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 6px !important;
+    }
+
+    .dbox h2 {
+        font-size: 13px !important;
+        margin: 4px 0 !important;
+        font-weight: 700 !important;
+    }
+
+    .dbox p {
+        font-size: 11px !important;
+        line-height: 1.45 !important;
+        margin: 0 !important;
+        text-align: center !important;
+        color: #64748b !important;
+    }
+
+    /* Platforms Section */
+    .platforms {
+        padding: 24px 14px !important;
+        gap: 14px !important;
+        background-color: #ffffff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .platforms h2 {
+        font-size: 17px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .platforms .lists {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .pbox {
+        width: calc(33.333% - 8px) !important;
+        min-width: 85px !important;
+        padding: 10px 6px !important;
+        font-size: 12px !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+    }
+
+    .pbox i {
+        font-size: 22px !important;
+    }
+
+    .pbox h2 {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+    }
+
+    /* Products Section */
+    .products-header h2 {
+        font-size: 18px !important;
+    }
+
+    .products-header h2 i {
+        font-size: 19px !important;
+    }
+
+    .products-header p {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+    }
+
+    .products-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        gap: 10px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Order Section */
+    .center {
+        padding: 20px 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    #order form {
+        width: 100% !important;
+        max-width: 440px !important;
+        padding: 16px 12px !important;
+        box-sizing: border-box !important;
+        background: #ffffff !important;
+        border-radius: 14px !important;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .gateway-container {
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .gateway {
+        width: 70px !important;
+        padding: 4px !important;
+        font-size: 11px !important;
+    }
+
+    .payment {
+        flex-direction: column !important;
+        gap: 8px !important;
+        align-items: stretch !important;
+    }
+
+    .payment button {
+        width: 100% !important;
+        height: 42px !important;
+        margin-top: 6px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .options {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

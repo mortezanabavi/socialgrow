@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /userinfo/
+Disallow: /new-order/
+Disallow: /orders/
+Disallow: /tickets/
+Disallow: /submit-ticket/
+Disallow: /payment/
+
+Sitemap: https://socialgrow.ir/sitemap.xml
+Sitemap: https://socialgrow.ir/sitemap-products.xml

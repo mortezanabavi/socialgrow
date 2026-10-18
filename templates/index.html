@@ -1,0 +1,1177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head><meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="سوشال گرو، خرید فالوور و لایک اینستاگرام، ممبر و بازدید تلگرام و سابسکرایب یوتیوب با سرعت بالا، قیمت مناسب و پرداخت آنی و امن، بدون نیاز به ثبت‌نام.">
+        <meta name="keywords" content="خرید فالور اینستاگرام, خرید سابسکرایب یوتیوب, خرید ممبر تلگرام, خرید لایک اینستاگرام, خرید بازدید تلگرام, خرید لایک یوتیوب">
+        <meta name="author" content="{{settings.name}}">
+        <link rel="canonical" href="https://socialgrow.ir/">
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{settings.name}} - خدمات خرید فالور و رشد شبکه‌های اجتماعی">
+        <meta property="og:description" content="بهترین خدمات برای رشد شبکه‌های اجتماعی شما شامل خرید فالور، لایک و بازدید برای اینستاگرام، یوتیوب و تلگرام.">
+        <meta property="og:url" content="https://socialgrow.ir/">
+        <meta property="og:image" content="https://socialgrow.ir/static/images/social.png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="سوشال گرو - خدمات رشد شبکه‌های اجتماعی">
+        <meta property="og:locale" content="fa_IR">
+        <meta property="og:site_name" content="سوشال گرو">
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{settings.name}} - خدمات خرید فالور و لایک">
+        <meta name="twitter:description" content="رشد سریع شبکه‌های اجتماعی با خدمات حرفه‌ای ما.">
+        <meta name="twitter:image" content="https://socialgrow.ir/static/images/social.png">
+        <title>{{settings.name}} - رشد شبکه‌های اجتماعی با خدمات حرفه‌ای</title>
+		<link rel="icon" href="{% static 'images/favicon.ico' %}">
+        
+        <link rel="preload" href="{% static 'fonts/dana.woff2' %}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{% static 'fonts/vazir.woff2' %}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{% static 'fonts/kalameh.woff2' %}" as="font" type="font/woff2" crossorigin>
+        <!-- Critical CSS Inlined (Zero Render-Blocking Network Requests, Max Speed & LCP) -->
+        <style id="critical-bundle">
+@font-face{font-family:'kalameh';src:url('/static/fonts/kalameh.woff2') format('woff2'),url('/static/fonts/kalameh.ttf') format('truetype');font-display:swap}@font-face{font-family:'dana';src:url('/static/fonts/dana.woff2') format('woff2'),url('/static/fonts/dana.ttf') format('truetype');font-display:swap}@font-face{font-family:'vazir';src:url('/static/fonts/vazir.woff2') format('woff2'),url('/static/fonts/vazir.ttf') format('truetype');font-display:swap}html,body{overflow-x:hidden !important;max-width:100vw !important;width:100% !important;position:relative !important;box-sizing:border-box !important}*,*::before,*::after{box-sizing:border-box !important}@media (max-width:768px){.header .container{padding:8px 14px !important}.header .logo img{width:32px !important;height:32px !important}.header .logo span{font-size:16px !important}.header .login{padding:6px 12px !important;font-size:12px !important}.header .menu-btn{width:36px !important;height:36px !important;font-size:16px !important}}.header{position:sticky !important;top:0 !important;left:0 !important;right:0 !important;width:100% !important;z-index:10000 !important;background:rgba(255,255,255,0.95) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important;border-bottom:1px solid rgba(6,147,227,0.15) !important;box-shadow:0 4px 20px -2px rgba(0,0,0,0.04) !important;box-sizing:border-box !important;direction:rtl !important;font-family:'Vazir','Vazirmatn',Tahoma,sans-serif !important}.header .container{max-width:1300px !important;width:100% !important;margin:0 auto !important;display:flex !important;justify-content:space-between !important;align-items:center !important;padding:12px 20px !important;box-sizing:border-box !important}.header .logo{display:flex !important;align-items:center !important;gap:10px !important;text-decoration:none !important;color:#0f172a !important;font-size:20px !important;font-weight:800 !important;flex-shrink:0 !important}.header .logo img{width:40px !important;height:40px !important;object-fit:contain !important}.header .logo span{font-size:20px !important;font-weight:800 !important;color:#0f172a !important;letter-spacing:-0.5px !important}.header .nav{display:flex !important;align-items:center !important;gap:22px !important;margin:0 !important;padding:0 !important;list-style:none !important}.header .nav a{color:#475569 !important;text-decoration:none !important;font-size:14.5px !important;font-weight:600 !important;padding:6px 4px !important;position:relative !important;transition:color 0.25s ease !important;cursor:pointer !important}.header .nav a:hover,.header .nav a.active{color:#0284c7 !important}.header .nav a::after{content:'' !important;position:absolute !important;bottom:-4px !important;right:0 !important;width:0 !important;height:2.5px !important;border-radius:4px !important;background:#0284c7 !important;transition:width 0.25s ease !important}.header .nav a:hover::after,.header .nav a.active::after{width:100% !important}.header .actions{display:flex !important;align-items:center !important;gap:12px !important;flex-shrink:0 !important}.header .login{background:linear-gradient(135deg,#0284c7 0%,#0369a1 100%) !important;color:#ffffff !important;padding:9px 18px !important;border-radius:10px !important;text-decoration:none !important;font-size:13.5px !important;font-weight:700 !important;transition:all 0.25s ease !important;box-shadow:0 4px 12px rgba(2,132,199,0.25) !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}.header .login:hover{transform:translateY(-1px) !important;box-shadow:0 6px 16px rgba(2,132,199,0.35) !important}.header .user-menu{position:relative !important;cursor:pointer !important}.header .profile{display:flex !important;align-items:center !important;gap:10px !important;text-decoration:none !important;color:#0f172a !important;background:#ffffff !important;border:1px solid #e2e8f0 !important;border-radius:50px !important;padding:5px 12px 5px 8px !important;transition:all 0.25s ease !important;box-shadow:0 2px 8px rgba(0,0,0,0.04) !important}.header .profile:hover{border-color:#0284c7 !important;box-shadow:0 4px 14px rgba(2,132,199,0.15) !important}.header .avatar{position:relative !important;width:34px !important;height:34px !important}.header .avatar img{width:34px !important;height:34px !important;border-radius:50% !important;object-fit:cover !important}.header .avatar .status{position:absolute !important;bottom:0 !important;right:0 !important;width:9px !important;height:9px !important;background:#10b981 !important;border:2px solid #ffffff !important;border-radius:50% !important}.header .user-info{display:flex !important;flex-direction:column !important;line-height:1.2 !important;text-align:right !important}.header .user-info .welcome{font-size:10px !important;color:#94a3b8 !important}.header .user-info strong{font-size:12.5px !important;color:#1e293b !important;font-weight:700 !important}.header .profile-dropdown{position:absolute !important;top:calc(100%+10px) !important;left:0 !important;min-width:210px !important;background:#ffffff !important;border-radius:14px !important;box-shadow:0 15px 35px -5px rgba(0,0,0,0.12),0 5px 15px rgba(0,0,0,0.06) !important;border:1px solid #e2e8f0 !important;opacity:0 !important;visibility:hidden !important;transform:translateY(8px) !important;transition:all 0.25s ease !important;overflow:hidden !important;direction:rtl !important;z-index:10005 !important}.header .user-menu:hover .profile-dropdown,.header .user-menu.active .profile-dropdown{opacity:1 !important;visibility:visible !important;transform:translateY(0) !important}.header .profile-dropdown a{display:flex !important;align-items:center !important;gap:10px !important;padding:11px 16px !important;color:#334155 !important;text-decoration:none !important;font-size:13.5px !important;font-weight:600 !important;transition:all 0.2s ease !important}.header .profile-dropdown a:hover{background:#f0f9ff !important;color:#0284c7 !important}.header .profile-dropdown hr{border:none !important;border-top:1px solid #f1f5f9 !important;margin:4px 0 !important}.header .menu-btn{display:none !important;border:none !important;background:#f8fafc !important;width:40px !important;height:40px !important;border-radius:10px !important;border:1px solid #e2e8f0 !important;color:#1e293b !important;font-size:18px !important;cursor:pointer !important;align-items:center !important;justify-content:center !important;transition:all 0.2s ease !important}.header .menu-btn:hover{background:#e2e8f0 !important;color:#0284c7 !important}@media (max-width:991px){.header .logo{display:flex !important}.header .menu-btn{display:flex !important}.header .nav{position:fixed !important;top:68px !important;right:-100% !important;width:270px !important;max-width:85vw !important;height:calc(100vh - 68px) !important;background:#ffffff !important;flex-direction:column !important;align-items:flex-start !important;padding:25px 20px !important;gap:16px !important;box-shadow:-10px 0 30px rgba(0,0,0,0.12) !important;border-left:1px solid #e2e8f0 !important;transition:right 0.35s cubic-bezier(0.4,0,0.2,1),visibility 0.35s ease !important;z-index:99999 !important;overflow-y:auto !important;overflow-x:hidden !important;visibility:hidden !important;pointer-events:none !important}.header .nav.active{right:0 !important;visibility:visible !important;pointer-events:auto !important;display:flex !important}.header .nav a{width:100% !important;font-size:15px !important;padding:10px 12px !important;border-radius:8px !important;box-sizing:border-box !important}.header .nav a:hover,.header .nav a.active{background:#f0f9ff !important}.header .nav a::after{display:none !important}}footer.site-footer,.site-footer{display:block !important;width:100% !important;min-width:100% !important;max-width:100% !important;clear:both !important;background:#0f172a !important;color:#e2e8f0 !important;padding:60px 0 28px 0 !important;margin-top:70px !important;border-top:1px solid #1e293b !important;font-family:'Vazir','Vazirmatn','Dana',Tahoma,sans-serif !important;box-sizing:border-box !important;direction:rtl !important;text-align:right !important;position:relative !important}.site-footer .site-footer-inner,.site-footer-inner{max-width:1240px !important;width:100% !important;margin:0 auto !important;padding:0 24px !important;box-sizing:border-box !important;display:grid !important;grid-template-columns:2.2fr 1.3fr 1.3fr 1.7fr !important;gap:45px !important;grid-column:1 / -1 !important;align-items:start !important}@media (max-width:1024px){.site-footer .site-footer-inner,.site-footer-inner{grid-template-columns:repeat(2,1fr) !important;gap:36px 30px !important;padding:0 20px !important}}@media (max-width:640px){footer.site-footer,.site-footer{padding:45px 0 22px 0 !important;margin-top:45px !important}.site-footer .site-footer-inner,.site-footer-inner{grid-template-columns:1fr !important;gap:30px !important;padding:0 16px !important}}.site-footer .footer-col{display:flex !important;flex-direction:column !important;box-sizing:border-box !important;min-width:0 !important}.site-footer .footer-col h4,.site-footer .footer-col .footer-col-title{font-size:16.5px !important;font-weight:700 !important;color:#ffffff !important;margin:0 0 18px 0 !important;position:relative !important;display:inline-block !important;padding-bottom:9px !important;letter-spacing:-0.2px !important}.site-footer .footer-col h4::after,.site-footer .footer-col .footer-col-title::after{content:'' !important;position:absolute !important;bottom:0 !important;right:0 !important;width:36px !important;height:3px !important;border-radius:3px !important;background:#0284c7 !important}.site-footer .footer-col p{font-size:13.5px !important;color:#94a3b8 !important;line-height:1.85 !important;margin:0 !important;text-align:justify !important}.site-footer .footer-col ul{list-style:none !important;padding:0 !important;margin:0 !important;display:flex !important;flex-direction:column !important;gap:12px !important}.site-footer .footer-col ul li{margin:0 !important;padding:0 !important}.site-footer .footer-col ul li a{color:#cbd5e1 !important;text-decoration:none !important;font-size:13.5px !important;font-weight:500 !important;transition:all 0.2s ease !important;display:inline-flex !important;align-items:center !important;gap:6px !important}.site-footer .footer-col ul li a::before{content:'‹' !important;color:#0284c7 !important;font-size:15px !important;font-weight:700 !important;transition:transform 0.2s ease !important}.site-footer .footer-col ul li a:hover{color:#38bdf8 !important;transform:translateX(-4px) !important}.site-footer .footer-col ul li a:hover::before{transform:translateX(-2px) !important}.site-footer .enamad{display:flex !important;justify-content:center !important;align-items:center !important;background:rgba(255,255,255,0.04) !important;border:1px solid rgba(255,255,255,0.08) !important;border-radius:14px !important;padding:14px !important;min-height:95px !important;transition:all 0.25s ease !important;backdrop-filter:blur(8px) !important}.site-footer .enamad:hover{background:rgba(255,255,255,0.07) !important;border-color:rgba(56,189,248,0.35) !important;box-shadow:0 4px 20px rgba(0,0,0,0.25) !important}.site-footer .enamad img{max-width:85px !important;max-height:85px !important;width:auto !important;height:auto !important;object-fit:contain !important;display:block !important;margin:0 auto !important}.site-footer .footer-social-links,.site-footer .footer-col>div[style*="display:flex"]{display:flex !important;gap:12px !important;justify-content:center !important;margin-top:16px !important;align-items:center !important}.site-footer .footer-social-links a,.site-footer .footer-col>div[style*="display:flex"] a{width:42px !important;height:42px !important;border-radius:11px !important;background:rgba(255,255,255,0.05) !important;border:1px solid rgba(255,255,255,0.1) !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;color:#94a3b8 !important;font-size:19px !important;text-decoration:none !important;transition:all 0.25s ease !important}.site-footer .footer-social-links a:hover,.site-footer .footer-col>div[style*="display:flex"] a:hover{transform:translateY(-3px) !important;background:rgba(255,255,255,0.1) !important}.site-footer .footer-social-links a.tg-ch:hover,.site-footer .footer-col a[href*="SocialGrowCH"]:hover{color:#38bdf8 !important;border-color:#38bdf8 !important;box-shadow:0 4px 14px rgba(56,189,248,0.3) !important}.site-footer .footer-social-links a.tg-bot:hover,.site-footer .footer-col a[href*="SocialGrowRobot"]:hover{color:#60a5fa !important;border-color:#60a5fa !important;box-shadow:0 4px 14px rgba(96,165,250,0.3) !important}.site-footer .footer-social-links a.crisp-btn:hover,.site-footer .footer-col a[onclick*="Crisp"]:hover{color:#34d399 !important;border-color:#34d399 !important;box-shadow:0 4px 14px rgba(52,211,153,0.3) !important}.site-footer .footer-bottom,.footer-bottom{display:block !important;width:100% !important;max-width:1240px !important;margin:45px auto 0 auto !important;padding:24px 20px 0 20px !important;border-top:1px solid rgba(255,255,255,0.08) !important;text-align:center !important;color:#64748b !important;font-size:13px !important;box-sizing:border-box !important;grid-column:1 / -1 !important}.site-footer .footer-bottom p{font-size:13px !important;color:#94a3b8 !important;margin:0 !important;line-height:1.6 !important}.floating-call-btn{position:fixed !important;bottom:95px !important;right:24px !important;width:54px !important;height:54px !important;border-radius:50% !important;background:linear-gradient(135deg,#10b981 0%,#059669 100%) !important;color:#ffffff !important;display:flex !important;align-items:center !important;justify-content:center !important;font-size:22px !important;box-shadow:0 4px 18px rgba(16,185,129,0.45) !important;z-index:99998 !important;text-decoration:none !important;transition:all 0.3s cubic-bezier(0.4,0,0.2,1) !important}.floating-call-btn:hover{transform:scale(1.1) translateY(-2px) !important;box-shadow:0 8px 24px rgba(16,185,129,0.6) !important;color:#ffffff !important}.floating-call-btn::before{content:'' !important;position:absolute !important;width:100% !important;height:100% !important;border-radius:50% !important;background:rgba(16,185,129,0.5) !important;z-index:-1 !important;animation:call-pulse 2s infinite ease-out !important}@keyframes call-pulse{0%{transform:scale(1);opacity:0.8}100%{transform:scale(1.6);opacity:0}}.floating-call-btn .call-tooltip{position:absolute !important;right:68px !important;background:#1f2937 !important;color:#ffffff !important;font-size:13px !important;font-weight:700 !important;padding:7px 14px !important;border-radius:10px !important;white-space:nowrap !important;opacity:0 !important;visibility:hidden !important;transform:translateX(-8px) !important;transition:all 0.25s ease !important;box-shadow:0 4px 15px rgba(0,0,0,0.2) !important;pointer-events:none !important}.floating-call-btn:hover .call-tooltip{opacity:1 !important;visibility:visible !important;transform:translateX(0) !important}@media (max-width:768px){.floating-call-btn{bottom:85px !important;right:18px !important;width:48px !important;height:48px !important;font-size:19px !important}}body{margin:0;font-family:vazir;font-size:14px;direction:rtl;background-color:#f7f7f7;overflow-x:hidden;padding:0;list-style:none;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body::-webkit-scrollbar{width:6px}body::-webkit-scrollbar-track{background:transparent}body::-webkit-scrollbar-thumb{background:#b8b8b8;border-radius:4px}a{text-decoration:none}.bgc{position:relative;height:200px;background-color:#0693e3;width:100vw}.bgc img{height:200px;transform:scale(0.5);background-size:cover;width:100%;-webkit-transform:scale(0.5);-moz-transform:scale(0.5);-ms-transform:scale(0.5);-o-transform:scale(0.5)}.body{display:flex;flex-direction:row;justify-content:space-between;background-color:#0693e3;height:500px}.text{padding-inline:70px;margin-top:90px;width:350px;text-align:justify}.body .images img{width:600px}.text a{display:inline;color:#ffffff;font-family:dana;background-color:#15803d;border:none;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;padding:7px;text-decoration:none}.text a:hover{transition:transform 0.5s ease-in-out;transform:scale(1.5) rotate(15deg)}.gateway-container{display:flex;flex-direction:row;justify-content:center;gap:40px;margin-top:8px}.gateway{width:85px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3px;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px}.gateway.selected{border:1px solid}.gateway-container img{height:50px;width:50px}h1{font-size:30px;margin:0;padding:0;color:#ffffff}.platforms{display:flex;flex-direction:column;justify-content:center;align-items:center;background-color:#ffffff;gap:80px;padding-top:50px}.platforms h2{padding:0;margin:0;margin-right:30px}.lists{display:flex;flex-direction:row;justify-content:flex-start;align-items:center;width:75vw;overflow-x:scroll;gap:20px;padding-inline:50px;scroll-behavior:smooth}.lists::-webkit-scrollbar{display:none}.pbox{display:flex;flex-direction:row;justify-content:center;align-items:center;border-radius:10px;padding:15px;background-color:#f5f5f5;flex-shrink:0;width:250px;text-align:center}.pbox h2{color:white;font-size:20px;padding-block:0.83em}.pbox i{font-size:40px;color:white}.footer{display:flex;flex-direction:row;justify-content:space-between;align-items:center;background-color:#0693E3;padding-inline:20px}.footer .foptions{display:flex;flex-direction:column;justify-content:center;align-items:center;width:230px;padding:15px;text-align:justify;color:white;padding-inline:50px;height:150px}.footer .mes{gap:15px;padding-right:20px}.footer .namad{display:flex;flex-direction:row;justify-content:center;gap:30px}.footer .namad a img{width:65px}.footer .foptions .messenger{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:10px;width:126px}#zarinpal img{width:70px}.footer .foptions .messenger a{text-decoration:none;color:white}.footer .foptions .messenger a:hover{color:black}.footer .foptions .messenger i{font-size:20px}.footer .foptions p{font-size:13px}.telegram{background-color:#24A1DE}.instagram{background-color:#E1306C}.youtube{background-color:#FF0000}.x{background-color:#000000}.tiktok{background-color:#25F4EE}.twitch{background-color:#8956FB}.custom-shape-divider-top-1737105622{width:100%;overflow:hidden;line-height:0;color:red}.custom-shape-divider-top-1737105622 svg{position:relative;display:block;width:calc(122%+1.3px);height:200px}.custom-shape-divider-top-1737105622 .shape-fill{fill:#0693E3}.custom-shape-divider-top-1737167902{width:100%;overflow:hidden;line-height:0}.custom-shape-divider-top-1737167902 svg{position:relative;display:block;width:calc(297%+1.3px);height:200px}.custom-shape-divider-top-1737167902 .shape-fill{fill:#FFFFFF}.custom-shape-divider-top-1737184980{overflow:hidden;line-height:0}.custom-shape-divider-top-1737184980 svg{position:relative;display:block;width:calc(237%+1.3px);height:200px}.custom-shape-divider-top-1737184980 .shape-fill{fill:#FFFFFF}.custom-shape-divider-bottom-1737185522{width:100%;overflow:hidden;line-height:0;transform:rotate(180deg)}.custom-shape-divider-bottom-1737185522 svg{position:relative;display:block;width:calc(300%+1.3px);height:200px}.custom-shape-divider-bottom-1737185522 .shape-fill{fill:#0693E3}.text p{color:#ffffff}.text span{color:#fcb900}.video-background{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1}.footer p{padding:0;margin:0}.center{display:flex;flex-direction:column;justify-content:center;align-items:center;padding-bottom:10px;background-color:#f7f7f7;padding-top:50px}.what{display:flex;flex-direction:column;justify-content:center;align-items:center}.what p{font-family:vazir;font-size:25px}.options{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;flex-shrink:0;align-items:center;margin-top:80px;gap:70px;width:75vw}.dbox{display:flex;flex-direction:column;justify-content:center;align-items:center;width:200px}.dbox span{font-size:30px;padding:15px;box-sizing:border-box;border:solid 1px;border-radius:100px;-webkit-border-radius:100px;-moz-border-radius:100px;-ms-border-radius:100px;-o-border-radius:100px}.paymentsh{background-color:#EDFAFE;fill:#6EC3DD;color:#6EC3DD}.takmil{background-color:#E4F4F1;fill:#38C9AE;color:#38C9AE}.paygir{background-color:#FFF8F5;fill:#E4A083;color:#E4A083}.select{background-color:#F4F3FB;fill:#8478D8;color:#8478D8}.dbox h2{font-family:vazir;color:#343A40;font-size:17px}.dbox p{font-family:vazir;font-size:13px;text-align:justify;color:#69727d}.box{background-color:white;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-o-border-radius:10px;text-align:center}.bgimg{position:absolute;height:100vh}lottie-player{position:relative;width:100%;left:0;bottom:0;object-fit:cover}.header{position:sticky;top:0;z-index:999;backdrop-filter:blur(15px);background:rgba(255,255,255,.85);border-bottom:1px solid rgba(6,147,227,.15)}.header .container{max-width:1300px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:16px 20px}.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#222;font-size:24px;font-weight:700}.logo img{width:42px}.nav{display:flex;gap:35px}.nav a{color:#555;text-decoration:none;font-size:15px;position:relative;transition:.3s}.nav a:hover{color:#0693E3}.nav a::after{content:"";position:absolute;bottom:-8px;right:0;width:0;height:3px;border-radius:50px;background:#0693E3;transition:.3s}.nav a:hover::after{width:100%}.actions{display:flex;align-items:center;gap:15px}.login{background:#0693E3;color:white;padding:12px 22px;border-radius:12px;text-decoration:none;transition:.3s}.login:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,147,227,.3)}.profile{display:flex;align-items:center;gap:10px;text-decoration:none;color:#222}.profile img{width:42px;height:42px;border-radius:50%}.menu-btn{display:none;border:none;background:none;font-size:24px;cursor:pointer}.menu-toggle{display:none;font-size:24px;cursor:pointer}form{box-sizing:border-box}.g-recaptcha{display:flex;flex-direction:row;margin-inline:auto;margin-top:13px}label{margin-bottom:8px;font-weight:bold;color:#333}select,input{font-family:dana;margin-bottom:5px;border:1px solid #ccc;border-radius:4px;font-size:13.5px}input{direction:ltr}select option{font-family:dana}.description{display:hidden;position:relative;border:solid 1px #ccc;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px}label[for="description"]{display:hidden}.description p{color:#333}.payment{display:flex;flex-direction:row;justify-content:space-between}.price{font-size:13px}.payment button{font-family:dana;width:30%;margin-top:17px;height:50px;background-color:#007BFF;color:white;border:none;border-radius:4px;font-size:16px;cursor:pointer}.payment button:hover{background-color:#0056b3}.user-menu{position:relative}.profile{display:flex;align-items:center;gap:12px;text-decoration:none;color:#222;background:#fff;border:1px solid #e8eef5;border-radius:60px;padding:8px 14px;transition:.3s;box-shadow:0 4px 15px rgba(0,0,0,.05)}.profile:hover{border-color:#0693E3;transform:translateY(-2px);box-shadow:0 10px 25px rgba(6,147,227,.18)}.avatar{position:relative}.avatar img{width:42px;height:42px;border-radius:50%}.status{position:absolute;bottom:2px;right:2px;width:10px;height:10px;background:#22c55e;border:2px solid white;border-radius:50%}.user-info{display:flex;flex-direction:column;line-height:1.2}.user-info .welcome{font-size:11px;color:#888}.user-info strong{font-size:15px;color:#222}.profile i{color:#999;font-size:12px;transition:.3s}.user-menu:hover .profile i{transform:rotate(180deg)}.profile-dropdown{position:absolute;top:115%;left:0;min-width:230px;background:#fff;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;overflow:hidden;direction:rtl}.user-menu:hover .profile-dropdown{opacity:1;visibility:visible;transform:translateY(0)}.profile-dropdown a{display:flex;align-items:center;gap:12px;padding:14px 18px;color:#444;text-decoration:none;transition:.25s}.profile-dropdown a:hover{background:#f5fbff;color:#0693E3}.profile-dropdown hr{border:none;border-top:1px solid #eee;margin:0}.logout{color:#ef4444 !important}.site-footer{background:#1f2937;color:#e5e7eb;padding:3rem 4% 1.5rem 4%;margin-top:4rem;display:block}.enamad{display:flex;flex-direction:row;justify-content:center;align-items:center}.enamad img{width:80px}.footer-col h4{font-size:1.05rem;margin-bottom:1.2rem;color:white;position:relative;display:inline-block}.footer-col h4::after{content:'';position:absolute;width:35px;height:3px;background:#fd1d1d;bottom:-6px;right:0}.footer-col ul li{margin-bottom:0.5rem}.footer-col a{color:#d1d5db;font-size:0.85rem;transition:all 0.3s ease-in-out}.footer-col a:hover{color:white;padding-right:4px}.footer-col p{font-size:0.85rem;color:#9ca3af;margin-bottom:0.5rem}.footer-bottom{grid-column:1/-1;text-align:center;border-top:1px solid #374151;padding-top:1.5rem;font-size:0.8rem;color:#9ca3af}.products-section{display:flex;flex-direction:column;align-items:center;background-color:#ffffff;padding-block:60px 20px;gap:40px}.products-header{text-align:center}.products-header h2{font-family:vazir;font-size:25px;color:#343A40;display:flex;align-items:center;justify-content:center;gap:10px;margin:0}.products-header h2 .fa-telegram{color:#24A1DE}.products-header h2 .fa-instagram{color:#E1306C}.products-header p{color:#69727d;font-size:13px;margin-top:8px}.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px;width:85vw;max-width:1200px}.product-card{display:flex;flex-direction:column;background-color:#fff;border:1px solid #eef1f4;border-radius:14px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.06);transition:transform .3s ease,box-shadow .3s ease}.product-card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(6,147,227,0.15)}.product-card .product-image{position:relative;width:100%;aspect-ratio:16 / 10;overflow:hidden;background:#f2f4f6}.product-card .product-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}.product-card:hover .product-image img{transform:scale(1.08)}.product-card .product-badge{position:absolute;top:10px;left:10px;background:#0369a1;color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}.product-card .product-body{display:flex;flex-direction:column;padding:16px;gap:8px;flex-grow:1}.product-card h3{font-family:vazir;font-size:15px;color:#343A40;margin:0}.product-card .product-desc{font-size:12.5px;color:#374151;text-align:justify;line-height:1.8;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex-grow:1}.product-card .product-price{font-size:13.5px;font-weight:bold;color:#0369a1;margin-top:4px}.product-card .product-price span{font-size:10.5px;font-weight:normal;color:#4b5563}.product-card .order-btn{font-family:dana;display:block;text-align:center;background-color:#15803d;color:#fff;border:none;border-radius:0 0 14px 14px;padding:13px;font-size:13.5px;text-decoration:none;transition:background-color .3s ease}.product-card .order-btn:hover{background-color:#166534}.custom-shape-divider-top-products{width:100%;overflow:hidden;line-height:0;transform:rotate(180deg)}.custom-shape-divider-top-products svg{position:relative;display:block;width:calc(100%+1.3px);height:100px}.custom-shape-divider-top-products .shape-fill{fill:#0693E3;opacity:0.08}@media (max-width:768px){.products-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));width:90vw;gap:15px}.product-card .product-body{padding:12px}}@media (max-width:460px){.products-grid{grid-template-columns:1fr 1fr}}.floating-call-btn{position:fixed;bottom:95px;right:24px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#ffffff !important;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 18px rgba(16,185,129,0.45);z-index:99998;text-decoration:none;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}.floating-call-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,0.6);color:#ffffff !important}.floating-call-btn::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(16,185,129,0.5);z-index:-1;animation:call-pulse 2s infinite ease-out}@keyframes call-pulse{0%{transform:scale(1);opacity:0.8}100%{transform:scale(1.6);opacity:0}}.floating-call-btn .call-tooltip{position:absolute;right:68px;background:#1f2937;color:#ffffff;font-size:13px;font-weight:700;padding:7px 14px;border-radius:10px;white-space:nowrap;opacity:0;visibility:hidden;transform:translateX(-8px);transition:all 0.25s ease;box-shadow:0 4px 15px rgba(0,0,0,0.2);pointer-events:none}.floating-call-btn:hover .call-tooltip{opacity:1;visibility:visible;transform:translateX(0)}@media (max-width:768px){.floating-call-btn{bottom:85px;right:18px;width:48px;height:48px;font-size:19px}}@media (max-width:991px){.body .images,.images{display:none !important}}@media (max-width:768px){select,input{max-width:100% !important;width:100% !important;box-sizing:border-box !important;text-overflow:ellipsis !important}.body{height:auto !important;min-height:unset !important;padding:28px 16px 20px 16px !important;flex-direction:column !important;text-align:center !important;justify-content:center !important;align-items:center !important;box-sizing:border-box !important}.text{width:100% !important;max-width:100% !important;padding:0 !important;margin-top:0 !important;text-align:center !important;box-sizing:border-box !important}.text h1{font-size:20px !important;line-height:1.45 !important;margin-bottom:12px !important;font-weight:800 !important;color:#ffffff !important}.text p{font-size:12.5px !important;line-height:1.6 !important;margin:6px 0 !important;color:rgba(255,255,255,0.95) !important;text-align:center !important}.text a{display:inline-flex !important;align-items:center !important;justify-content:center !important;padding:10px 20px !important;font-size:13.5px !important;font-weight:700 !important;border-radius:10px !important;margin:8px 4px 0 4px !important;background-color:#15803d !important;color:#ffffff !important;box-shadow:0 4px 12px rgba(0,0,0,0.12) !important;transition:transform 0.2s ease !important;transform:none !important}.text a:hover{background-color:#166534 !important;transform:translateY(-2px) !important}.custom-shape-divider-top-1737105622,.custom-shape-divider-top-1737167902,.custom-shape-divider-top-1737184980,.custom-shape-divider-bottom-1737185522{width:100% !important;max-width:100% !important;overflow:hidden !important;position:relative !important}.custom-shape-divider-top-1737105622 svg,.custom-shape-divider-top-1737167902 svg,.custom-shape-divider-top-1737184980 svg,.custom-shape-divider-bottom-1737185522 svg{height:50px !important;width:100% !important;max-width:100% !important}.what{padding:26px 14px 15px 14px !important;box-sizing:border-box !important}.what>p{font-size:18px !important;margin-bottom:16px !important;font-weight:800 !important}.options{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:10px !important;width:100% !important;box-sizing:border-box !important}.dbox{width:100% !important;height:auto !important;padding:14px 10px !important;box-sizing:border-box !important;border-radius:12px !important;background:#ffffff !important;box-shadow:0 2px 8px rgba(0,0,0,0.04) !important}.dbox span.material-symbols-outlined{font-size:28px !important;margin-bottom:6px !important}.dbox h2{font-size:13.5px !important;margin-bottom:4px !important;font-weight:700 !important}.dbox p{font-size:11px !important;line-height:1.5 !important;color:#64748b !important}.products-section{padding:24px 12px 10px 12px !important;box-sizing:border-box !important}.products-header h2{font-size:18px !important;font-weight:800 !important}.products-header p{font-size:12px !important;color:#64748b !important}.products-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr)) !important;gap:12px !important;width:100% !important;box-sizing:border-box !important}.product-card .product-body{padding:10px !important;gap:4px !important}.product-card h3{font-size:13px !important;font-weight:700 !important;line-height:1.4 !important}.product-card .product-desc{display:none !important}.product-card .product-price{font-size:12px !important;font-weight:800 !important;margin-top:2px !important}.product-card .order-btn{padding:9px !important;font-size:12px !important}.platforms{padding:24px 12px 14px 12px !important;gap:16px !important;box-sizing:border-box !important}.platforms h2{font-size:17px !important;font-weight:800 !important;margin-right:0 !important;text-align:center !important}.platforms .lists{display:flex !important;flex-direction:row !important;gap:10px !important;width:100% !important;box-sizing:border-box !important;padding-bottom:6px !important;overflow-x:auto !important;scrollbar-width:none !important;-webkit-overflow-scrolling:touch !important}.platforms .lists::-webkit-scrollbar{display:none !important}.pbox{min-width:90px !important;width:90px !important;height:90px !important;padding:10px !important;border-radius:12px !important;box-sizing:border-box !important}.pbox i{font-size:28px !important}.pbox h2{font-size:12px !important;margin-top:4px !important}}@media (max-width:580px){.center{padding:20px 10px !important;width:100% !important;max-width:100% !important;overflow-x:hidden !important;box-sizing:border-box !important}#order form{width:100% !important;max-width:440px !important;padding:16px 12px !important;box-sizing:border-box !important;background:#ffffff !important;border-radius:14px !important;box-shadow:0 4px 18px rgba(0,0,0,0.05) !important}.gateway-container{gap:8px !important;flex-wrap:wrap !important;justify-content:center !important}.gateway{width:70px !important;padding:4px !important;font-size:11px !important}.payment{flex-direction:column !important;gap:8px !important;align-items:stretch !important}.payment button{width:100% !important;height:42px !important;margin-top:6px !important;font-size:14px !important}}@media (min-width:769px){.body{display:flex !important;flex-direction:row !important;justify-content:space-between !important;align-items:center !important;background-color:#0693e3 !important;min-height:480px !important;height:auto !important;padding:50px 80px 40px !important;box-sizing:border-box !important;position:relative !important;overflow:hidden !important}.text{flex:1 !important;max-width:640px !important;width:auto !important;padding:0 !important;margin:0 !important;text-align:right !important;box-sizing:border-box !important;z-index:2 !important}.text h1{font-size:28px !important;font-weight:800 !important;line-height:1.55 !important;color:#ffffff !important;margin:0 0 16px 0 !important;text-shadow:0 2px 8px rgba(0,0,0,0.1) !important;text-align:right !important}.text h1 span{color:#fcb900 !important}.text p{font-size:15.5px !important;line-height:1.85 !important;color:rgba(255,255,255,0.95) !important;margin:0 0 10px 0 !important;font-weight:500 !important;text-align:right !important}.text a{display:inline-flex !important;align-items:center !important;justify-content:center !important;color:#ffffff !important;font-family:inherit !important;font-size:14.5px !important;font-weight:700 !important;background-color:#15803d !important;border:none !important;border-radius:10px !important;padding:12px 24px !important;margin-top:15px !important;margin-left:12px !important;text-decoration:none !important;box-shadow:0 4px 14px rgba(0,0,0,0.15) !important;transition:all 0.25s ease !important;transform:none !important}.text a:hover{background-color:#166534 !important;transform:translateY(-2px) !important;box-shadow:0 6px 20px rgba(0,0,0,0.2) !important}.body .images{flex-shrink:0 !important;display:flex !important;justify-content:center !important;align-items:center !important;z-index:1 !important}.body .images img{max-width:480px !important;width:100% !important;height:auto !important;object-fit:contain !important;filter:drop-shadow(0 10px 25px rgba(0,0,0,0.15)) !important}.center{display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;padding:60px 20px 80px !important;background:linear-gradient(180deg,#f7f7f7 0%,#eef2f6 100%) !important;box-sizing:border-box !important;width:100% !important}#order form{width:100% !important;max-width:580px !important;background:#ffffff !important;border-radius:20px !important;padding:35px 30px !important;box-shadow:0 10px 35px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.04) !important;border:1px solid rgba(226,232,240,0.85) !important;box-sizing:border-box !important;display:flex !important;flex-direction:column !important}#order form label{font-size:13.5px !important;font-weight:700 !important;color:#334155 !important;margin-bottom:7px !important;margin-top:14px !important;display:block !important}#order form label:first-of-type{margin-top:0 !important}#order form select,#order form input[type="text"],#order form input[type="number"]{width:100% !important;box-sizing:border-box !important;height:48px !important;padding:0 14px !important;border:1.5px solid #cbd5e1 !important;border-radius:10px !important;font-size:14px !important;font-family:inherit !important;background-color:#f8fafc !important;color:#1e293b !important;outline:none !important;transition:all 0.2s ease !important;margin-bottom:4px !important}#order form select:focus,#order form input[type="text"]:focus,#order form input[type="number"]:focus{border-color:#0693e3 !important;background-color:#ffffff !important;box-shadow:0 0 0 3px rgba(6,147,227,0.15) !important}#order .description{background:#f8fafc !important;border:1px dashed #cbd5e1 !important;border-radius:10px !important;padding:12px 14px !important;margin:8px 0 14px !important;font-size:13px !important;color:#475569 !important;line-height:1.6 !important}#order .gateway-container{display:flex !important;gap:12px !important;flex-wrap:wrap !important;justify-content:flex-start !important;margin:10px 0 16px !important}#order .gateway{display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:6px !important;padding:10px 14px !important;border:1.5px solid #e2e8f0 !important;border-radius:12px !important;background:#ffffff !important;cursor:pointer !important;transition:all 0.2s ease !important;min-width:90px !important;box-sizing:border-box !important}#order .gateway:hover{border-color:#0693e3 !important;transform:translateY(-2px) !important;box-shadow:0 4px 12px rgba(6,147,227,0.12) !important}#order .gateway.selected{border-color:#0693e3 !important;background:rgba(6,147,227,0.05) !important;box-shadow:0 0 0 2px #0693e3 !important}#order .gateway img{width:36px !important;height:36px !important;object-fit:contain !important}#order .gateway p{margin:0 !important;font-size:11.5px !important;font-weight:600 !important;color:#334155 !important}#order .g-recaptcha{margin:14px 0 !important;display:flex !important;justify-content:center !important}#order .payment{display:flex !important;justify-content:space-between !important;align-items:center !important;background:#f1f5f9 !important;border-radius:14px !important;padding:14px 18px !important;margin-top:16px !important;gap:15px !important}#order .payment .price{display:flex !important;flex-direction:column !important;gap:3px !important}#order .payment .price p:first-child{font-size:12px !important;color:#64748b !important;margin:0 !important}#order .payment .price p#calculated-price{font-size:19px !important;font-weight:800 !important;color:#0f172a !important;margin:0 !important}#order .payment button[type="submit"]{background:linear-gradient(135deg,#0693e3 0%,#0578bd 100%) !important;color:#ffffff !important;border:none !important;border-radius:10px !important;height:48px !important;padding:0 32px !important;font-size:15px !important;font-weight:700 !important;cursor:pointer !important;box-shadow:0 4px 14px rgba(6,147,227,0.35) !important;transition:all 0.25s ease !important;display:flex !important;align-items:center !important;justify-content:center !important;width:auto !important;margin:0 !important}#order .payment button[type="submit"]:hover{transform:translateY(-2px) !important;box-shadow:0 6px 20px rgba(6,147,227,0.45) !important}.platforms{padding:40px 20px !important;gap:30px !important}.platforms .lists{display:flex !important;justify-content:center !important;flex-wrap:wrap !important;gap:20px !important;overflow-x:visible !important}}.text a{background-color:#15803d !important;color:#ffffff !important}.text a:hover{background-color:#166534 !important}.product-card .product-desc{color:#374151 !important}.product-card .product-price{color:#0369a1 !important}.product-card .product-price span{color:#4b5563 !important}.product-card .order-btn{background-color:#15803d !important;color:#ffffff !important}.product-card .order-btn:hover{background-color:#166534 !important}.product-card .product-badge{background:#0369a1 !important;color:#ffffff !important}.lists{scroll-behavior:auto !important}.custom-shape-divider-top-1737105622,.custom-shape-divider-top-1737167902,.custom-shape-divider-top-1737184980,.custom-shape-divider-bottom-1737185522{contain:paint !important;pointer-events:none !important}.site-footer .footer-col .footer-col-title,.footer-col .footer-col-title{font-size:16px !important;font-weight:700 !important;color:#ffffff !important;margin:0 0 16px 0 !important;position:relative !important;display:inline-block !important;padding-bottom:8px !important;line-height:1.4 !important}.site-footer .footer-col .footer-col-title::after,.footer-col .footer-col-title::after{content:'' !important;position:absolute !important;bottom:0 !important;right:0 !important;width:32px !important;height:3px !important;border-radius:3px !important;background:#0284c7 !important}
+@font-face{font-family:'Font Awesome 6 Brands';font-style:normal;font-weight:400;font-display:swap;src:url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAARkAAoAAAAACDgAAAQeAwUDAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAVMqIYAE2AiQDGMsOBCAFgzQHIBuHB0AuB2xwvkZFO6ZjVNi1So7zyD2Db/7/61r3vi/JTAb1oLaiIh1nKzGkpd9WrEVb8uPa7+SbT97u++z2Hd52QiikTKIlaiEkMiQaTZRocvdBBC30xLDkt/0v19o0lm1L29z3qzW1N1EXQk0wPuOjImWyofsAgCNQUVwgWTauwgGgboViT85VdRi7IM07QPMPr8AAnMBVAEY7aafMiabAKASTWP/U0Js+EfU/9rdhcxDAZowDEAA4jHUAfAAgABSARAoEkEhjCCACFwL9Y/+/Revq1toEQ/1rOaey1+gH0bejBkcEvBwDQaxnPbpB4TiGtG0pozjHdUWgjZbrJVHgwEvlFAPiICJ/LMT1I3qvltd4fa1ly6Rmp3MQnI+jo2NSuIDCi5sjXvnGvBW/K/Z7Mh1Eip3Hyxl4a57jOolUACNt13UTSBYv9LzuKxoDgoxv4X9eQapcYHcd2rWAGh22CVVzXkCg0i4qZQUSnxwdNr/30ubDo1+6unJH2i481X/ZvFLXcvXq5z8nT3ad46SuAUEMILXxEfQzFFjkKFaa03JwIuNwMPDhGn2oalyUMOsSzZ6sBGxL0aBQeH88psqaS79J2IFRQooyPRt0NV6+zBEju2G9ERBLikA5sH1IPIw3a5zQjBLw9Dw8buo0GCB4Zj2fIF6hbua7AQnt1KKE88IZ4XwlljtEDA3QARdGekvdIlfUVfAlKFyuI1KoLbUprSRKoETx8XC5iJMSo0Lg2paRr1guZ5QFq6744AMLuO3+WWb1/qj1ZczcLZZ4W8YkSWz7uIc0NUtcJ+K5DicUuopaYyypdjYWYQujJjxauUuzZphNlVp2HSeUqSRbDx2SdNo5TDIURdIUOuy+sx3P+qoBkiYblDRScVwvs97EfoSwofUUScugZuEvO0KHCVUXRRAgeGQL3yPT/Odjf0Z2Dhz4DOiO2+JbbLHOmHd522V0XjLbY+yk7Gtknxt5oUSWZt3W/pDtYoy12nqxY63jBpGYGCVhpRiOJTShKNErYyKO54WUSorj7gv8jDSNUeT71WzwM75NVFIpmMcRpbyQG/Ic11VK3JiEWZNKyJFhKtE0YcepHie1HKW0MQABZRT67Z23OGbAu+sJAODnxfW78O5Be0CusBmAiwEZAv/CoBxRaLDD4a6WRwDWBwTIqCGIYT3AFnSncXb7zrdSExGA1ZNRbOV1QKx2loN5FKhDAHpATUX000MliMYmlcIoB2bqUSqDFRqfy6JHiqLhNttir23WWm2NHXwllivlG2WzTW2/b6jdVtpus41W9hzl68U3zDZLbbIC8H3TdFfbaYOlw/XpWumoSr1U6alKrVlW4tR2a9cr8vWOut1VqVH7e3ur1UdvPflK9py9a53V/fh7+EpnjmKze53SWOXiFQI=') format('woff2');}@font-face{font-family:'Font Awesome 6 Free';font-style:normal;font-weight:900;font-display:swap;src:url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAAcoAAoAAAAADsgAAAbhAwUDAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAgRTKlR4BNgIkAzTLHgQgBYMYByAbFQ4RVaNpk+k4qG7UL16JuHuI2vyt2ubD/7b6cy4KggoqCONzdpeRye27znY0L6t5GX9VX1G7/SdmqrOTgDdK0zHGBoljewtLlDYyTAsBcN/cm2VURK6ywlS4yiqZzE42sPk0ZfqgipDyFo/QnXCsgUkJev4sqXt3jc37idFooyvM/q2fAAmhKBcgCXAS1wAYa131NEq4ABDQFdAqzOG6w+fOnIwQ88408bP4RcAgTMxnhdKH8+lI3xSnIgWAIxilJxD+H9cjBwUZzPv902OZY8uO7Tt24NiNxz45cfr0qNOzT19zpimOgZy/c/xoh37zs9YD1pXWFdYOa2jWMT40XjIO6X+AoHGMn/QXnst7IQPYRwBu4aRqmhQ2UfU8meTUc/WRfc0dJOE+TAQe96dII53N6hdfrAcKBMjU1VffpqQNBRgQN5YALt13HwDQ408A1Kb77weAl3/icSSBOBI+I/gYgJFYifMBW+ub1KLjeZ1ftFrd4bB2ERmkP8hJU3JyJTaeiBJKPrKa2VL0wClZ+WRkYp7372bqnySbTeHvIUx2hTdNMzAd2+Jh4q+dz5fXU6POuV0tSKX6bZVUSin2T1p/dvx+cRnnqBtNs1nOOmv3WLbpD0yTh+N4x1TtqH4bVhqARvcbg4NYvJjPiMvQEaC7VEM0ymlQWSQFBrlpJU+D6OJ8WddjGNmsEeo6ofV/kgTODcbQ9TAeoesb/tL1VsORFqJN6rsJKNWOksVxwRVlq2no1HVPE12sznToNWtfbOir5p5vAq1jlavm2esL/uR7QPjw+St9dAD67qpA9Ta13WI7yYZsR03UPvqo4YvaPEziHnuM5b4EFCB+TQxhhK7oH8YAdh9X7LwGrF9B0+RUU4MG0M0NVa1BZmHpJQcF3FIwzkgtoN4xjnGYG6YZDF/cg3C75wVvdzLpRJtm26Xar8mkTd8Vwq39WradZHtUu+9ESK+uzqNVflrZymSsso+PFPwFHWlZ9q11ptWhQOG6Ip8r0dKEWxsnST1bqAGfoqmC76IFsJufbDYLcj3H6rNehnAixWQGl+9V/mrWtOaVBQcNWr36cAejTlFVa1nZbu19bivJrd7Khy1VVeqMDofzlPxnpSjPs8ys2qoX5b6tczvZ5WWAgoZHdtENowC73QHTUVZyi46mBmt3AG17L23iaFxQCJdGQddNhijRIuflPhlxa7nMwmBr98CjQADxrwK8By2YDdBrGU22JqdBb0OREVi1CghVagn0mHnzUjZdHp+DCBZT4VQzN2/kgYN0Vjp90DBNwxgihcaF9/thFE0e+tvKZdJztZ2Ic6r5cjlZLewaUsg3xLwwDdIQYyZQgYiqeNkCpDDwsiEjtKI9DMMkzMca7MNlAHuRxK5YlIrxBC8fpjkGjtO0+iNjVq9PhVuKprZ8LvDjYJKqXoVNw7wRTdVS3coFiWw0up2GedDZkEA2aJzM1fZ1chzScTrVvmaX2Kfr5jaLtHx/82X6yEtoO45NvfwtXsYwMl5T7ZocvYpjZsms6QifKbcMKWJYRzHHiDkGozjNWkjLoieFTUutndK4qFWxrHke7xkBV2ltGES2iuwaLb/aomElRANYcwUWvinFZGfYseFPwcRvuVAgC4Uy4WxO7RqLtLgNFsF7De/Jd0clzV9jNgXMtY+F2jERCgnHjCGYhx0AxwlbxHeNzIUFOngwckRKy86rmjib7lQt1YNPRSk79r6SOp+rIRHzBg4U77dnYaVy7/8b1/9eyZGlUtMWs37rJvj15pZ8OiOKNc7blqM4fDk3QYj5XeI1pazWN67d2hg2POyaplKJns6soJdJ56/p27ynBqwmNCB6tsRj7W4D1HW6+TnohglYjG04H+hrjtnBnPFzgDunOgPHdsFnCT+Ndl8S37vwDjazA+Wh3iZK2fjUC5HB7y3V4tcHNlSeg0eOHDyoMsZU8rda+HOamx+m2cX0MHKG0rR8eRqOpGX3J0RjBgxozPkQrBvDnG9UqkVtTSsXri2mNfu6FNqXcvnyNaNxcN8KBJSkgq1r/h+/1Bp0OpUWAIDfrty4O7p8fDJ+UVzOzwCkkNVK4B/cJ8KcsJNgOqk/wxBQK8SxGAYw6haAf5kqkAUR6vTfNgFnGHAhL+T/oqu4UJxUnk+kEnclp4IATF6NIg4AIAD2eScNCxQwoQPtSMuIXu1lAsaaMgVDtq1P5Jclseqpj6aiKwsYuXXb/h3r167b5beubPPHbN1y8+MN37t659bNq3ktfp8a5g4BLi40c+um9avYatd7tG59uvfuLues3rFzfQt/V79v32r3nlL2lf369vZbe5H3wJED4LfubquzmOTpM67UbieugAI=') format('woff2');}.fa,.fa-brands,.fa-regular,.fa-solid,.fab,.far,.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto;}.fa-brands,.fab{font-family:'Font Awesome 6 Brands' !important;font-weight:400;}.fa-solid,.fas{font-family:'Font Awesome 6 Free' !important;font-weight:900;}.fa-regular,.far{font-family:'Font Awesome 6 Free' !important;font-weight:400;}.fa-spin{animation:fa-spin 2s infinite linear;}@keyframes fa-spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}.fa-bars:before,.fa-navicon:before{content:"\f0c9"}.fa-cart-shopping:before,.fa-shopping-cart:before{content:"\f07a"}.fa-chevron-down:before{content:"\f078"}.fa-gauge-high:before,.fa-tachometer-alt-fast:before,.fa-tachometer-alt:before{content:"\f625"}.fa-headset:before{content:"\f590"}.fa-instagram:before{content:"\f16d"}.fa-phone:before{content:"\f095"}.fa-right-from-bracket:before,.fa-sign-out-alt:before{content:"\f2f5"}.fa-robot:before{content:"\f544"}.fa-telegram-plane:before,.fa-telegram:before{content:"\f2c6"}.fa-tiktok:before{content:"\e07b"}.fa-wallet:before{content:"\f555"}.fa-x:before{content:"\58"}.fa-x-twitter:before{content:"\e61b"}.fa-youtube:before{content:"\f167"}.fa-wand-magic-sparkles:before{content:"\e2ca"}.fa-arrow-left:before{content:"\f060"}.fa-check:before{content:"\f00c"}
+        .step-icon{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:60px !important;height:60px !important;min-width:60px !important;min-height:60px !important;border-radius:50% !important;box-sizing:border-box !important;margin-bottom:8px !important;border:solid 1px currentColor !important;contain:layout size !important}.step-icon svg{width:28px !important;height:28px !important;display:block !important}
+        </style>
+        <link rel="prefetch" href="{% static 'assets/css/bundle.min.css' %}" as="style">
+                {% if recaptcha_enabled %}
+        <!-- Optimized reCAPTCHA Lazy Loader (Zero Console Errors on Page Load) -->
+        <script>
+        (function() {
+            var recaptchaLoaded = false;
+            function loadRecaptcha() {
+                if (recaptchaLoaded) return;
+                recaptchaLoaded = true;
+                var script = document.createElement('script');
+                script.src = 'https://www.google.com/recaptcha/api.js';
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+            }
+            window.loadRecaptcha = loadRecaptcha;
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var orderSection = document.getElementById('order');
+                if (orderSection && 'IntersectionObserver' in window) {
+                    var observer = new IntersectionObserver(function(entries) {
+                        if (entries[0].isIntersecting) {
+                            loadRecaptcha();
+                            observer.disconnect();
+                        }
+                    }, { rootMargin: '400px 0px' });
+                    observer.observe(orderSection);
+                }
+                ['scroll', 'touchstart', 'mousedown'].forEach(function(evt) {
+                    window.addEventListener(evt, loadRecaptcha, { once: true, passive: true });
+                });
+                document.querySelectorAll('a[href="#order"]').forEach(function(btn) {
+                    btn.addEventListener('click', loadRecaptcha, { once: true });
+                });
+            });
+        })();
+        </script>
+        {% endif %}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "سوشال گرو",
+          "url": "https://socialgrow.ir",
+          "logo": "/static/images/logo.png?v={{ current_time }}"
+        }
+        </script>
+    
+<link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+</head>
+    <body>
+        <header class="header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+            <span>{{ settings.name|default:'سوشال گرو' }}</span>
+        </a>
+        <nav class="nav" id="nav">
+            <a href="/">خانه</a>
+            <a href="/products/">تعرفه‌ها و خدمات</a>
+            <a href="/new-order">ثبت سفارش</a>
+            <a href="/track-order">پیگیری سفارش</a>
+            <a href="/blog">وبلاگ</a>
+            <a href="/inquiry">استعلام قیمت</a>
+            <a href="/terms">قوانین</a>
+            <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+        </nav>
+        <div class="actions">
+            {% if user.is_authenticated %}
+                <div class="user-menu" id="userMenu">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                            <span class="status"></span>
+                        </div>
+                        <div class="user-info">
+                            <span class="welcome">خوش آمدید</span>
+                            <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="profile-dropdown">
+                        <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                        <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                        <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                        <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                        <hr>
+                        <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/login" class="login">ورود / ثبت نام</a>
+            {% endif %}
+            <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+        <main>
+        <div class="body" id="home">
+            <div class="text">
+                <h1><span>{{settings.name}}،</span> بهترین سایت برای افزایش بازدهی سوشال مدیا شما</h1>
+                <p>با بهترین سرعت و کیفیت و ارزان ترین قیمت سفارش خود را ثبت نمایید.</p>
+                <p>به صورت کاملا آنی،بدون نیاز به ثبت نام و ورود به حساب با پرداخت مستقیم و امن</p>
+                <a href="#order">ثبت سفارش 😋</a>
+				{% if not user.is_authenticated %}
+					<a href="/login">ورود به حساب کاربری 👤</a>
+				{% else %}
+					<a href="/dashboard">ورود به داشبورد 🌐</a>
+				{% endif %}
+            </div>
+            <div class="images">
+                <img src="{% static 'images/social.png' %}?v=1791736100" alt="افزایش فالوور و لایک شبکه‌های اجتماعی" width="600" height="500" fetchpriority="high"/>
+            </div>
+        </div>
+        <div class="custom-shape-divider-top-1737105622">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="what">
+            <p>چطور شروع کنم ؟! 🤔</p>
+            <div class="options">
+                <div class="dbox">
+                    <span class="step-icon select" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></span>
+                    <h2>انتخاب سرویس</h2>
+                    <p>انتخاب پلتفرم، انتخاب سرویس و واردکردن مشخصات صفحه موردنظر خود جهت ثبت سفارش</p>
+                </div>
+                <div class="dbox">
+                    <span class="step-icon paymentsh" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"/></svg></span>
+                    <h2>پرداخت وجه</h2>
+                    <p>پس از انتخاب سرویس، با کلیک بر روی دکمه پرداخت، هزینه ثبت سفارش را پرداخت نمایید</p>
+                </div>
+                <div class="dbox">
+                    <span class="step-icon paygir" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
+                    <h2>دریافت کدپیگیری</h2>
+                    <p>پس از پرداخت، کد پیگیری سفارش جهت پیگیری وضعیت سفارش برای شما نمایش و به شماره تلفن شما ارسال میشود</p>
+                </div>
+                <div class="dbox">
+                    <span class="step-icon takmil" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                    <h2>تکمیل سفارش</h2>
+                    <p>در مرحله اخر سفارش انجام شده و سرویس خود را دریافت خواهید کرد، همچنین با کدپیگیری میتوانید وضعیت سفارش را پیگیری نمایید</p>
+                </div>
+            </div>
+        </div>
+        <div class="custom-shape-divider-top-1737167902">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="products-section">
+            <div class="products-header">
+                <h2><i class="fab fa-telegram" aria-hidden="true"></i> محصولات تلگرام</h2>
+                <p>پرطرفدارترین سرویس‌های افزایش ممبر، بازدید و ری‌اکشن تلگرام</p>
+            </div>
+            <div class="products-grid" id="telegramProducts">
+                {% for product in products %}
+                    {% if product.en == 'telegram' %}
+                        {% if product.exact_count == 0 %}
+                            <div class="product-card">
+                                <div class="product-image">
+                                    {% if product.cover_image %}
+                                        <img src="{{ product.cover_image.url }}?v=1791736000" alt="{{ product.name }}" loading="lazy">
+                                    {% else %}
+                                        <img src="/media/products/covers/fake-channel-member.png?v=1791736000" alt="{{ product.name }}" loading="lazy">
+                                    {% endif %}
+                                    <span class="product-badge">تلگرام</span>
+                                </div>
+                                <div class="product-body">
+                                    <h3>{{ product.name }}</h3>
+                                    <p class="product-desc">{{ product.meta_description }}</p>
+                                    {% if product.is_available %}
+                                        {% if product.is_telegram_premium %}
+                                            <div class="product-price">
+                                                {{ product.get_price_display }} تومان
+                                                <span>/ اشتراک</span>
+                                            </div>
+                                        {% elif product.exact_count == 0 %}
+                                            <div class="product-price">
+                                                {{ product.get_500_price_display }} تومان
+                                                <span>/ ۵۰۰ عدد</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="product-price">
+                                                {{ product.get_exact_count_price_display }} تومان
+                                                <span>/ {{ product.exact_count }} عدد</span>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="product-price">
+                                            <span style="color:red">ناموجود</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                {% if product.is_available %}
+                                    <a href="/services/{{ product.slug }}/" class="order-btn">ثبت سفارش</a>
+                                {% else %}
+                                    <a href="/services/{{ product.slug }}/" class="order-btn">مشاهده محصول</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="products-section">
+            <div class="products-header">
+                <h2><i class="fab fa-instagram" aria-hidden="true"></i> محصولات اینستاگرام</h2>
+                <p>افزایش فالوور، لایک و بازدید استوری با کیفیت بالا</p>
+            </div>
+            <div class="products-grid" id="instagramProducts">
+                {% for product in products %}
+                    {% if product.en == 'instagram' %}
+                        {% if product.exact_count == 0 %}
+                            <div class="product-card">
+                                <div class="product-image">
+                                    {% if product.cover_image %}
+                                        <img src="{{ product.cover_image.url }}?v=1791736000" alt="{{ product.name }}" loading="lazy">
+                                    {% else %}
+                                        <img src="/media/products/covers/fake-channel-member.png?v=1791736000" alt="{{ product.name }}" loading="lazy">
+                                    {% endif %}
+                                    <span class="product-badge">اینستاگرام</span>
+                                </div>
+                                <div class="product-body">
+                                    <h3>{{ product.name }}</h3>
+                                    <p class="product-desc">{{ product.meta_description }}</p>
+                                    {% if product.is_available %}
+                                        {% if product.exact_count == 0 %}
+                                            <div class="product-price">
+                                                {{ product.get_500_price_display }} تومان
+                                                <span>/ ۵۰۰ عدد</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="product-price">
+                                                {{ product.get_exact_count_price_display }} تومان
+                                                <span>/ {{ product.exact_count }} عدد</span>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="product-price">
+                                            <span style="color:red">ناموجود</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                {% if product.is_available %}
+                                    <a href="/services/{{ product.slug }}/" class="order-btn">ثبت سفارش</a>
+                                {% else %}
+                                    <a href="/services/{{ product.slug }}/" class="order-btn">مشاهده محصول</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="platforms">
+            <h2>پلتفرم های ما 📱</h2>
+            <div class="lists" id="platformsList">
+                <div class="pbox telegram">
+                    <i aria-hidden="true" class="fab fa-telegram"></i>
+                    <h2>تلگرام</h2>
+                </div>
+                <div class="pbox instagram">
+                    <i aria-hidden="true" class="fab fa-instagram"></i>
+                    <h2>اینستاگرام</h2>
+                </div>
+                <div class="pbox youtube">
+                    <i aria-hidden="true" class="fab fa-youtube"></i>
+                    <h2>یوتیوب</h2>
+                </div>
+                <div class="pbox x">
+                    <i aria-hidden="true" class="fab fa-x"></i>
+                    <h2>ایکس</h2>
+                </div>
+                <div class="pbox tiktok">
+                    <i aria-hidden="true" class="fab fa-tiktok"></i>
+                    <h2>تیک تاک</h2>
+                </div>
+            </div>
+        </div>
+        <div class="custom-shape-divider-top-1737184980">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="center" id="order">
+            <form action="submit-order" method="POST">
+                {% csrf_token %}
+                <label for="platform">انتخاب پلتفرم</label>
+                <select id="platform" name="platform">
+                    {% for product in pu %}
+                        <option value={{product.en}}>{{product.get_app_display}}</option>
+                    {% endfor %}
+                </select>
+                <label for="product">انتخاب سرویس</label>
+                <select id="product" name="product">
+                </select> 
+                <label for="count_order">مقدار</label>
+                <input type="number" id="count_order" name="count_order" min=0 max=0 placeholder="{{product.min_order}} - {{product.max_order}}" required oninput="calculatePrice()">
+                <label for="page_address" id="page_label">لینک</label>
+                <input type="text" id="page_address" name="page_address" required>
+				{% if user.is_authenticated %}
+					<input type="hidden" id="receiver_phone" name="receiver_phone" value="{{user.phone_number}}">
+				{% else %}
+					<label for="receiver_phone">شماره تماس</label>
+					<input type="text" id="receiver_phone" name="receiver_phone" placeholder="09000000000" pattern="^09\d{9}$" maxlength="11" required>
+				{% endif %}
+                <label for="description">توضیحات محصول</label>
+                <div class="description">
+                    <p></p>
+                </div>
+				{% if settings.enable_zarinpal and not settings.enable_sizpay and not settings.enable_trx and not settings.enable_card and not settings.enable_zibal %}
+					<input type="hidden" name="payment_method" id="payment_method" value="zarinpal">
+				{% elif settings.enable_sizpay and not settings.enable_zarinpal and not settings.enable_trx and not settings.enable_card and not settings.enable_zibal %}
+					<input type="hidden" name="payment_method" id="payment_method" value="sizpay">
+				{% elif settings.enable_zibal and not settings.enable_zarinpal and not settings.enable_trx and not settings.enable_card and not settings.enable_sizpay %}
+					<input type="hidden" name="payment_method" id="payment_method" value="zibal">
+				{% elif settings.enable_trx and not settings.enable_zarinpal and not settings.enable_sizpay and not settings.enable_card and not settings.enable_zibal %}
+					<input type="hidden" name="payment_method" id="payment_method" value="trx">
+				{% elif settings.enable_card and user.is_authenticated and not settings.enable_zarinpal and not settings.enable_sizpay and not settings.enable_trx and not settings.enable_zibal%}
+					<input type="hidden" name="payment_method" id="payment_method" value="userbalance">
+				{% else %}
+					<input type="hidden" name="payment_method" id="payment_method" value="">
+					{% if settings.enable_zarinpal or settings.enable_sizpay or settings.enable_trx or settings.enable_card %}
+						<label for="gatewayl" style="margin-top: 8px;">روش پرداخت</label>
+					{% endif %}
+					<div class="gateway-container" id="gatewayl" role="radiogroup" aria-label="روش پرداخت">
+						{% if settings.enable_zarinpal %}
+						<div class="gateway" data-gateway="zarinpal" role="radio" aria-checked="false" tabindex="0">
+							<img src="{% static 'images/zp.png' %}" alt="زرین پال" width="40" height="40" loading="lazy">
+							<p>درگاه زرین پال</p>
+						</div>
+						{% endif %}
+						{% if settings.enable_sizpay %}
+						<div class="gateway" data-gateway="sizpay" role="radio" aria-checked="false" tabindex="0">
+							<img src="{% static 'images/sp.png' %}" alt="سیزپی" width="40" height="40" loading="lazy">
+							<p>درگاه سیزپی</p>
+						</div>
+						{% endif %}
+						{% if settings.enable_zibal %}
+						<div class="gateway" data-gateway="zibal" role="radio" aria-checked="false" tabindex="0">
+							<img src="{% static 'images/zibal.jpg' %}" alt="زیبال" width="40" height="40" loading="lazy">
+							<p>درگاه زیبال</p>
+						</div>
+						{% endif %}
+						{% if settings.enable_trx %}
+						<div class="gateway" data-gateway="trx" role="radio" aria-checked="false" tabindex="0">
+							<img src="{% static 'images/trx.png' %}" alt="ترون" width="40" height="40" loading="lazy">
+							<p>رمز ارز ترون</p>
+						</div>
+						{% endif %}
+						{% if user.is_authenticated %}
+						<div class="gateway" style="width:90px; font-size:12px;" data-gateway="userbalance" role="radio" aria-checked="false" tabindex="0">
+							<img src="{% static 'images/card.png' %}" style="width:40px;height:40px;" width="40" height="40" alt="موجودی حساب" loading="lazy">
+							<p>موجودی حساب</p>
+						</div>
+						{% endif %}
+					</div>
+				{% endif %}
+                {% if recaptcha_enabled %}
+                <div class="g-recaptcha" data-sitekey="{{settings.recaptcha_site_key}}"></div>
+                {% endif %}
+                <div class="payment">
+                    <div class="price">
+                        <p>قیمت محاسبه شده :</p>
+                        <p id="calculated-price">0 تومان</p>
+                    </div>
+                    <button type="submit">پرداخت</button>
+                </div>
+            </form>
+        </div>
+        </main>
+        
+<!-- Floating Phone Call Button -->
+{% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+<a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+    <i class="fa-solid fa-phone"></i>
+    <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+</a>
+{% endif %}
+
+
+
+<!-- Customer Satisfaction & Reviews Showcase Section -->
+<style>
+.reviews-section-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto 30px auto;
+    padding: 0 16px;
+    direction: rtl;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.reviews-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+.reviews-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eef2ff;
+    color: #4361ee;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+.reviews-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+.reviews-subtitle {
+    font-size: 14.5px;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.review-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+}
+.review-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.review-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.review-avatar-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+.av-1 { background: linear-gradient(135deg, #4361ee, #3a0ca3); }
+.av-2 { background: linear-gradient(135deg, #f72585, #b5179e); }
+.av-3 { background: linear-gradient(135deg, #10b981, #059669); }
+.av-4 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.review-user-name {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.review-phone-mask {
+    font-size: 11.5px;
+    color: #94a3b8;
+    direction: ltr;
+    display: block;
+}
+.review-verified-badge {
+    color: #10b981;
+    font-size: 13px;
+}
+.review-stars {
+    color: #fbbf24;
+    font-size: 13px;
+    display: flex;
+    gap: 2px;
+}
+.review-comment-text {
+    font-size: 13.5px;
+    color: #334155;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    position: relative;
+    flex-grow: 1;
+}
+.review-footer-tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 11.5px;
+    color: #64748b;
+}
+.review-product-bought {
+    background: #f8fafc;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #4361ee;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+@media (max-width: 768px) {
+    .reviews-section-wrapper {
+        margin: 36px auto 20px auto;
+    }
+    .reviews-title {
+        font-size: 21px;
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<section class="reviews-section-wrapper" aria-label="نظرات و رضایت خریداران">
+    <div class="reviews-header">
+        <div class="reviews-chip">
+            <i class="fa-solid fa-comments"></i>
+            <span>صدای مشتریان سوشال گرو</span>
+        </div>
+        <h2 class="reviews-title">تجربه و نظرات خریداران واقعی ما</h2>
+        <p class="reviews-subtitle">بیش از ۱۰,۰۰۰ سفارش موفق با ضمانت کیفیت، جبران ریزش و تحویل سریع در ۲۴ ساعت شبانه‌روز</p>
+    </div>
+
+    <div class="reviews-grid">
+        <!-- Card 1 -->
+        <div class="review-card">
+            <div>
+                <div class="review-top-bar">
+                    <div class="review-user-info">
+                        <div class="review-avatar-circle av-1">ع</div>
+                        <div>
+                            <div class="review-user-name">
+                                <span>علی م.</span>
+                                <i class="fa-solid fa-circle-check review-verified-badge" title="خریدار تایید شده"></i>
+                            </div>
+                            <span class="review-phone-mask">0912***4567</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <p class="review-comment-text">
+                    «سفارش ۵۰۰۰ فالوور ثبت کردم، زیر ۱۰ دقیقه شروع شد. ریزش خیلی جزئی بود و بعد از ۲۴ ساعت درخواست جبران ریزش زدم کمتر از ۱ ساعت کامل شارژ شد. واقعا دستتون درد نکنه پشتیبانی عالیه.»
+                </p>
+            </div>
+            <div class="review-footer-tag">
+                <span class="review-product-bought"><i class="fa-brands fa-instagram"></i> ۵۰۰۰ فالوور با گارانتی</span>
+                <span>۲ روز پیش</span>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="review-card">
+            <div>
+                <div class="review-top-bar">
+                    <div class="review-user-info">
+                        <div class="review-avatar-circle av-2">م</div>
+                        <div>
+                            <div class="review-user-name">
+                                <span>مهسا ر.</span>
+                                <i class="fa-solid fa-circle-check review-verified-badge" title="خریدار تایید شده"></i>
+                            </div>
+                            <span class="review-phone-mask">0935***8821</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <p class="review-comment-text">
+                    «برای کانال فروشگاهی تلگرام ممبر بدون ریزش سفارش دادم. کیفیت اعضا عالی بود و بدون اینکه از اکانتم چیزی بخوان یا معطل بشم انجام شد. پیامک رهگیری هم بلافاصله اومد.»
+                </p>
+            </div>
+            <div class="review-footer-tag">
+                <span class="review-product-bought"><i class="fa-brands fa-telegram"></i> ممبر کانال تلگرام</span>
+                <span>دیروز</span>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="review-card">
+            <div>
+                <div class="review-top-bar">
+                    <div class="review-user-info">
+                        <div class="review-avatar-circle av-3">س</div>
+                        <div>
+                            <div class="review-user-name">
+                                <span>سامان ک.</span>
+                                <i class="fa-solid fa-circle-check review-verified-badge" title="خریدار تایید شده"></i>
+                            </div>
+                            <span class="review-phone-mask">0917***2997</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <p class="review-comment-text">
+                    «سرویس کامنت با هوش مصنوعی فوق‌العاده هوشمندانه بود! دقیقاً با موضوع ریلز پیجم همخونی داشت و تعامل پیجم رفت بالا و ریلزم رفت اکسپلور. قیمت هم با تخفیف خرید اول خیلی خوب افتاد.»
+                </p>
+            </div>
+            <div class="review-footer-tag">
+                <span class="review-product-bought"><i class="fa-brands fa-instagram"></i> کامنت هوش مصنوعی</span>
+                <span>۳ روز پیش</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="site-footer-inner">
+        <div class="footer-col">
+            <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+            <p>{{ settings.footer_description }}</p>
+        </div>
+        {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <div class="footer-col">
+            <p class="footer-col-title">پشتیبانی و راهنما</p>
+            <ul>
+                <li><a href="/track-order">پیگیری سفارش</a></li>
+                <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                <li><a href="/faq">سوالات متداول</a></li>
+                <li><a href="/terms">قوانین و مقررات</a></li>
+                <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+            <div class="enamad">
+                {{ settings.enamad|safe }}
+            </div>
+            <div class="footer-social-links">
+                <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+    </div>
+</footer>
+        
+
+        <script defer>
+			const gateways = document.querySelectorAll('.gateway');
+            const gatewayInput = document.getElementById('payment_method');
+
+            function selectGateway(g) {
+                gateways.forEach(el => {
+                    el.classList.remove('selected');
+                    el.setAttribute('aria-checked', 'false');
+                });
+                g.classList.add('selected');
+                g.setAttribute('aria-checked', 'true');
+                gatewayInput.value = g.dataset.gateway;
+            }
+
+            gateways.forEach(g => {
+                g.addEventListener('click', () => selectGateway(g));
+                g.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectGateway(g);
+                    }
+                });
+            });
+
+            if (gatewayInput) {
+                const form = gatewayInput.closest('form');
+                form.addEventListener('submit', (e) => {
+                    if (!gatewayInput.value) {
+                        e.preventDefault();
+                        alert('لطفاً یک درگاه پرداخت انتخاب کنید.');
+                    }
+                });
+            }
+
+            
+
+            function toggleMenu() {
+                const navbar = document.getElementById('navbar');
+                navbar.classList.toggle('active');
+            }
+
+            const servicesData = {{ p|safe }};
+			const platformSelect = document.getElementById("platform");
+			const serviceSelect = document.getElementById("product");
+			const countInput = document.getElementById("count_order");
+			const page = document.getElementById("page_address");
+			const priceDisplay = document.getElementById("calculated-price");
+			const description = document.querySelector(".description");
+			const paragraph = document.querySelector(".description p");
+
+			function updateServices() {
+				const selectedPlatform = platformSelect.value;
+				const filteredServices = servicesData.filter(service => service.en === selectedPlatform);
+
+				serviceSelect.innerHTML = "";
+
+				filteredServices.forEach(service => {
+					const option = document.createElement("option");
+					option.value = service.id;
+
+					if (service.en === 'data' || service.en === 'charge') {
+						option.textContent = `${service.name} / 💰 ${service.toman_price.toLocaleString()} تومان`;
+					} else {
+						option.textContent = `${service.name} / 💰 هر هزار عدد: ${service.toman_price.toLocaleString()} تومان`;
+					}
+
+					serviceSelect.appendChild(option);
+				});
+
+				if (filteredServices.length > 0) {
+					const firstService = filteredServices[0];
+
+					countInput.min = firstService.min_order;
+					countInput.max = firstService.max_order;
+					countInput.placeholder = `${firstService.min_order} - ${firstService.max_order}`;
+					description.style.display = "block";
+
+					if (firstService.en === 'data' || firstService.en === 'charge') {
+						document.getElementById("count_order").style.display = "none";
+						document.querySelector('label[for="count_order"]').style.display = "none";
+						document.getElementById("page_label").innerText = "شماره سیم‌کارت";
+						page.placeholder = 'شماره مشترک جهت فعال‌سازی 07';
+						countInput.value = 1;
+					} else {
+						document.getElementById("count_order").style.display = "block";
+						document.querySelector('label[for="count_order"]').style.display = "block";
+						document.getElementById("page_label").innerText = "لینک";
+						page.placeholder = 'آدرس صفحه یا پست';
+						countInput.value = "";
+					}
+
+					updateServiceInfo();
+				} else {
+					priceDisplay.textContent = "0 تومان";
+					description.style.display = "none";
+				}
+			}
+
+			function calculatePrice() {
+				const selectedServiceId = parseInt(serviceSelect.value);
+				const selectedService = servicesData.find(service => service.id === selectedServiceId);
+				const count = parseInt(countInput.value) || 0;
+
+				if (!selectedService) {
+					priceDisplay.textContent = "0 تومان";
+					return;
+				}
+
+				let totalPrice;
+
+				if (selectedService.en === 'data' || selectedService.en === 'charge') {
+					totalPrice = selectedService.toman_price;
+				} else {
+					totalPrice = (count * selectedService.toman_price) / 1000;
+				}
+
+				priceDisplay.textContent = `${parseInt(totalPrice).toLocaleString()} تومان`;
+			}
+
+			function updateServiceInfo() {
+
+				const selectedServiceId = parseInt(serviceSelect.value);
+				const service = servicesData.find(s => s.id === selectedServiceId);
+
+				if (!service) return;
+
+				countInput.min = service.min_order;
+				countInput.max = service.max_order;
+				countInput.placeholder = `${service.min_order} - ${service.max_order}`;
+
+				paragraph.innerHTML = (service.description || '')
+					.replace(/\\r\\n/g, '<br>')
+					.replace(/\\n/g, '<br>')
+					.replace(/\r\n/g, '<br>')
+					.replace(/\n/g, '<br>');
+
+				description.style.display = "block";
+
+				if (service.en === "data" || service.en === "charge") {
+
+					countInput.style.display = "none";
+					document.querySelector('label[for="count_order"]').style.display = "none";
+
+					document.getElementById("page_label").innerText = "شماره سیم‌کارت";
+					page.placeholder = "شماره مشترک جهت فعال‌سازی";
+					countInput.value = 1;
+
+				} else {
+
+					countInput.style.display = "block";
+					document.querySelector('label[for="count_order"]').style.display = "block";
+
+					document.getElementById("page_label").innerText = "لینک";
+					page.placeholder = "آدرس صفحه یا پست";
+				}
+
+				calculatePrice();
+			}
+
+			platformSelect.addEventListener("change", updateServices);
+			serviceSelect.addEventListener("change", updateServiceInfo);
+			countInput.addEventListener("input", calculatePrice);
+
+			updateServices();
+            
+
+			const menuBtn = document.getElementById("menuBtn");
+			const nav = document.getElementById("nav");
+			menuBtn.onclick = () => {
+				const isOpen = nav.classList.toggle("active");
+				menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+			};
+        </script>
+    
+
+<!-- Social Proof Live Purchase Notification Toast (Bottom-Left) -->
+<style>
+.social-proof-toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 9998;
+    max-width: 360px;
+    width: calc(100% - 48px);
+    pointer-events: none;
+    font-family: inherit;
+    direction: rtl;
+}
+.social-proof-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(0,0,0,0.06);
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.social-proof-toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.sp-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+    color: #ffffff;
+    position: relative;
+}
+.sp-icon-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+.sp-icon-telegram {
+    background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+}
+.sp-icon-default {
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+}
+.sp-pulse-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+.sp-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+.sp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+.sp-phone {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.3px;
+    direction: ltr;
+}
+.sp-product {
+    font-size: 12.5px;
+    color: #334155;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+.sp-highlight {
+    color: #4361ee;
+    font-weight: 800;
+}
+.sp-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #94a3b8;
+}
+.sp-verified {
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+}
+.sp-close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.sp-close-btn:hover {
+    color: #475569;
+    background: #f1f5f9;
+}
+@media (max-width: 768px) {
+    .social-proof-toast-container {
+        bottom: 84px; /* avoid sticky bar/chat on mobile */
+        left: 14px;
+        right: 14px;
+        width: auto;
+        max-width: none;
+    }
+    .social-proof-toast {
+        padding: 10px 12px;
+    }
+}
+</style>
+
+<div class="social-proof-toast-container">
+    <div id="socialProofToast" class="social-proof-toast" style="display: none;">
+        <div id="spIconBadge" class="sp-icon-badge sp-icon-instagram">
+            <span class="sp-pulse-dot"></span>
+            <i id="spIcon" class="fa-brands fa-instagram"></i>
+        </div>
+        <div class="sp-content">
+            <div class="sp-header">
+                <span class="sp-phone" id="spPhone">0912***4567</span>
+                <button type="button" class="sp-close-btn" onclick="dismissSocialProof()" title="بستن" aria-label="بستن">✕</button>
+            </div>
+            <div class="sp-product">
+                سفارش <span class="sp-highlight" id="spCount">۱۰۰۰ عدد</span> <span id="spName">فالوور واقعی</span>
+            </div>
+            <div class="sp-footer">
+                <span class="sp-verified"><i class="fa-solid fa-circle-check"></i> ثبت موفق در سوشال گرو</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    let recentOrdersList = [];
+    let toastTimeout = null;
+    let cycleInterval = null;
+    let isUserDismissed = false;
+    let lastRandomIndex = -1;
+
+    // Fallback sample orders if API is loading
+    const fallbackOrders = [
+        { phone: '0912***8421', product: 'فالوور ارزان با کیفیت اینستاگرام', count: '۲,۰۰۰ عدد', icon: 'instagram' },
+        { phone: '0935***1194', product: 'ممبر فیک کانال تلگرام بدون ریزش', count: '۵,۰۰۰ عدد', icon: 'telegram' },
+        { phone: '0917***2997', product: 'فالوور واقعی اینستاگرام ایرانی و اقتصادی', count: '۱,۰۰۰ عدد', icon: 'instagram' },
+        { phone: '0913***6510', product: 'لایک پست اینستاگرام با کیفیت بالا', count: '۵۰۰ عدد', icon: 'instagram' },
+        { phone: '0990***4328', product: 'بازدید پست و ریلز اینستاگرام', count: '۱۰,۰۰۰ عدد', icon: 'instagram' }
+    ];
+
+    async function loadRecentOrders() {
+        try {
+            const res = await fetch('/api/recent-orders/');
+            if (res.ok) {
+                const data = await res.json();
+                if (data.status === 'ok' && data.orders && data.orders.length > 0) {
+                    recentOrdersList = data.orders;
+                } else {
+                    recentOrdersList = fallbackOrders;
+                }
+            } else {
+                recentOrdersList = fallbackOrders;
+            }
+        } catch(e) {
+            recentOrdersList = fallbackOrders;
+        }
+        startSocialProofCycle();
+    }
+
+    function getRandomOrder() {
+        if (!recentOrdersList.length) return null;
+        if (recentOrdersList.length === 1) return recentOrdersList[0];
+        let randIdx;
+        do {
+            randIdx = Math.floor(Math.random() * recentOrdersList.length);
+        } while (randIdx === lastRandomIndex && recentOrdersList.length > 1);
+        lastRandomIndex = randIdx;
+        return recentOrdersList[randIdx];
+    }
+
+    function showOrderToast(item) {
+        if (isUserDismissed || !item) return;
+        const toast = document.getElementById('socialProofToast');
+        if (!toast) return;
+
+        // Populate fields
+        document.getElementById('spPhone').textContent = item.phone;
+        document.getElementById('spCount').textContent = item.count;
+        document.getElementById('spName').textContent = item.product;
+
+        // Icon & styling
+        const badge = document.getElementById('spIconBadge');
+        const icon = document.getElementById('spIcon');
+        badge.className = 'sp-icon-badge';
+        if (item.icon === 'telegram') {
+            badge.classList.add('sp-icon-telegram');
+            icon.className = 'fa-brands fa-telegram';
+        } else if (item.icon === 'youtube') {
+            badge.classList.add('sp-icon-default');
+            icon.className = 'fa-brands fa-youtube';
+        } else {
+            badge.classList.add('sp-icon-instagram');
+            icon.className = 'fa-brands fa-instagram';
+        }
+
+        toast.style.display = 'flex';
+        // Trigger smooth transition
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 30);
+
+        // Hide after 6 seconds
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 380);
+        }, 6000);
+    }
+
+    function startSocialProofCycle() {
+        if (!recentOrdersList.length) return;
+        // First display after 15 seconds with a random order
+        setTimeout(() => {
+            showOrderToast(getRandomOrder());
+
+            // Then pick another random order every 5 minutes (300,000 ms)
+            cycleInterval = setInterval(() => {
+                showOrderToast(getRandomOrder());
+            }, 300000);
+        }, 15000);
+    }
+
+    window.dismissSocialProof = function() {
+        isUserDismissed = true;
+        const toast = document.getElementById('socialProofToast');
+        if (toast) {
+            toast.classList.remove('show');
+            setTimeout(() => { toast.style.display = 'none'; }, 350);
+        }
+        if (cycleInterval) clearInterval(cycleInterval);
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadRecentOrders);
+    } else {
+        loadRecentOrders();
+    }
+})();
+</script>
+
+<script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

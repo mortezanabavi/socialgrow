@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+    <head><meta charset="utf-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="شرایط و قوانین استفاده از خدمات سوشال گرو برای خرید فالور اینستاگرام، سابسکرایب یوتیوب، ممبر تلگرام و موارد دیگر.">
+        <link rel="canonical" href="https://socialgrow.ir/terms">
+        <meta name="keywords" content="شرایط و قوانین, سوشال گرو, خرید فالور, خرید لایک, خدمات شبکه اجتماعی">
+        <meta name="author" content="سوشال گرو">
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="شرایط و قوانین استفاده از خدمات | سوشال گرو">
+        <meta property="og:description" content="با مطالعه شرایط و قوانین، از نحوه استفاده از خدمات سوشال گرو مطلع شوید.">
+        <meta property="og:url" content="https://socialgrow.ir/terms">
+        <meta property="og:image" content="https://socialgrow.ir/static/images/social.png">
+        <meta property="og:locale" content="fa_IR">
+        <meta property="og:site_name" content="سوشال گرو">
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="شرایط و قوانین استفاده از خدمات | سوشال گرو">
+        <meta name="twitter:description" content="اطلاعات کامل درباره شرایط استفاده از خدمات سوشال گرو.">
+        <meta name="twitter:image" content="https://socialgrow.ir/static/images/social.png">
+        <title>شرایط و قوانین استفاده از خدمات | سوشال گرو</title>
+		<link rel="icon" href="{% static 'images/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/terms.css' %}?v={{current_time}}">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+<link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+</head>
+    <body>
+        <header class="header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+            <span>{{ settings.name|default:'سوشال گرو' }}</span>
+        </a>
+        <nav class="nav" id="nav">
+            <a href="/">خانه</a>
+            <a href="/products/">تعرفه‌ها و خدمات</a>
+            <a href="/new-order">ثبت سفارش</a>
+            <a href="/track-order">پیگیری سفارش</a>
+            <a href="/blog">وبلاگ</a>
+            <a href="/inquiry">استعلام قیمت</a>
+            <a href="/terms">قوانین</a>
+            <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+        </nav>
+        <div class="actions">
+            {% if user.is_authenticated %}
+                <div class="user-menu" id="userMenu">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                            <span class="status"></span>
+                        </div>
+                        <div class="user-info">
+                            <span class="welcome">خوش آمدید</span>
+                            <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="profile-dropdown">
+                        <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                        <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                        <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                        <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                        <hr>
+                        <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/login" class="login">ورود / ثبت نام</a>
+            {% endif %}
+            <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+		<div class="custom-shape-divider-top-1749140368">
+			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+				<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+				<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+			</svg>
+		</div>
+		<div class="rules">
+			<div class="details">
+				<div class="titles">
+					<img class="w-full inline-block" src="{% static 'images/T&C.svg' %}" width="32" height="32" alt="شرایط و قوانین" title="" style="object-fit: cover;">
+					<h1 style="color:black">شرایط و قوانین استفاده از سرویس ها و خدمات سوشال گرو</h1>
+				</div>
+				<p>برای ارائه‌ی بهترین کیفیت خدمات، حفظ حقوق کاربران محترم و ایجاد بستری امن، شفاف و منظم در فرآیند ثبت و پیگیری سفارش‌ها، لطفاً پیش از استفاده از پنل سوشال گرو، این قوانین و شرایط را به‌دقت مطالعه فرمایید. این قوانین با هدف حفظ کیفیت سرویس‌ها، جلوگیری از سوءاستفاده، و تضمین رضایت کاربران تدوین شده‌اند.</p>
+				<p>ثبت هرگونه سفارش یا اقدام به پیگیری آن، به‌منزله‌ی پذیرش کامل، آگاهانه و بی‌قید و شرط این قوانین تلقی خواهد شد. در صورتی که با مفاد این مقررات موافق نیستید، لطفاً از ادامه استفاده خودداری نمایید.</p>
+				<p>سوشال گرو متعهد است خدمات خود را به‌صورت منظم، دقیق و با بالاترین سطح پشتیبانی ارائه دهد، اما کاربران نیز موظف‌اند اطلاعات لازم را با دقت وارد نموده و از ثبت سفارش‌های مغایر با قوانین پلتفرم‌ها یا مقررات جمهوری اسلامی ایران خودداری کنند.</p>
+			</div>
+			<div class="gav">
+				<div class="titleofrule">
+					<p>قوانین عمومی</p>
+					<button class="accordion" onclick="togglePanel(this)"><span class="arrow">🔻</span></button>
+				</div>
+				<div class="descriptionn">
+					<p>جهت حفظ نظم، ایجاد محیطی امن و ارتقاء کیفیت خدمات، رعایت قوانین عمومی برای کلیه کاربران الزامی است. این قوانین به منظور احترام متقابل، جلوگیری از سوءاستفاده و حفظ حقوق همه اعضا تدوین شده‌اند. مهم‌ترین موارد شامل این‌هاست: رعایت احترام متقابل در تمام تعاملات و گفتگوها، عدم استفاده از الفاظ توهین‌آمیز، تهدیدآمیز یا خلاف اخلاق، عدم انتشار محتوای نادرست، گمراه‌کننده یا تبلیغات بدون مجوز، پرهیز از هرگونه رفتار مخرب که منجر به اختلال در عملکرد سیستم شود، و حفظ حریم خصوصی سایر کاربران و عدم انتشار اطلاعات شخصی آن‌ها. عدم رعایت این قوانین ممکن است منجر به محدودیت دسترسی، تعلیق یا حذف حساب کاربری شود. لطفاً پیش از استفاده از خدمات، این موارد را به دقت مطالعه نمایید.</p>
+				</div>
+			</div>
+			<div class="underline"></div>
+			<div class="gav">
+				<div class="titleofrule">
+					<p>ثبت و پیگیری سفارش</p>
+					<button class="accordion" onclick="togglePanel(this)"><span class="arrow">🔻</span></button>
+				</div>
+				<div class="descriptionn">
+					<p>تمامی سفارشات به‌صورت خودکار پردازش می‌شوند، لطفاً قبل از ثبت، اطلاعات را با دقت وارد کنید. پس از تکمیل سفارش، بازگشت وجه امکان‌پذیر نیست.  در صورتی که سفارش به هر دلیلی انجام نشود، مبلغ پرداختی به کیف پول شما بازگردانده خواهد شد. در قسمت پیگیری سفارش میتوانید سفارشی که ثبت کرده اید را پیگیری نمایید.</p>
+				</div>
+			</div>
+			<div class="underline"></div>
+			<div class="gav">
+				<div class="titleofrule">
+					<p>ارتباط با پشتیبانی</p>
+					<button class="accordion" onclick="togglePanel(this)"><span class="arrow">🔻</span></button>
+				</div>
+				<div class="descriptionn">
+					<p>برای برقراری ارتباط مؤثر با تیم پشتیبانی، رعایت برخی نکات ضروری است. لطفاً هنگام ارسال پیام، مشکل یا درخواست خود را به‌صورت واضح، کامل و محترمانه بیان کنید تا رسیدگی سریع‌تر انجام شود. از ارسال پیام‌های تکراری، استفاده از الفاظ نامناسب یا تهدیدآمیز خودداری نمایید. توجه داشته باشید که پشتیبانی در چارچوب ساعات کاری پاسخگو است و رسیدگی به برخی درخواست‌ها ممکن است زمان‌بر باشد. همچنین، اطلاعات شخصی یا محرمانه خود را فقط از طریق کانال‌های رسمی و مطمئن ارسال کنید. رعایت این موارد به ما کمک می‌کند تا خدمات بهتر و دقیق‌تری به شما ارائه دهیم.</p>
+				</div>
+			</div>
+			<div class="underline"></div>
+		</div>
+        
+<!-- Floating Phone Call Button -->
+{% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+<a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+    <i class="fa-solid fa-phone"></i>
+    <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+</a>
+{% endif %}
+
+<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+    <div class="site-footer-inner">
+        <div class="footer-col">
+            <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+            <p>{{ settings.footer_description }}</p>
+        </div>
+        {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <div class="footer-col">
+            <p class="footer-col-title">پشتیبانی و راهنما</p>
+            <ul>
+                <li><a href="/track-order">پیگیری سفارش</a></li>
+                <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                <li><a href="/faq">سوالات متداول</a></li>
+                <li><a href="/terms">قوانین و مقررات</a></li>
+                <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+            <div class="enamad">
+                {{ settings.enamad|safe }}
+            </div>
+            <div class="footer-social-links">
+                <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+    </div>
+</footer>
+		
+		<script>
+			function openSocialGrowChat() {
+                if (window.$crisp) {
+                    $crisp.push(["do", "chat:open"]);
+                } else {
+                    alert("Crisp chat is not available right now.");
+                }
+            }
+			function togglePanel(button) {
+				const titleDiv = button.parentElement;
+				const description = titleDiv.nextElementSibling;
+				const isVisible = description.style.display === 'block';
+				description.style.display = isVisible ? 'none' : 'block';
+				const arrow = button.querySelector('.arrow');
+				arrow.textContent = isVisible ? '🔻' : '🔺';
+			}
+			
+			const menuBtn = document.getElementById("menuBtn");
+			const nav = document.getElementById("nav");
+			menuBtn.onclick = ()=>{
+				nav.classList.toggle("active");
+			}
+		</script>
+    <script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

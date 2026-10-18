@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تکمیل پرداخت</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Tahoma, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    width:100%;
+    max-width:550px;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    background:#eef8ff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+    color:#2196f3;
+}
+
+h1{
+    text-align:center;
+    margin-top:20px;
+    color:#222;
+    font-size:24px;
+}
+
+.amount-box{
+    margin:25px 0;
+    background:#f7f9fc;
+    border:2px dashed #2196f3;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+}
+
+.amount-label{
+    color:#666;
+    margin-bottom:8px;
+}
+
+.amount{
+    font-size:30px;
+    font-weight:bold;
+    color:#2196f3;
+}
+
+.info{
+    color:#555;
+    line-height:2;
+    font-size:15px;
+}
+
+.notice{
+    margin-top:18px;
+    padding:14px;
+    border-radius:10px;
+    background:#fff8e6;
+    border:1px solid #ffe08a;
+    color:#8a6d00;
+    font-size:14px;
+}
+
+.btn{
+    margin-top:25px;
+    width:100%;
+    border:none;
+    background:#2196f3;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1976d2;
+}
+
+.footer{
+    text-align:center;
+    margin-top:15px;
+    color:#999;
+    font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <div class="icon">✓</div>
+
+    <h1>درخواست بررسی افزایش موجودی شما ثبت شد</h1>
+
+    <div class="amount-box">
+        <div class="amount-label">مبلغ پرداختی</div>
+        <div class="amount" id="amount">{{ amount }} تومان</div>
+    </div>
+
+    <div class="info">
+        درخواست افزایش موجودی شما با موفقیت ثبت شد.
+        <br><br>
+        پس از بررسی و تأیید توسط ادمین سایت، مبلغ پرداختی به حساب کاربری شما اضافه خواهد شد.
+    </div>
+
+    <div class="notice">
+        نتیجه بررسی از طریق ایمیل یا پیامک به شماره شما اطلاع داده می‌شود.
+        لطفاً تا زمان تأیید نهایی از ارسال مجدد درخواست خودداری کنید.
+    </div>
+
+    <button class="btn" onclick="goToDashboard()">
+        بازگشت به حساب کاربری
+    </button>
+
+    <div class="footer">
+        با تشکر از اعتماد شما
+    </div>
+
+</div>
+
+<script>
+	function goToDashboard(){
+		window.location.href = "/dashboard";
+	}
+</script>
+
+</body>
+</html>

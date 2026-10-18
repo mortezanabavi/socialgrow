@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>درگاه کارت به کارت</title>
+	<link rel="stylesheet" href="{% static 'assets/css/card.css' %}?v={{current_time}}">
+	<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+	<body>
+	<div class="wrapper">
+	  <div class="card">
+		<div class="bank-name">بانک ملی</div>
+		<div class="chip"></div>
+		<div class="card-number-box">
+		  <div class="card-number" id="cardNumber">{{ settings.card_number|default:'6037 9900 0000 0000' }}</div>
+		  <button class="copy-btn" onclick="copyText('{{ settings.card_number|default:'6037990000000000' }}')">📋</button>
+		  <div class="name">{{ settings.card_name|default:'پذیرنده پرداخت' }}</div>
+		</div>
+	  </div>
+	  <div class="payment-box">
+		<div class="amount" style="color:red; font-size:12px;">لطفا مبلغ را دقیق و به صورت تومانی به کارت بالا واریز کنید و روی دکمه تایید پرداخت کلیک کنید.</b></div>
+		<div class="amount-box">
+		  <div class="amount">مبلغ قابل پرداخت: <b id="amountText">{{ amount }} تومان</b></div>
+		  <button class="copy-btn" onclick="copyText('{{ amount }}')">📋</button>
+		</div>
+		<form action="/checkpayment" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="amount" value="{{ amount }}">
+			
+			<button type="submit" class="pay-btn">
+				تایید پرداخت
+			</button>
+		</form>
+	  </div>
+	</div>
+	<script>
+		function copyText(text) {
+		  const cleanText = text.toString().replace(/\s/g, '');
+		  navigator.clipboard.writeText(cleanText);
+		  alert("کپی شد");
+		}
+	</script>
+	</body>
+</html>

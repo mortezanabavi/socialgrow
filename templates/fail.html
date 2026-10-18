@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>پرداخت ناموفق</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<link rel="stylesheet" href="{% static 'assets/css/fail.css' %}?v={{current_time}}">
+	<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+	<body>
+		<div class="failed-card">
+			<div class="failed-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+			<h1>پرداخت انجام نشد 😔</h1>
+			<p class="subtitle">{% if is_wallet %}متأسفانه پرداخت شما با موفقیت انجام نشد و کیف پول شارژ نگردید.{% else %}متأسفانه پرداخت شما با موفقیت انجام نشد و سفارش ثبت نگردید.{% endif %} در صورت کسر وجه، مبلغ طبق قوانین بانک طی مدت کوتاهی به حساب شما بازخواهد گشت.</p>
+			<div class="info-box">
+			<div class="item">
+				<span>کد پیگیری</span>
+				<strong>{{ ref_id|default:"-" }}</strong>
+			</div>
+			<div class="item">
+				<span>وضعیت</span>
+				<strong style="color:#ef4444;">پرداخت ناموفق</strong>
+			</div>
+			<div class="item">
+				<span>خطا</span>
+				<strong>{{ message|default:"نامشخص" }}</strong>
+			</div>
+			<div class="item">
+				<span>زمان</span>
+				<strong>{{ current_time }}</strong>
+				</div>
+			</div>
+			<div class="warning"><i class="fa-solid fa-triangle-exclamation"></i>
+			در صورت کسر مبلغ از حساب، معمولاً طی چند دقیقه تا حداکثر ۷۲ ساعت کاری توسط بانک به حساب شما بازگردانده خواهد شد. اگر مشکل ادامه داشت، از طریق بخش <strong>تیکت پشتیبانی</strong> با ما در ارتباط باشید.</div>
+			<div class="actions">
+				{% if is_wallet %}
+					<button class="btn retry" onclick="window.location.href='/increase'"><i class="fa-solid fa-rotate-right"></i>تلاش مجدد شارژ</button>
+					<button class="btn orders" onclick="window.location.href='/tickets'"><i class="fa-solid fa-headset"></i>ارتباط با پشتیبانی</button>
+					<button class="btn home" onclick="window.location.href='/dashboard'"><i class="fa-solid fa-house"></i>بازگشت به داشبورد</button>
+				{% else %}
+					<button class="btn retry" onclick="window.location.href='/new-order'"><i class="fa-solid fa-rotate-right"></i>تلاش مجدد</button>
+					<button class="btn orders" onclick="window.location.href='/tickets'"><i class="fa-solid fa-headset"></i>ارتباط با پشتیبانی</button>
+					<button class="btn home" onclick="window.location.href='/dashboard'"><i class="fa-solid fa-house"></i>بازگشت به داشبورد</button>
+				{% endif %}
+			</div>
+			<div class="footer-text">در صورت نیاز، تیم پشتیبانی در کنار شماست ❤️</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,461 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ثبت سفارش</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'assets/css/new-order.css' %}?v={{current_time}}">
+<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+<body>
+
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+<div class="sidebar" id="sidebar">
+<div>
+<div class="logo">داشبورد</div>
+<div class="menu">
+<button onclick="goHome()">🏠 صفحه اصلی</button>
+<button onclick="buy()">🛍️ ثبت سفارش</button>
+<button onclick="orders()">🛒 سفارشات من</button>
+<button onclick="increaseBalance()">💰 شارژ حساب</button>
+<button onclick="tickets()">📞 تیکت ها</button>
+<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+<button onclick="logout()">🚪 خروج از حساب</button>
+</div>
+</div>
+</div>
+
+
+<div class="main">
+<div class="container">
+
+<div class="header">
+<h1><i class="fa-solid fa-cart-plus"></i> ثبت سفارش جدید</h1>
+<p>سرویس مورد نظر خود را انتخاب کنید و سفارش خود را ثبت کنید</p>
+</div>
+
+<div class="balance-card">
+    <div class="balance-icon">
+        <i class="fa-solid fa-wallet"></i>
+    </div>
+
+    <div class="balance-info">
+        <span class="balance-label">موجودی حساب</span>
+        <span class="balance-value">
+            {{ request.user.balance|floatformat:0 }} تومان
+        </span>
+    </div>
+
+    <button type="button" class="charge-btn" onclick="increaseBalance()">
+        شارژ حساب
+    </button>
+</div>
+
+<div class="order-box">
+<form action="submit-order" method="POST">
+{% csrf_token %}
+<input type="hidden" name="receiver_phone" value="{{ request.user.phone_number }}">
+<div class="form-grid">
+
+<div class="field">
+<label>انتخاب پلتفرم</label>
+<select id="platform">
+{% for product in pu %}
+<option value="{{product.en}}">
+{{product.get_app_display}}
+</option>
+{% endfor %}
+</select>
+</div>
+
+
+<div class="field">
+<label>انتخاب سرویس</label>
+<select id="service" name="product"></select>
+</div>
+
+<div class="field" id="service-desc-field" style="grid-column: 1 / -1; display: none; margin-top: 4px;">
+    <div id="service-desc-box" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 14px 18px; font-size: 13.5px; line-height: 1.85; color: #cbd5e1; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+        <div style="display: flex; align-items: center; gap: 8px; font-weight: bold; color: #38bdf8; margin-bottom: 8px; font-size: 14px;">
+            <i class="fa-solid fa-circle-info" style="color: #38bdf8; font-size: 15px;"></i>
+            <span>توضیحات و مشخصات سرویس:</span>
+        </div>
+        <div id="service-desc-text" style="white-space: pre-line; word-break: break-word; color: #e2e8f0; font-size: 13px; line-height: 1.85;"></div>
+    </div>
+</div>
+
+<div class="field">
+<label>تعداد سفارش</label>
+<input type="number" id="quantity" name="count_order" value="1000">
+</div>
+
+
+
+<div class="field">
+<label>آدرس پیج مقصد</label>
+<input type="text" id="page_address" name="page_address" placeholder="instagram.com/example">
+</div>
+
+<div class="field" style="grid-column: 1 / -1; margin-top: 6px;">
+<label><i class="fa-solid fa-ticket"></i> کد تخفیف (اختیاری)</label>
+<div onclick="quickApplyNewOrderFirstCoupon()" style="display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px dashed #86efac; border-radius: 8px; padding: 8px 12px; margin-bottom: 8px; cursor: pointer;" title="کلیک برای اعمال خودکار کد تخفیف">
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 18px;">🎁</span>
+        <span style="font-size: 12.5px; color: #166534; font-weight: bold;">تخفیف ۱۰٪ خرید اول با کد <strong style="background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #bbf7d0; font-family: monospace;">FIRST10</strong></span>
+    </div>
+    <span style="background: #16a34a; color: #fff; border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: bold;">اعمال سریع</span>
+</div>
+<div style="display: flex; gap: 8px;">
+<input type="text" id="coupon_code_input" placeholder="مثال: FIRST10" style="text-transform: uppercase; font-weight: bold; flex: 1; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;" autocomplete="off">
+<button type="button" id="apply_coupon_btn" onclick="applyCoupon()" style="background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 0 18px; font-weight: bold; cursor: pointer; height: 44px; white-space: nowrap; font-family: inherit;">اعمال</button>
+</div>
+<div id="coupon-status-msg" style="display: none; margin-top: 6px; font-size: 13px; font-weight: bold; padding: 8px 12px; border-radius: 6px;"></div>
+<input type="hidden" name="coupon_code" id="applied_coupon_code" value="">
+</div>
+
+</div>
+
+
+<div style="background: #f0fdf4; border: 1px solid #a7f3d0; border-radius: 8px; padding: 10px 14px; margin-top: 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;">
+    <i class="fa-solid fa-shield-heart" style="color: #10b981; font-size: 20px; flex-shrink: 0;"></i>
+    <div style="font-size: 12px; color: #065f46; line-height: 1.6;">
+        <strong>ضمانت ۱۰۰٪ جبران ریزش:</strong> تمامی سرویس‌های فالوور و ممبر دارای گارانتی هستند و پس از ۲۴ ساعت از بخش <a href="/track-order" target="_blank" style="color: #2563eb; font-weight: bold; text-decoration: underline;">پیگیری سفارش</a> می‌توانید درخواست جبران ریزش خودکار ثبت کنید.
+    </div>
+</div>
+
+<div class="price-box" style="display: flex; flex-direction: column; gap: 8px;">
+<div id="raw-price-row" style="display: none; justify-content: space-between; font-size: 13px; color: #64748b; width: 100%;">
+<span>مبلغ اولیه:</span>
+<span id="raw-total">۰ تومان</span>
+</div>
+<div id="discount-price-row" style="display: none; justify-content: space-between; font-size: 13px; color: #059669; font-weight: bold; width: 100%;">
+<span>تخفیف:</span>
+<span id="discount-total">- ۰ تومان</span>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; border-top: 1px dashed #e2e8f0; padding-top: 6px; margin-top: 2px;">
+<span>مبلغ قابل پرداخت</span>
+<div class="price">
+<span id="total">0</span> تومان
+</div>
+</div>
+</div>
+
+<h3 class="payment-title">
+انتخاب درگاه پرداخت
+</h3>
+
+
+<div class="payment">
+
+<label>
+<input type="radio" name="payment_method" value="zibal" checked>
+<div class="gateway-title">
+<i class="fa-solid fa-credit-card"></i>
+<span>درگاه بانکی</span>
+</div>
+</label>
+
+
+<label>
+<input type="radio" name="payment_method" value="userbalance">
+<div class="gateway-title">
+<i class="fa-solid fa-wallet"></i>
+<span>اعتبار حساب</span>
+</div>
+</label>
+
+
+</div>
+
+
+<button class="submit" type="submit">
+<i class="fa-solid fa-check"></i>
+ثبت سفارش و پرداخت
+</button>
+
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+const servicesData = JSON.parse('{{ p|escapejs }}');
+
+
+const platformSelect = document.getElementById("platform");
+const serviceSelect = document.getElementById("service");
+const quantity = document.getElementById("quantity");
+const total = document.getElementById("total");
+
+let currentPrice = 0;
+let appliedCouponData = null;
+
+
+
+function updateServiceDescription() {
+    const descField = document.getElementById("service-desc-field");
+    const descText = document.getElementById("service-desc-text");
+    if (!descField || !descText) return;
+
+    let selectedServiceId = Number(serviceSelect.value);
+    let selectedService = servicesData.find(item => Number(item.id) === selectedServiceId);
+
+    if (selectedService && selectedService.description && selectedService.description.trim() !== "") {
+        descText.innerHTML = selectedService.description.trim()
+            .replace(/\\r\\n/g, '<br>')
+            .replace(/\\n/g, '<br>')
+            .replace(/\r\n/g, '<br>')
+            .replace(/\n/g, '<br>');
+        descField.style.display = "block";
+    } else {
+        descField.style.display = "none";
+        descText.textContent = "";
+    }
+}
+
+function updateServices(){
+    let platform = platformSelect.value;
+    let services = servicesData.filter(item => item.en === platform);
+
+    serviceSelect.innerHTML = "";
+
+    services.forEach(item => {
+        let option = document.createElement("option");
+        option.value = item.id;
+        option.dataset.price = item.toman_price;
+        option.textContent = `${item.name} / 💰 ${item.toman_price.toLocaleString()} تومان`;
+        serviceSelect.appendChild(option);
+    });
+
+    if (services.length) {
+        currentPrice = services[0].toman_price;
+        calculate();
+        updateServiceDescription();
+    } else {
+        updateServiceDescription();
+    }
+}
+
+
+
+
+function calculate(){
+    let count = Number(quantity.value) || 0;
+    let rawPrice = Math.floor((currentPrice / 1000) * count);
+    
+    const rawRow = document.getElementById("raw-price-row");
+    const discRow = document.getElementById("discount-price-row");
+    const rawTotal = document.getElementById("raw-total");
+    const discTotal = document.getElementById("discount-total");
+    
+    if (appliedCouponData && rawPrice > 0) {
+        let discount = 0;
+        const maxDisc = parseInt(appliedCouponData.max_discount) || 0;
+        if (appliedCouponData.discount_type === "percent") {
+            discount = Math.floor(rawPrice * (appliedCouponData.discount_value / 100));
+            if (maxDisc > 0) {
+                discount = Math.min(discount, maxDisc);
+            }
+        } else {
+            discount = Math.min(appliedCouponData.discount_value, rawPrice);
+            if (maxDisc > 0) {
+                discount = Math.min(discount, maxDisc);
+            }
+        }
+        let finalPrice = Math.max(0, rawPrice - discount);
+        if (rawRow) rawRow.style.display = "flex";
+        if (discRow) discRow.style.display = "flex";
+        if (rawTotal) rawTotal.textContent = rawPrice.toLocaleString("fa-IR") + " تومان";
+        if (discTotal) discTotal.textContent = "- " + discount.toLocaleString("fa-IR") + " تومان";
+        total.innerHTML = finalPrice.toLocaleString("fa-IR");
+    } else {
+        if (rawRow) rawRow.style.display = "none";
+        if (discRow) discRow.style.display = "none";
+        total.innerHTML = rawPrice.toLocaleString("fa-IR");
+    }
+}
+
+async function applyCoupon() {
+    const couponInput = document.getElementById("coupon_code_input");
+    const btn = document.getElementById("apply_coupon_btn");
+    const msgEl = document.getElementById("coupon-status-msg");
+    const hiddenInput = document.getElementById("applied_coupon_code");
+    
+    if (appliedCouponData) {
+        appliedCouponData = null;
+        hiddenInput.value = "";
+        couponInput.value = "";
+        couponInput.disabled = false;
+        btn.textContent = "اعمال";
+        btn.style.background = "#2563eb";
+        msgEl.style.display = "none";
+        calculate();
+        return;
+    }
+    
+    const code = (couponInput.value || "").trim().toUpperCase();
+    if (!code) {
+        showCouponMsg("لطفاً کد تخفیف را وارد کنید.", false);
+        return;
+    }
+    
+    let count = Number(quantity.value) || 1000;
+    let rawPrice = Math.floor((currentPrice / 1000) * count);
+    const productId = serviceSelect.value;
+    const phone = "{{ request.user.phone_number|default:'' }}";
+    
+    btn.disabled = true;
+    btn.textContent = "...";
+    
+    try {
+        const response = await fetch("/validate-coupon", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                code: code,
+                product_id: productId,
+                count_order: count,
+                receiver_phone: phone,
+                amount: rawPrice
+            })
+        });
+        const res = await response.json();
+        if (res.valid) {
+            appliedCouponData = res;
+            hiddenInput.value = res.code;
+            couponInput.disabled = true;
+            btn.textContent = "حذف";
+            btn.style.background = "#ef4444";
+            showCouponMsg(res.message, true);
+            calculate();
+        } else {
+            appliedCouponData = null;
+            hiddenInput.value = "";
+            showCouponMsg(res.message, false);
+            calculate();
+        }
+    } catch(err) {
+        showCouponMsg("خطا در بررسی کد تخفیف.", false);
+    } finally {
+        btn.disabled = false;
+    }
+}
+
+function showCouponMsg(text, isSuccess) {
+    const msgEl = document.getElementById("coupon-status-msg");
+    msgEl.textContent = text;
+    msgEl.style.display = "block";
+    msgEl.style.background = isSuccess ? "#ecfdf5" : "#fef2f2";
+    msgEl.style.color = isSuccess ? "#065f46" : "#991b1b";
+    msgEl.style.border = isSuccess ? "1px solid #a7f3d0" : "1px solid #fecaca";
+}
+
+function quickApplyNewOrderFirstCoupon() {
+    const input = document.getElementById("coupon_code_input");
+    if (input) {
+        input.value = "FIRST10";
+        applyCoupon();
+    }
+}
+
+
+
+platformSelect.addEventListener(
+"change",
+function(){
+
+updateServices();
+
+}
+);
+
+
+
+serviceSelect.addEventListener(
+"change",
+function(){
+
+let selected =
+serviceSelect.options[
+serviceSelect.selectedIndex
+];
+
+
+currentPrice =
+Number(selected.dataset.price);
+
+
+calculate();
+updateServiceDescription();
+
+}
+);
+
+
+
+
+quantity.addEventListener(
+"input",
+calculate
+);
+
+
+
+updateServices();
+
+
+
+function toggleMenu(){
+
+document.getElementById("sidebar")
+.classList.toggle("active");
+
+}
+
+
+function goHome(){
+window.location.href="/";
+}
+
+
+function buy(){
+window.location.href="/new-order";
+}
+
+
+function orders(){
+window.location.href="/orders";
+}
+
+
+function tickets(){
+window.location.href="/tickets";
+}
+
+function userinfo(){
+window.location.href="/userinfo";
+}
+
+
+function increaseBalance(){
+window.location.href="/payment";
+}
+
+
+function logout(){
+
+if(confirm("آیا میخواهید خارج شوید؟")){
+window.location.href="/accounts/logout";
+}
+
+}
+
+</script>
+
+</body>

@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'iran';
+    src: url('../../fonts/iran.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'iranian';
+    src: url('../../fonts/iranian.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kalameh';
+    src: url('../../fonts/kalameh.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'dana';
+    src: url('../../fonts/dana.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'vazir';
+    src: url('../../fonts/vazir.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'iranyekan';
+    src: url('../../fonts/iranyekan.ttf') format('truetype');
+}

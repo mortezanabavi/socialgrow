@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>داشبورد کاربری</title>
+  <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}?v={{current_time}}">
+  <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+</head>
+<body>
+  {% if user.is_authenticated %}
+	  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+	  <div class="sidebar" id="sidebar">
+		<div>
+		  <div class="logo">داشبورد</div>
+		  <div class="menu">
+			<button onclick="goHome()">🏠 صفحه اصلی</button>
+			<button onclick="buy()">🛍️ ثبت سفارش</button>
+			<button onclick="orders()">🛒 سفارشات من</button>
+			<button onclick="increaseBalance()">💰 شارژ حساب</button>
+			<button onclick="tickets()">📞 تیکت ها</button>
+			<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+			<button onclick="logout()">🚪 خروج از حساب</button>
+		  </div>
+		</div>
+	  </div>
+	  <div class="main">
+		<div class="topbar">
+		  <div class="welcome">سلام {{ user.first_name }}، خوش اومدی 👋</div>
+		</div>
+		<div class="cards">
+		  <div class="card">
+			<div class="circle"></div>
+			<h3>موجودی حساب</h3>
+			<p id="balance">{{ balance }} تومان</p>
+		  </div>
+		  <div class="card">
+			<div class="circle"></div>
+			<h3>ایمیل</h3>
+			<p>
+			  {{ user.email }}
+			</p>
+		  </div>
+		  <div class="card">
+			<div class="circle"></div>
+			<h3>تعداد سفارشات</h3>
+			<p>{{ count }}</p>
+		  </div>
+		  <div class="card">
+			<div class="circle"></div>
+			<h3>تاریخ عضویت</h3>
+			<p>
+			  {{ joined_at }}
+			</p>
+		  </div>
+		</div>
+	  </div>
+	  <script>
+		function toggleMenu(){
+		  document.getElementById("sidebar")
+		  .classList.toggle("active");
+		}
+		function goHome(){
+		  window.location.href = "/";
+		}
+		function buy(){
+		  window.location.href = "/new-order";
+		}
+		function tickets(){
+			window.location.href = "/tickets";
+		}
+		function userinfo(){
+			window.location.href="/userinfo";
+		}
+		function increaseBalance(){
+		  window.location.href = "/payment";
+		}
+		function orders(){
+			window.location.href = "/orders";
+		}
+		function logout(){
+		  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+		  if(confirmExit){
+			window.location.href = "/accounts/logout";
+		  }
+		}
+	  </script>
+	{% endif %}
+</body>
+</html>

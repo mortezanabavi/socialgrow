@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="fa" dir="rtl">
+
+	<head><meta charset="utf-8">
+
+		
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="robots" content="noindex, follow">
+
+		<meta name="description" content="ورود به حساب کاربری سوشال گرو یا ایجاد حساب جدید برای مدیریت سفارش‌ها، مشاهده وضعیت سفارش و استفاده از خدمات شبکه‌های اجتماعی.">
+
+		<title>ورود و ثبت نام</title>
+
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="{% static 'assets/css/login.css' %}?v={{current_time}}">
+
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+
+		<link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+		<link rel="canonical" href="https://socialgrow.ir/login">
+
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<div class="left">
+
+				<h1>خوش آمدید 👋</h1>
+
+				<p>برای استفاده از امکانات سایت وارد شوید یا یک حساب کاربری جدید ایجاد کنید.</p>
+
+			</div>
+
+			<div class="right">
+
+				<form id="loginForm" class="{% if active_tab != 'register' %}active{% endif %}" action="/accounts/signin/" method="post">
+
+					<h2>ورود</h2>
+
+					{% csrf_token %}
+
+					<input type="hidden" name="next" value="{{ request.GET.next|default:'' }}">
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-envelope"></i>
+
+						<input type="email" name="username" placeholder="ایمیل" required>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-lock"></i>
+
+						<input type="password" name="password" placeholder="رمز عبور" id="loginPass" required>
+
+						<span onclick="togglePassword('loginPass')"><i class="fa-solid fa-eye"></i></span>
+
+					</div>
+
+					<small id="message" style="color:red">{{error}}</small>
+
+					<button>ورود</button>
+
+					<p>حساب ندارید؟ <a href="#" onclick="showRegister()">ثبت نام</a></p>
+
+					<p>رمز خود را فراموش کرده اید؟ <a href="/accounts/forgot-password/">ریست رمز</a></p>
+
+				</form>
+
+				<form id="registerForm" class="{% if active_tab == 'register' %}active{% endif %}" action="/accounts/signup/" method="post">
+
+					<h2>ثبت نام</h2>
+
+					{% csrf_token %}
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-envelope"></i>
+
+						<input type="email" name="email" placeholder="ایمیل" required>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-phone"></i>
+
+						<input type="tel" name="phone_number" placeholder="شماره تلفن" required>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-person"></i>
+
+						<input type="text" name="first_name" placeholder="نام" required>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-person"></i>
+
+						<input type="text" name="last_name" placeholder="نام خانوادگی" required>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-lock"></i>
+
+						<input type="password" name="password1" placeholder="رمز عبور" id="pass1" required>
+
+						<span onclick="togglePassword('pass1')"><i class="fa-solid fa-eye"></i></span>
+
+					</div>
+
+					<div class="inputBox">
+
+						<i class="fa-solid fa-lock"></i>
+
+						<input type="password" name="password2" placeholder="تکرار رمز عبور" id="pass2" required>
+
+						<span onclick="togglePassword('pass2')"><i class="fa-solid fa-eye"></i></span>
+
+					</div>
+
+					<small id="message" style="color:red">{{error}}</small>
+
+					<button>ثبت نام</button>
+
+					<p>قبلاً ثبت نام کرده‌اید؟ <a href="#" onclick="showLogin()">ورود</a></p>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			const login=document.getElementById("loginForm");
+
+			const register=document.getElementById("registerForm");
+
+			function showRegister(){
+
+				event.preventDefault();
+
+				login.classList.remove("active");
+
+				register.classList.add("active");
+
+			}
+
+			function showLogin(){
+
+				event.preventDefault();
+
+				register.classList.remove("active");
+
+				login.classList.add("active");
+
+			}
+
+			function togglePassword(id){
+
+				const input=document.getElementById(id);
+
+				if (input.type==="password") {
+
+					input.type="text";
+
+				} else {
+
+					input.type="password";
+
+				}
+
+			}
+
+			function checkPassword(){
+
+				let p1=document.getElementById("pass1").value;
+
+				let p2=document.getElementById("pass2").value;
+
+				let msg=document.getElementById("message");
+
+				if(p1.length<6){
+
+					msg.style.color="red";
+
+					msg.innerHTML="رمز عبور باید حداقل ۶ کاراکتر باشد.";
+
+					return;
+
+				}
+
+				if(p1!==p2){
+
+					msg.style.color="red";
+
+					msg.innerHTML="رمز عبور و تکرار آن یکسان نیست.";
+
+					return;
+
+				}
+
+				msg.style.color="green";
+
+				msg.innerHTML="✅ ثبت نام با موفقیت انجام شد.";
+
+			}
+
+		</script>
+
+	</body>
+
+</html>

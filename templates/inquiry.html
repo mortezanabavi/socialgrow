@@ -1,0 +1,2045 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استعلام قیمت و تعرفه خدمات | سوشال گرو</title>
+    <meta name="description" content="استعلام آنلاین و هوشمند قیمت خدمات شبکه‌های اجتماعی در سوشال گرو. مشاهده تعرفه هر ۱,۰۰۰ عدد و محاسبه هزینه سفارش فالوور، ممبر، لایک و ویو با کمترین نرخ بازار.">
+    <meta name="keywords" content="استعلام قیمت فالوور, استعلام تعرفه ممبر تلگرام, قیمت لایک اینستاگرام, محاسبه هزینه خدمات سوشال مدیا, تعرفه سوشال گرو">
+    <meta property="og:title" content="استعلام آنلاین قیمت و تعرفه خدمات | سوشال گرو">
+    <meta property="og:description" content="محاسبه دقیق هزینه و مشاهده لحظه‌ای تعرفه خدمات اینستاگرام، تلگرام، یوتیوب با آخرین نرخ روز.">
+    <meta property="og:url" content="https://socialgrow.ir/inquiry">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+
+    <style>
+        :root {
+            --sg-blue: #0693e3;
+            --sg-blue-dark: #0284c7;
+            --sg-blue-light: #e0f2fe;
+            --sg-green: #10b981;
+            --sg-green-dark: #059669;
+            --sg-green-light: #ecfdf5;
+            --sg-purple: #8b5cf6;
+            --sg-pink: #ec4899;
+            --sg-amber: #f59e0b;
+            --sg-dark: #0f172a;
+            --sg-slate: #334155;
+            --sg-muted: #64748b;
+            --sg-border: #e2e8f0;
+            --sg-bg: #f8fafc;
+            --sg-card-bg: #ffffff;
+            --sg-radius: 16px;
+            --sg-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+            --sg-shadow-lg: 0 20px 35px -10px rgba(6, 147, 227, 0.12), 0 10px 15px -3px rgba(15, 23, 42, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--sg-bg);
+            color: var(--sg-slate);
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            font-size: 14.5px;
+            line-height: 1.7;
+            direction: rtl;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Ambient Background Glow */
+        .ambient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 520px;
+            background: radial-gradient(circle at 50% -20%, rgba(6, 147, 227, 0.15) 0%, rgba(139, 92, 246, 0.08) 40%, rgba(248, 250, 252, 0) 75%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Container */
+        .inquiry-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+        }
+
+        /* Breadcrumbs */
+        .inquiry-breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--sg-muted);
+            margin-bottom: 24px;
+        }
+        .inquiry-breadcrumbs a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--sg-muted);
+            transition: color 0.2s;
+        }
+        .inquiry-breadcrumbs a:hover {
+            color: var(--sg-blue);
+        }
+        .inquiry-breadcrumbs .sep {
+            color: #cbd5e1;
+            font-size: 11px;
+        }
+        .inquiry-breadcrumbs .current {
+            color: var(--sg-blue);
+            font-weight: 600;
+        }
+
+        /* Hero Banner */
+        .inquiry-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+            border: 1px solid #dbeafe;
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: var(--sg-shadow);
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .inquiry-hero::after {
+            content: "";
+            position: absolute;
+            left: -80px;
+            top: -80px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(6, 147, 227, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #0284c7;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.7);
+            animation: pulse-ring 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(2, 132, 199, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+        }
+        .inquiry-hero h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0 0 12px;
+            line-height: 1.4;
+        }
+        .inquiry-hero p {
+            font-size: 14.5px;
+            color: var(--sg-muted);
+            max-width: 840px;
+            margin: 0 0 24px;
+            line-height: 1.8;
+        }
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .highlight-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--sg-slate);
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
+            transition: all 0.2s ease;
+        }
+        .highlight-chip:hover {
+            border-color: var(--sg-blue);
+            transform: translateY(-1px);
+        }
+        .highlight-chip i {
+            color: var(--sg-blue);
+            font-size: 14px;
+        }
+
+        /* Smart Calculator Card */
+        .calculator-card {
+            background: #ffffff;
+            border: 2px solid #e0f2fe;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--sg-shadow-lg);
+            margin-bottom: 36px;
+            position: relative;
+        }
+        .calc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .calc-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0;
+        }
+        .calc-title-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0693e3, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 12px rgba(6, 147, 227, 0.25);
+        }
+        .calc-badge {
+            font-size: 12px;
+            color: #0369a1;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1.2fr 1.4fr;
+            gap: 20px;
+            align-items: start;
+        }
+        @media (max-width: 992px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .calc-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .calc-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sg-slate);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .calc-select, .calc-input {
+            width: 100%;
+            height: 48px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 0 14px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--sg-dark);
+            background: #ffffff;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .calc-select:focus, .calc-input:focus {
+            border-color: var(--sg-blue);
+            box-shadow: 0 0 0 3px rgba(6, 147, 227, 0.15);
+        }
+        .calc-limit-hint {
+            font-size: 11.5px;
+            color: var(--sg-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .calc-quick-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .quick-pill {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--sg-slate);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .quick-pill:hover {
+            background: #e0f2fe;
+            color: #0284c7;
+            border-color: #bae6fd;
+        }
+        /* Calc Result Box */
+        .calc-result-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: center;
+            height: 100%;
+            justify-content: space-between;
+        }
+        .result-row-unit {
+            font-size: 12.5px;
+            color: var(--sg-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .result-total-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .result-total-label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--sg-muted);
+        }
+        .result-total-num {
+            font-size: 26px;
+            font-weight: 900;
+            color: #16a34a;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 4px;
+            direction: ltr;
+        }
+        .result-total-currency {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sg-slate);
+        }
+        .calc-action-btn {
+            background: linear-gradient(135deg, #0693e3 0%, #0284c7 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(6, 147, 227, 0.3);
+            width: 100%;
+        }
+        .calc-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(6, 147, 227, 0.4);
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        }
+
+        /* Filter & Toolbar Area */
+        .toolbar-wrapper {
+            background: #ffffff;
+            border: 1px solid var(--sg-border);
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            box-shadow: var(--sg-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .toolbar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+        }
+        .search-box i.search-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 15px;
+            pointer-events: none;
+        }
+        .search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 42px 0 36px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-family: inherit;
+            color: var(--sg-dark);
+            outline: none;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+        .search-input:focus {
+            background: #ffffff;
+            border-color: var(--sg-blue);
+            box-shadow: 0 0 0 3px rgba(6, 147, 227, 0.12);
+        }
+        .clear-search-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 14px;
+            display: none;
+        }
+        .clear-search-btn:hover {
+            color: #ef4444;
+        }
+        .sort-select-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--sg-muted);
+            flex-shrink: 0;
+        }
+        .sort-select {
+            height: 42px;
+            padding: 0 12px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--sg-dark);
+            outline: none;
+            background: #ffffff;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .sort-select:focus {
+            border-color: var(--sg-blue);
+        }
+
+        /* Platform Tabs Pills */
+        .platform-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: thin;
+        }
+        .platform-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+        .platform-tabs::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .tab-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            color: var(--sg-slate);
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            user-select: none;
+        }
+        .tab-pill:hover {
+            background: #e2e8f0;
+            color: var(--sg-dark);
+        }
+        .tab-pill.active {
+            background: #0693e3;
+            color: #ffffff;
+            border-color: #0693e3;
+            box-shadow: 0 4px 12px rgba(6, 147, 227, 0.25);
+        }
+        .tab-pill.active .tab-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+        .tab-count {
+            background: #e2e8f0;
+            color: var(--sg-muted);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        /* Stats Sub-Bar */
+        .results-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--sg-muted);
+            padding: 0 4px;
+            margin-bottom: 16px;
+        }
+        .results-meta-bar strong {
+            color: var(--sg-dark);
+        }
+
+        /* Modern Table Card Container */
+        .table-card {
+            background: #ffffff;
+            border: 1px solid var(--sg-border);
+            border-radius: 20px;
+            box-shadow: var(--sg-shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table.inquiry-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 14px;
+        }
+        table.inquiry-table thead {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 2px solid #e2e8f0;
+        }
+        table.inquiry-table th {
+            padding: 16px 20px;
+            font-weight: 800;
+            color: #1e293b;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        table.inquiry-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+            transition: background 0.15s;
+        }
+        table.inquiry-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+        table.inquiry-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Table Column Cells */
+        .col-service-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .platform-icon-wrap {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+        .platform-icon-wrap.ig {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+        }
+        .platform-icon-wrap.tg {
+            background: linear-gradient(135deg, #0088cc, #229ED9);
+        }
+        .platform-icon-wrap.yt {
+            background: linear-gradient(135deg, #ff0000, #b91c1c);
+        }
+        .platform-icon-wrap.tw {
+            background: linear-gradient(135deg, #1d9bf0, #0f1419);
+        }
+        .platform-icon-wrap.web {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .platform-icon-wrap.other {
+            background: linear-gradient(135deg, #64748b, #475569);
+        }
+
+        .service-name-text {
+            font-weight: 700;
+            color: var(--sg-dark);
+            line-height: 1.4;
+        }
+        .service-sub-hint {
+            font-size: 11.5px;
+            color: var(--sg-muted);
+            margin-top: 2px;
+        }
+
+        .platform-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .platform-badge-pill.ig { background: #fdf2f8; color: #be185d; border: 1px solid #fbcfe8; }
+        .platform-badge-pill.tg { background: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+        .platform-badge-pill.yt { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+        .platform-badge-pill.tw { background: #f0fdfa; color: #0f766e; border: 1px solid #ccfbf1; }
+        .platform-badge-pill.other { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+        .order-limits-chip {
+            font-size: 12px;
+            color: var(--sg-muted);
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .price-highlight-cell {
+            white-space: nowrap;
+        }
+        .price-num-bold {
+            font-size: 17px;
+            font-weight: 900;
+            color: #0284c7;
+            font-family: monospace, inherit;
+            letter-spacing: 0.5px;
+        }
+        .price-curr-tag {
+            font-size: 12px;
+            color: var(--sg-muted);
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .action-btns-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-calc-quick {
+            background: #eff6ff;
+            color: #0284c7;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 7px 12px;
+            font-size: 12.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-calc-quick:hover {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+        }
+        .btn-order-direct {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 7px 14px;
+            font-size: 12.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+        }
+        .btn-order-direct:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Mobile Cards View (Hidden on Desktop) */
+        .mobile-cards-view {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .mobile-product-card {
+            background: #ffffff;
+            border: 1px solid var(--sg-border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .mobile-product-card:hover {
+            border-color: #93c5fd;
+            box-shadow: 0 8px 20px rgba(6, 147, 227, 0.08);
+        }
+        .mob-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .mob-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mob-card-body h3 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0 0 6px;
+            line-height: 1.4;
+        }
+        .mob-price-banner {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .mob-price-label {
+            font-size: 12px;
+            color: #0369a1;
+            font-weight: 600;
+        }
+        .mob-card-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .table-card {
+                display: none;
+            }
+            .mobile-cards-view {
+                display: flex;
+            }
+            .inquiry-hero {
+                padding: 24px 20px;
+            }
+            .inquiry-hero h1 {
+                font-size: 22px;
+            }
+            .calculator-card {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Modern Pagination Controls */
+        .pagination-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 10px;
+            padding: 0 4px;
+        }
+        .pagination-nums {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            min-width: 38px;
+            height: 38px;
+            padding: 0 10px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: var(--sg-slate);
+            font-size: 13.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--sg-blue);
+            color: var(--sg-blue);
+            background: #eff6ff;
+        }
+        .page-btn.active {
+            background: var(--sg-blue);
+            color: #ffffff;
+            border-color: var(--sg-blue);
+            box-shadow: 0 4px 10px rgba(6, 147, 227, 0.3);
+        }
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .page-btn.nav-btn {
+            font-size: 12px;
+            gap: 6px;
+            padding: 0 14px;
+        }
+        .page-size-select {
+            height: 38px;
+            padding: 0 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--sg-slate);
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Empty State */
+        .empty-results-box {
+            background: #ffffff;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 48px 24px;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .empty-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+        .empty-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0;
+        }
+        .empty-desc {
+            font-size: 13.5px;
+            color: var(--sg-muted);
+            max-width: 400px;
+            margin: 0;
+        }
+        .reset-filter-btn {
+            background: #f1f5f9;
+            color: var(--sg-slate);
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .reset-filter-btn:hover {
+            background: var(--sg-blue);
+            color: #ffffff;
+            border-color: var(--sg-blue);
+        }
+
+        /* FAQ & Inquiry Help Section */
+        .inquiry-faq-section {
+            background: #ffffff;
+            border: 1px solid var(--sg-border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin-top: 40px;
+            box-shadow: var(--sg-shadow);
+        }
+        .faq-section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .faq-section-subtitle {
+            font-size: 13.5px;
+            color: var(--sg-muted);
+            margin: 0 0 24px;
+        }
+        .inquiry-faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 768px) {
+            .inquiry-faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .inquiry-faq-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: all 0.2s;
+        }
+        .inquiry-faq-item:hover {
+            border-color: #bfdbfe;
+            background: #f0f7ff;
+        }
+        .faq-q-title {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--sg-dark);
+            margin: 0 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .faq-q-title i {
+            color: var(--sg-blue);
+            font-size: 14px;
+        }
+        .faq-a-text {
+            font-size: 13px;
+            color: var(--sg-muted);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Support Banner Bottom */
+        .support-cta-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 20px;
+            padding: 30px;
+            color: #ffffff;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .support-cta-texts h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 0 6px;
+        }
+        .support-cta-texts p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .support-cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .cta-btn-chat {
+            background: var(--sg-blue);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .cta-btn-chat:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+        .cta-btn-phone {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .cta-btn-phone:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+<link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+</head>
+<body>
+    <div class="ambient-bg"></div>
+
+    <!-- Header (Kept 100% Intact) -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+                <span>{{ settings.name|default:'سوشال گرو' }}</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="/">خانه</a>
+                <a href="/products/">تعرفه‌ها و خدمات</a>
+                <a href="/new-order">ثبت سفارش</a>
+                <a href="/track-order">پیگیری سفارش</a>
+                <a href="/blog">وبلاگ</a>
+                <a href="/inquiry" class="current">استعلام قیمت</a>
+                <a href="/terms">قوانین</a>
+                <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+            </nav>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                    <div class="user-menu" id="userMenu">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                                <span class="status"></span>
+                            </div>
+                            <div class="user-info">
+                                <span class="welcome">خوش آمدید</span>
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                            <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                            <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                            <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                            <hr>
+                            <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/login" class="login">ورود / ثبت نام</a>
+                {% endif %}
+                <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="inquiry-container">
+        <!-- Breadcrumbs -->
+        <nav class="inquiry-breadcrumbs" aria-label="مسیر راهنما">
+            <a href="/"><i class="fa-solid fa-house"></i> خانه</a>
+            <span class="sep">/</span>
+            <span class="current">استعلام قیمت و تعرفه خدمات</span>
+        </nav>
+
+        <!-- Hero Card -->
+        <section class="inquiry-hero">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>استعلام آنلاین و خودکار تعرفه‌ها با آخرین نرخ روز</span>
+            </div>
+            <h1>استعلام قیمت و محاسبه آنلاین هزینه خدمات</h1>
+            <p>
+                در این بخش می‌توانید تعرفه پایه هر ۱,۰۰۰ عدد از خدمات مختلف سوشال گرو را مشاهده کرده، هزینه سفارش خود را بر اساس تعداد دلخواه با ماشین حساب هوشمند محاسبه کنید و با اطمینان از کمترین نرخ بازار، سفارش خود را ثبت نمایید.
+            </p>
+            <div class="hero-highlights">
+                <div class="highlight-chip">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>تحویل فوری و خودکار</span>
+                </div>
+                <div class="highlight-chip">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>تضمین جبران ریزش و کیفیت</span>
+                </div>
+                <div class="highlight-chip">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>بدون نیاز به رمز عبور</span>
+                </div>
+                <div class="highlight-chip">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>به‌روزرسانی لحظه‌ای قیمت‌ها</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Smart Calculator Card -->
+        <section class="calculator-card" id="pricing-calculator">
+            <div class="calc-header">
+                <h2 class="calc-title">
+                    <span class="calc-title-icon"><i class="fa-solid fa-calculator"></i></span>
+                    <span>ماشین حساب محاسبه سریع هزینه سفارش</span>
+                </h2>
+                <span class="calc-badge">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> برآورد دقیق و آنی
+                </span>
+            </div>
+            <div class="calc-grid">
+                <!-- Col 1: Service Select -->
+                <div class="calc-field-group">
+                    <label for="calcServiceSelect" class="calc-label">
+                        <i class="fa-solid fa-cube" style="color:var(--sg-blue)"></i>
+                        <span>انتخاب سرویس مورد نظر:</span>
+                    </label>
+                    <select id="calcServiceSelect" class="calc-select" onchange="onCalculatorServiceChange()">
+                        {% for product in products %}
+                            <option value="{{ product.id }}" 
+                                    data-price="{{ product.toman_price }}"
+                                    data-min="{{ product.min_order }}"
+                                    data-max="{{ product.max_order }}"
+                                    data-name="{{ product.name }}"
+                                    data-app="{{ product.app }}"
+                                    data-slug="{{ product.slug }}">
+                                [{{ product.get_app_display }}] {{ product.name }} (هر ۱K: {{ product.get_price_display }} تومان)
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <div class="calc-limit-hint" id="calcLimitsHint">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>حداقل سفارش: ۱۰۰ عدد | حداکثر سفارش: ۵۰۰,۰۰۰ عدد</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quantity Input & Quick Pills -->
+                <div class="calc-field-group">
+                    <label for="calcQtyInput" class="calc-label">
+                        <i class="fa-solid fa-hashtag" style="color:var(--sg-purple)"></i>
+                        <span>تعداد مورد نظر برای استعلام:</span>
+                    </label>
+                    <input type="number" id="calcQtyInput" class="calc-input" value="1000" min="10" step="100" oninput="calculateLiveEstimator()">
+                    <div class="calc-quick-pills">
+                        <button type="button" class="quick-pill" onclick="setCalcQty(1000)">۱,۰۰۰</button>
+                        <button type="button" class="quick-pill" onclick="setCalcQty(2000)">۲,۰۰۰</button>
+                        <button type="button" class="quick-pill" onclick="setCalcQty(5000)">۵,۰۰۰</button>
+                        <button type="button" class="quick-pill" onclick="setCalcQty(10000)">۱۰,۰۰۰</button>
+                        <button type="button" class="quick-pill" onclick="setCalcMin()">حداقل</button>
+                        <button type="button" class="quick-pill" onclick="setCalcMax()">حداکثر</button>
+                    </div>
+                </div>
+
+                <!-- Col 3: Calculated Price & Direct CTA -->
+                <div class="calc-result-box">
+                    <div class="result-row-unit">
+                        <span>تعرفه پایه هر ۱,۰۰۰ عدد:</span>
+                        <strong id="calcUnitPriceDisplay" style="color:var(--sg-dark)">۰ تومان</strong>
+                    </div>
+                    <div class="result-total-wrap">
+                        <span class="result-total-label">مبلغ کل برآورد شده:</span>
+                        <div class="result-total-num">
+                            <span id="calcTotalDisplay">۰</span>
+                            <span class="result-total-currency">تومان</span>
+                        </div>
+                    </div>
+                    <button type="button" class="calc-action-btn" id="calcOrderBtn" onclick="goOrderFromCalculator()">
+                        <span>ثبت فوری سفارش برای این سرویس</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Toolbar -->
+        <section class="toolbar-wrapper">
+            <div class="toolbar-top">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="serviceSearchInput" class="search-input" placeholder="جستجو در بین نام خدمات (فالوور، ممبر، لایک، ویو...)" autocomplete="off">
+                    <button type="button" class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" aria-label="پاک کردن جستجو">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Sort Dropdown -->
+                <div class="sort-select-wrap">
+                    <label for="sortSelect"><i class="fa-solid fa-arrow-down-wide-short"></i> مرتب‌سازی:</label>
+                    <select id="sortSelect" class="sort-select" onchange="onSortChange()">
+                        <option value="default">پیش‌فرض (محبوب‌ترین)</option>
+                        <option value="price-asc">ارزان‌ترین تعرفه (صعودی)</option>
+                        <option value="price-desc">گران‌ترین تعرفه (نزولی)</option>
+                        <option value="name-asc">نام سرویس (الفبا)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Platform Filter Tabs -->
+            <div class="platform-tabs" id="platformTabs">
+                <button type="button" class="tab-pill active" data-app="all" onclick="filterByPlatform('all', this)">
+                    <i class="fa-solid fa-border-all"></i>
+                    <span>همه خدمات</span>
+                    <span class="tab-count" id="count-all">{{ products|length }}</span>
+                </button>
+                <button type="button" class="tab-pill" data-app="2" onclick="filterByPlatform('2', this)">
+                    <i class="fa-brands fa-instagram" style="color:#e1306c"></i>
+                    <span>اینستاگرام</span>
+                    <span class="tab-count" id="count-ig">0</span>
+                </button>
+                <button type="button" class="tab-pill" data-app="1" onclick="filterByPlatform('1', this)">
+                    <i class="fa-brands fa-telegram" style="color:#0088cc"></i>
+                    <span>تلگرام</span>
+                    <span class="tab-count" id="count-tg">0</span>
+                </button>
+                <button type="button" class="tab-pill" data-app="3" onclick="filterByPlatform('3', this)">
+                    <i class="fa-brands fa-youtube" style="color:#ff0000"></i>
+                    <span>یوتیوب</span>
+                    <span class="tab-count" id="count-yt">0</span>
+                </button>
+                <button type="button" class="tab-pill" data-app="4" onclick="filterByPlatform('4', this)">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>توییتر (X)</span>
+                    <span class="tab-count" id="count-tw">0</span>
+                </button>
+                <button type="button" class="tab-pill" data-app="other" onclick="filterByPlatform('other', this)">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>سایر شبکه‌ها</span>
+                    <span class="tab-count" id="count-other">0</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Meta Results Bar -->
+        <div class="results-meta-bar">
+            <div>
+                <span>نمایش </span>
+                <strong id="visibleCountText">۰</strong>
+                <span> سرویس از مجموع </span>
+                <strong id="totalCountText">{{ products|length }}</strong>
+                <span> سرویس فعال</span>
+            </div>
+            <div style="font-size:12px;color:var(--sg-muted)">
+                <i class="fa-solid fa-shield-check" style="color:var(--sg-green)"></i> نرخ‌ها شامل آخرین تخفیف‌های ویژه است
+            </div>
+        </div>
+
+        <!-- Desktop Table View -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table class="inquiry-table" id="inquiryTable">
+                    <thead>
+                        <tr>
+                            <th style="width:42%">نام و مشخصات سرویس</th>
+                            <th style="width:16%">پلتفرم</th>
+                            <th style="width:16%">محدوده سفارش</th>
+                            <th style="width:14%">قیمت هر ۱,۰۰۰ عدد</th>
+                            <th style="width:12%;text-align:center">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inquiryTableBody">
+                        {% for product in products %}
+                            <tr class="product-row"
+                                data-id="{{ product.id }}"
+                                data-name="{{ product.name }}"
+                                data-app="{{ product.app }}"
+                                data-app-display="{{ product.get_app_display }}"
+                                data-price="{{ product.toman_price }}"
+                                data-price-display="{{ product.get_price_display }}"
+                                data-min="{{ product.min_order }}"
+                                data-max="{{ product.max_order }}"
+                                data-slug="{{ product.slug }}">
+                                <td>
+                                    <div class="col-service-title">
+                                        <div class="platform-icon-wrap {% if product.app == '2' %}ig{% elif product.app == '1' %}tg{% elif product.app == '3' %}yt{% elif product.app == '4' %}tw{% else %}other{% endif %}">
+                                            {% if product.app == '2' %}
+                                                <i class="fa-brands fa-instagram"></i>
+                                            {% elif product.app == '1' %}
+                                                <i class="fa-brands fa-telegram"></i>
+                                            {% elif product.app == '3' %}
+                                                <i class="fa-brands fa-youtube"></i>
+                                            {% elif product.app == '4' %}
+                                                <i class="fa-brands fa-x-twitter"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-cube"></i>
+                                            {% endif %}
+                                        </div>
+                                        <div>
+                                            <div class="service-name-text">{{ product.name }}</div>
+                                            <div class="service-sub-hint">کد سرویس: #{{ product.id }} | کیفیت درجه یک و ضمانتی</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="platform-badge-pill {% if product.app == '2' %}ig{% elif product.app == '1' %}tg{% elif product.app == '3' %}yt{% elif product.app == '4' %}tw{% else %}other{% endif %}">
+                                        {{ product.get_app_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="order-limits-chip">{{ product.min_order }} تا {{ product.max_order }}</span>
+                                </td>
+                                <td class="price-highlight-cell">
+                                    <span class="price-num-bold">{{ product.get_price_display }}</span>
+                                    <span class="price-curr-tag">تومان</span>
+                                </td>
+                                <td>
+                                    <div class="action-btns-group" style="justify-content:center">
+                                        <button type="button" class="btn-calc-quick" onclick="loadIntoCalculator('{{ product.id }}')" title="محاسبه دقیق در ماشین حساب">
+                                            <i class="fa-solid fa-calculator"></i>
+                                            <span>محاسبه</span>
+                                        </button>
+                                        <a href="{% if product.slug %}/services/{{ product.slug }}/{% else %}/#order{% endif %}" class="btn-order-direct" title="ثبت سفارش این سرویس">
+                                            <span>سفارش</span>
+                                            <i class="fa-solid fa-arrow-left"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mobile Cards View (Responsive Alternative to Table) -->
+        <div class="mobile-cards-view" id="mobileCardsContainer">
+            {% for product in products %}
+                <div class="mobile-product-card product-card-item"
+                     data-id="{{ product.id }}"
+                     data-name="{{ product.name }}"
+                     data-app="{{ product.app }}"
+                     data-app-display="{{ product.get_app_display }}"
+                     data-price="{{ product.toman_price }}"
+                     data-price-display="{{ product.get_price_display }}"
+                     data-min="{{ product.min_order }}"
+                     data-max="{{ product.max_order }}"
+                     data-slug="{{ product.slug }}">
+                    <div class="mob-card-header">
+                        <div class="mob-title-row">
+                            <div class="platform-icon-wrap {% if product.app == '2' %}ig{% elif product.app == '1' %}tg{% elif product.app == '3' %}yt{% elif product.app == '4' %}tw{% else %}other{% endif %}" style="width:32px;height:32px;font-size:14px;border-radius:8px">
+                                {% if product.app == '2' %}
+                                    <i class="fa-brands fa-instagram"></i>
+                                {% elif product.app == '1' %}
+                                    <i class="fa-brands fa-telegram"></i>
+                                {% elif product.app == '3' %}
+                                    <i class="fa-brands fa-youtube"></i>
+                                {% elif product.app == '4' %}
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-cube"></i>
+                                {% endif %}
+                            </div>
+                            <span class="platform-badge-pill {% if product.app == '2' %}ig{% elif product.app == '1' %}tg{% elif product.app == '3' %}yt{% elif product.app == '4' %}tw{% else %}other{% endif %}">
+                                {{ product.get_app_display }}
+                            </span>
+                        </div>
+                        <span class="order-limits-chip" style="font-size:11px">از {{ product.min_order }} تا {{ product.max_order }}</span>
+                    </div>
+
+                    <div class="mob-card-body">
+                        <h3>{{ product.name }}</h3>
+                    </div>
+
+                    <div class="mob-price-banner">
+                        <span class="mob-price-label">نرخ هر ۱,۰۰۰ عدد:</span>
+                        <div>
+                            <strong class="price-num-bold" style="font-size:16px">{{ product.get_price_display }}</strong>
+                            <span class="price-curr-tag">تومان</span>
+                        </div>
+                    </div>
+
+                    <div class="mob-card-footer">
+                        <button type="button" class="btn-calc-quick" style="justify-content:center;padding:10px" onclick="loadIntoCalculator('{{ product.id }}')">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>محاسبه هزینه</span>
+                        </button>
+                        <a href="{% if product.slug %}/services/{{ product.slug }}/{% else %}/#order{% endif %}" class="btn-order-direct" style="justify-content:center;padding:10px">
+                            <span>ثبت سفارش</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Empty State Container -->
+        <div class="empty-results-box" id="emptyResultsBox">
+            <div class="empty-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h3 class="empty-title">هیچ سرویسی با این مشخصات یافت نشد!</h3>
+            <p class="empty-desc">
+                عبارت جستجو شده را بررسی کنید یا فیلتر دسته‌بندی را تغییر دهید تا همه خدمات نمایش داده شوند.
+            </p>
+            <button type="button" class="reset-filter-btn" onclick="resetAllFilters()">
+                <i class="fa-solid fa-arrows-rotate"></i> بازنشانی فیلترها و مشاهده همه
+            </button>
+        </div>
+
+        <!-- Modern Pagination Bar -->
+        <div class="pagination-bar" id="paginationBar">
+            <div class="pagination-nums" id="paginationNumbers">
+                <!-- Dynamically generated buttons -->
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+                <label for="pageSizeSelect" style="font-size:12.5px;color:var(--sg-muted)">تعداد در هر صفحه:</label>
+                <select id="pageSizeSelect" class="page-size-select" onchange="onPageSizeChange()">
+                    <option value="10">۱۰ عدد</option>
+                    <option value="20" selected>۲۰ عدد</option>
+                    <option value="50">۵۰ عدد</option>
+                    <option value="999">همه محصولات</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="inquiry-faq-section">
+            <h2 class="faq-section-title">
+                <i class="fa-solid fa-circle-question" style="color:var(--sg-blue)"></i>
+                <span>سوالات متداول پیرامون استعلام قیمت و سفارش</span>
+            </h2>
+            <p class="faq-section-subtitle">
+                پاسخ به سوالات رایج شما درباره نحوه محاسبه قیمت، تخفیف‌ها و شرایط تحویل
+            </p>
+            <div class="inquiry-faq-grid">
+                <div class="inquiry-faq-item">
+                    <h3 class="faq-q-title">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>آیا قیمت‌های استعلام شده نهایی هستند؟</span>
+                    </h3>
+                    <p class="faq-a-text">
+                        بله، تمامی قیمت‌های نمایش داده شده در این صفحه به تومان، کاملاً شفاف و نهایی هستند و در هنگام پرداخت هیچ هزینه اضافه یا کارمزد پنهانی کسر نخواهد شد.
+                    </p>
+                </div>
+
+                <div class="inquiry-faq-item">
+                    <h3 class="faq-q-title">
+                        <i class="fa-solid fa-tags"></i>
+                        <span>چگونه می‌توانم از تخفیف سفارش استفاده کنم؟</span>
+                    </h3>
+                    <p class="faq-a-text">
+                        در صورتی که اولین خرید شما از سوشال گرو باشد، می‌توانید از هدیه ۱۰٪ تخفیف اولین سفارش با کد FIRST10 استفاده نمایید. همچنین برای سفارش‌های عمده تخفیف ویژه لحاظ می‌گردد.
+                    </p>
+                </div>
+
+                <div class="inquiry-faq-item">
+                    <h3 class="faq-q-title">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>آیا خدمات دارای ضمانت جبران ریزش هستند؟</span>
+                    </h3>
+                    <p class="faq-a-text">
+                        بله، اکثر سرویس‌های باکیفیت ما دارای گارانتی جبران ریزش خودکار یا دستی از طریق پنل کاربری هستند و در صورت افت تعداد، مجدداً تکمیل خواهند شد.
+                    </p>
+                </div>
+
+                <div class="inquiry-faq-item">
+                    <h3 class="faq-q-title">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>سرعت شروع سفارش‌ها چقدر است؟</span>
+                    </h3>
+                    <p class="faq-a-text">
+                        بیش از ۹۵٪ از سفارش‌های سوشال گرو به صورت تمام‌اتوماتیک و بلافاصله پس از پرداخت آغاز می‌شوند و نیازی به تماس یا انتظار برای فعال‌سازی دستی ندارند.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support CTA Banner -->
+        <section class="support-cta-box">
+            <div class="support-cta-texts">
+                <h3>نیاز به استعلام سفارشی یا مشاوره رایگان دارید؟</h3>
+                <p>تیم پشتیبانی سوشال گرو به صورت ۲۴ ساعته آماده پاسخگویی و راهنمایی شما عزیزان می‌باشد.</p>
+            </div>
+            <div class="support-cta-actions">
+                <a href="#" onclick="openSocialGrowChat(event)" class="cta-btn-chat">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>گفتگوی آنلاین با پشتیبان</span>
+                </a>
+                {% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+                <a href="tel:{{ settings.admin_phone_number }}" class="cta-btn-phone">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>تماس: {{ settings.admin_phone_number }}</span>
+                </a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Phone Call Button -->
+    {% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+    <a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+        <i class="fa-solid fa-phone"></i>
+        <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+    </a>
+    {% endif %}
+
+    <!-- Footer (Preserved 100% Intact) -->
+    <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="site-footer-inner">
+            <div class="footer-col">
+                <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+                <p>{{ settings.footer_description }}</p>
+            </div>
+            {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+            <div class="footer-col">
+                <p class="footer-col-title">پشتیبانی و راهنما</p>
+                <ul>
+                    <li><a href="/track-order">پیگیری سفارش</a></li>
+                    <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                    <li><a href="/faq">سوالات متداول</a></li>
+                    <li><a href="/terms">قوانین و مقررات</a></li>
+                    <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+                <div class="enamad">
+                    {{ settings.enamad|safe }}
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                    <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts (Crisp & Interactive Inquiry JS) -->
+    
+
+    <script>
+        // Header Mobile Menu Toggle
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+        if (menuBtn && nav) {
+            menuBtn.onclick = () => {
+                nav.classList.toggle("active");
+            };
+        }
+
+        // Global Products State for Client-Side Filtering & Calculations
+        let allItems = [];
+        let filteredItems = [];
+        let currentPage = 1;
+        let pageSize = 20;
+        let currentPlatform = 'all';
+        let currentSearchQuery = '';
+        let currentSort = 'default';
+
+        function formatMoney(num) {
+            if (!num || isNaN(num)) return "۰";
+            return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "،");
+        }
+
+        // Initialize Products Data from DOM Rows
+        document.addEventListener("DOMContentLoaded", function() {
+            const rows = document.querySelectorAll(".product-row");
+            const cards = document.querySelectorAll(".product-card-item");
+
+            let igCount = 0, tgCount = 0, ytCount = 0, twCount = 0, otherCount = 0;
+
+            rows.forEach((row, idx) => {
+                const id = row.getAttribute("data-id");
+                const name = row.getAttribute("data-name") || "";
+                const app = row.getAttribute("data-app") || "0";
+                const appDisplay = row.getAttribute("data-app-display") || "";
+                const price = parseFloat(row.getAttribute("data-price")) || 0;
+                const min = parseInt(row.getAttribute("data-min")) || 100;
+                const max = parseInt(row.getAttribute("data-max")) || 10000;
+                const slug = row.getAttribute("data-slug") || "";
+
+                if (app === "2") igCount++;
+                else if (app === "1") tgCount++;
+                else if (app === "3") ytCount++;
+                else if (app === "4") twCount++;
+                else otherCount++;
+
+                allItems.push({
+                    id: id,
+                    name: name,
+                    app: app,
+                    appDisplay: appDisplay,
+                    price: price,
+                    min: min,
+                    max: max,
+                    slug: slug,
+                    rowEl: row,
+                    cardEl: cards[idx] || null,
+                    originalIndex: idx
+                });
+            });
+
+            // Update Counts on Filter Pills
+            const cIg = document.getElementById("count-ig");
+            const cTg = document.getElementById("count-tg");
+            const cYt = document.getElementById("count-yt");
+            const cTw = document.getElementById("count-tw");
+            const cOther = document.getElementById("count-other");
+
+            if (cIg) cIg.textContent = igCount;
+            if (cTg) cTg.textContent = tgCount;
+            if (cYt) cYt.textContent = ytCount;
+            if (cTw) cTw.textContent = twCount;
+            if (cOther) cOther.textContent = otherCount;
+
+            // Setup Search Input Event
+            const searchInput = document.getElementById("serviceSearchInput");
+            if (searchInput) {
+                searchInput.addEventListener("input", function() {
+                    currentSearchQuery = this.value.trim().toLowerCase();
+                    const clearBtn = document.getElementById("clearSearchBtn");
+                    if (clearBtn) clearBtn.style.display = currentSearchQuery ? "block" : "none";
+                    applyFiltersAndRender(true);
+                });
+            }
+
+            // Init Calculator with First Option
+            onCalculatorServiceChange();
+
+            // Run initial render
+            applyFiltersAndRender(true);
+        });
+
+        function clearSearch() {
+            const searchInput = document.getElementById("serviceSearchInput");
+            if (searchInput) {
+                searchInput.value = "";
+                currentSearchQuery = "";
+                document.getElementById("clearSearchBtn").style.display = "none";
+                applyFiltersAndRender(true);
+            }
+        }
+
+        function filterByPlatform(platform, btn) {
+            currentPlatform = platform;
+            document.querySelectorAll(".platform-tabs .tab-pill").forEach(el => el.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            applyFiltersAndRender(true);
+        }
+
+        function onSortChange() {
+            const sortSelect = document.getElementById("sortSelect");
+            if (sortSelect) {
+                currentSort = sortSelect.value;
+                applyFiltersAndRender(true);
+            }
+        }
+
+        function onPageSizeChange() {
+            const sizeSelect = document.getElementById("pageSizeSelect");
+            if (sizeSelect) {
+                pageSize = parseInt(sizeSelect.value) || 20;
+                applyFiltersAndRender(true);
+            }
+        }
+
+        function resetAllFilters() {
+            currentPlatform = 'all';
+            currentSearchQuery = '';
+            currentSort = 'default';
+            const searchInput = document.getElementById("serviceSearchInput");
+            if (searchInput) searchInput.value = '';
+            const clearBtn = document.getElementById("clearSearchBtn");
+            if (clearBtn) clearBtn.style.display = 'none';
+            const sortSelect = document.getElementById("sortSelect");
+            if (sortSelect) sortSelect.value = 'default';
+
+            document.querySelectorAll(".platform-tabs .tab-pill").forEach(el => {
+                if (el.getAttribute("data-app") === "all") el.classList.add("active");
+                else el.classList.remove("active");
+            });
+
+            applyFiltersAndRender(true);
+        }
+
+        function applyFiltersAndRender(resetPage = false) {
+            if (resetPage) currentPage = 1;
+
+            // 1. Filter
+            filteredItems = allItems.filter(item => {
+                // Platform match
+                if (currentPlatform !== 'all') {
+                    if (currentPlatform === 'other') {
+                        if (['1', '2', '3', '4'].includes(item.app)) return false;
+                    } else if (item.app !== currentPlatform) {
+                        return false;
+                    }
+                }
+                // Search match
+                if (currentSearchQuery) {
+                    const matchName = item.name.toLowerCase().includes(currentSearchQuery);
+                    const matchApp = item.appDisplay.toLowerCase().includes(currentSearchQuery);
+                    if (!matchName && !matchApp) return false;
+                }
+                return true;
+            });
+
+            // 2. Sort
+            if (currentSort === 'price-asc') {
+                filteredItems.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-desc') {
+                filteredItems.sort((a, b) => b.price - a.price);
+            } else if (currentSort === 'name-asc') {
+                filteredItems.sort((a, b) => a.name.localeCompare(b.name, 'fa'));
+            } else {
+                filteredItems.sort((a, b) => a.originalIndex - b.originalIndex);
+            }
+
+            // Update stats counter
+            const visText = document.getElementById("visibleCountText");
+            if (visText) visText.textContent = filteredItems.length;
+
+            // Check Empty State
+            const emptyBox = document.getElementById("emptyResultsBox");
+            const tableCard = document.querySelector(".table-card");
+            const mobileCards = document.getElementById("mobileCardsContainer");
+            const paginationBar = document.getElementById("paginationBar");
+
+            if (filteredItems.length === 0) {
+                if (emptyBox) emptyBox.style.display = "flex";
+                if (tableCard) tableCard.style.display = "none";
+                if (mobileCards) mobileCards.style.display = "none";
+                if (paginationBar) paginationBar.style.display = "none";
+                return;
+            } else {
+                if (emptyBox) emptyBox.style.display = "none";
+                if (tableCard && window.innerWidth > 768) tableCard.style.display = "block";
+                if (mobileCards && window.innerWidth <= 768) mobileCards.style.display = "flex";
+                if (paginationBar) paginationBar.style.display = "flex";
+            }
+
+            // 3. Paginate
+            const totalPages = Math.ceil(filteredItems.length / pageSize) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+
+            // Hide all first
+            allItems.forEach(item => {
+                if (item.rowEl) item.rowEl.style.display = "none";
+                if (item.cardEl) item.cardEl.style.display = "none";
+            });
+
+            // Re-order and show visible slice
+            const tbody = document.getElementById("inquiryTableBody");
+            const mobContainer = document.getElementById("mobileCardsContainer");
+
+            filteredItems.slice(startIndex, endIndex).forEach(item => {
+                if (item.rowEl) {
+                    item.rowEl.style.display = "";
+                    if (tbody) tbody.appendChild(item.rowEl); // maintains sorted DOM order
+                }
+                if (item.cardEl) {
+                    item.cardEl.style.display = "";
+                    if (mobContainer) mobContainer.appendChild(item.cardEl);
+                }
+            });
+
+            renderPaginationButtons(totalPages);
+        }
+
+        function renderPaginationButtons(totalPages) {
+            const container = document.getElementById("paginationNumbers");
+            if (!container) return;
+            container.innerHTML = "";
+
+            if (totalPages <= 1) return;
+
+            // Previous Button
+            const prevBtn = document.createElement("button");
+            prevBtn.className = "page-btn nav-btn";
+            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i> قبلی';
+            prevBtn.disabled = (currentPage === 1);
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    applyFiltersAndRender(false);
+                    scrollToResults();
+                }
+            };
+            container.appendChild(prevBtn);
+
+            // Page numbers
+            let startP = Math.max(1, currentPage - 2);
+            let endP = Math.min(totalPages, currentPage + 2);
+
+            if (startP > 1) {
+                container.appendChild(createPageNumBtn(1));
+                if (startP > 2) {
+                    const dots = document.createElement("span");
+                    dots.className = "sep";
+                    dots.textContent = "...";
+                    dots.style.padding = "0 4px";
+                    container.appendChild(dots);
+                }
+            }
+
+            for (let i = startP; i <= endP; i++) {
+                container.appendChild(createPageNumBtn(i));
+            }
+
+            if (endP < totalPages) {
+                if (endP < totalPages - 1) {
+                    const dots = document.createElement("span");
+                    dots.className = "sep";
+                    dots.textContent = "...";
+                    dots.style.padding = "0 4px";
+                    container.appendChild(dots);
+                }
+                container.appendChild(createPageNumBtn(totalPages));
+            }
+
+            // Next Button
+            const nextBtn = document.createElement("button");
+            nextBtn.className = "page-btn nav-btn";
+            nextBtn.innerHTML = 'بعدی <i class="fa-solid fa-chevron-left"></i>';
+            nextBtn.disabled = (currentPage === totalPages);
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    applyFiltersAndRender(false);
+                    scrollToResults();
+                }
+            };
+            container.appendChild(nextBtn);
+        }
+
+        function createPageNumBtn(pageNum) {
+            const btn = document.createElement("button");
+            btn.className = "page-btn" + (pageNum === currentPage ? " active" : "");
+            btn.textContent = pageNum;
+            btn.onclick = () => {
+                currentPage = pageNum;
+                applyFiltersAndRender(false);
+                scrollToResults();
+            };
+            return btn;
+        }
+
+        function scrollToResults() {
+            const el = document.getElementById("inquiryTable") || document.getElementById("mobileCardsContainer");
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        /* ============================================================
+           SMART CALCULATOR LOGIC
+           ============================================================ */
+        function onCalculatorServiceChange() {
+            const select = document.getElementById("calcServiceSelect");
+            if (!select || !select.options[select.selectedIndex]) return;
+
+            const opt = select.options[select.selectedIndex];
+            const min = parseInt(opt.getAttribute("data-min")) || 100;
+            const max = parseInt(opt.getAttribute("data-max")) || 10000;
+            const price = parseFloat(opt.getAttribute("data-price")) || 0;
+
+            const hint = document.getElementById("calcLimitsHint");
+            if (hint) {
+                hint.innerHTML = `<i class="fa-solid fa-circle-info"></i> حداقل سفارش: <strong>${formatMoney(min)}</strong> عدد | حداکثر سفارش: <strong>${formatMoney(max)}</strong> عدد`;
+            }
+
+            const input = document.getElementById("calcQtyInput");
+            if (input) {
+                input.min = min;
+                input.max = max;
+                if (parseInt(input.value) < min) input.value = min;
+            }
+
+            const unitDisplay = document.getElementById("calcUnitPriceDisplay");
+            if (unitDisplay) {
+                unitDisplay.textContent = formatMoney(price) + " تومان";
+            }
+
+            calculateLiveEstimator();
+        }
+
+        function calculateLiveEstimator() {
+            const select = document.getElementById("calcServiceSelect");
+            const qtyInput = document.getElementById("calcQtyInput");
+            if (!select || !qtyInput) return;
+
+            const opt = select.options[select.selectedIndex];
+            if (!opt) return;
+
+            const pricePerThousand = parseFloat(opt.getAttribute("data-price")) || 0;
+            const qty = Math.max(0, parseInt(qtyInput.value) || 0);
+
+            // Calculation formula: (qty / 1000) * pricePerThousand
+            const totalPrice = Math.round((qty / 1000) * pricePerThousand);
+
+            const totalDisplay = document.getElementById("calcTotalDisplay");
+            if (totalDisplay) {
+                totalDisplay.textContent = formatMoney(totalPrice);
+            }
+        }
+
+        function setCalcQty(qty) {
+            const input = document.getElementById("calcQtyInput");
+            if (input) {
+                input.value = qty;
+                calculateLiveEstimator();
+            }
+        }
+
+        function setCalcMin() {
+            const select = document.getElementById("calcServiceSelect");
+            if (select && select.options[select.selectedIndex]) {
+                const min = select.options[select.selectedIndex].getAttribute("data-min") || 100;
+                setCalcQty(min);
+            }
+        }
+
+        function setCalcMax() {
+            const select = document.getElementById("calcServiceSelect");
+            if (select && select.options[select.selectedIndex]) {
+                const max = select.options[select.selectedIndex].getAttribute("data-max") || 10000;
+                setCalcQty(max);
+            }
+        }
+
+        function loadIntoCalculator(productId) {
+            const select = document.getElementById("calcServiceSelect");
+            if (!select) return;
+
+            select.value = productId;
+            onCalculatorServiceChange();
+
+            const calcCard = document.getElementById("pricing-calculator");
+            if (calcCard) {
+                calcCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                calcCard.style.transition = 'box-shadow 0.3s';
+                calcCard.style.boxShadow = '0 0 0 4px rgba(6, 147, 227, 0.4)';
+                setTimeout(() => {
+                    calcCard.style.boxShadow = '';
+                }, 1200);
+            }
+        }
+
+        function goOrderFromCalculator() {
+            const select = document.getElementById("calcServiceSelect");
+            if (!select || !select.options[select.selectedIndex]) {
+                window.location.href = "/#order";
+                return;
+            }
+
+            const opt = select.options[select.selectedIndex];
+            const slug = opt.getAttribute("data-slug");
+
+            if (slug && slug.length > 1) {
+                window.location.href = `/services/${slug}/`;
+            } else {
+                window.location.href = "/#order";
+            }
+        }
+
+        // Adjust card/table layout dynamically on window resize
+        window.addEventListener("resize", () => {
+            const tableCard = document.querySelector(".table-card");
+            const mobileCards = document.getElementById("mobileCardsContainer");
+            if (filteredItems.length > 0) {
+                if (window.innerWidth <= 768) {
+                    if (tableCard) tableCard.style.display = "none";
+                    if (mobileCards) mobileCards.style.display = "flex";
+                } else {
+                    if (tableCard) tableCard.style.display = "block";
+                    if (mobileCards) mobileCards.style.display = "none";
+                }
+            }
+        });
+    </script>
+<script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

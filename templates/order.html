@@ -1,0 +1,1215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات و وضعیت سفارش #{{ order.code }} | سوشال گرو</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Fonts & Base Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{ current_time }}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}?v={{ current_time }}">
+    <link rel="stylesheet" href="{% static 'assets/css/header-footer.css' %}?v={{ current_time }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+        }
+
+        body {
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        .order-result-wrapper {
+            max-width: 860px !important;
+            width: 100% !important;
+            margin: 45px auto 70px auto !important;
+            padding: 0 20px !important;
+            box-sizing: border-box !important;
+            direction: rtl !important;
+            flex: 1;
+        }
+
+        .order-main-card {
+            width: 100% !important;
+            background: #ffffff !important;
+            border-radius: 20px !important;
+            padding: 38px 32px !important;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06), 0 5px 15px rgba(0, 0, 0, 0.03) !important;
+            border: 1px solid rgba(226, 232, 240, 0.9) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        .order-main-card::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 5px !important;
+            background: linear-gradient(90deg, #10b981, #0284c7, #2563eb) !important;
+        }
+
+        /* Order Header Bar */
+        .order-head-bar {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            gap: 16px !important;
+            padding-bottom: 24px !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            margin-bottom: 30px !important;
+            box-sizing: border-box !important;
+        }
+
+        .order-id-group {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .order-id-title {
+            font-size: 21px !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            margin: 0 !important;
+        }
+
+        .order-code-chip {
+            background: #f1f5f9 !important;
+            color: #0f172a !important;
+            padding: 6px 14px !important;
+            border-radius: 10px !important;
+            font-family: monospace, inherit !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            border: 1px solid #cbd5e1 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .btn-copy-code {
+            background: none !important;
+            border: none !important;
+            cursor: pointer !important;
+            color: #64748b !important;
+            font-size: 14px !important;
+            padding: 2px 4px !important;
+            transition: color 0.2s !important;
+        }
+
+        .btn-copy-code:hover {
+            color: #0284c7 !important;
+        }
+
+        /* Status Badges */
+        .status-badge-lg {
+            padding: 8px 18px !important;
+            border-radius: 50px !important;
+            font-size: 13.5px !important;
+            font-weight: 700 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .status-badge-1 { /* در انتظار پرداخت */
+            background: #fef3c7 !important;
+            color: #92400e !important;
+        }
+        .status-badge-2 { /* در انتظار تایید */
+            background: #e0f2fe !important;
+            color: #0284c7 !important;
+        }
+        .status-badge-3 { /* در حال انجام */
+            background: #dbeafe !important;
+            color: #1d4ed8 !important;
+            animation: pulse-badge 2s infinite ease-in-out !important;
+        }
+        .status-badge-4 { /* تکمیل شد */
+            background: #dcfce7 !important;
+            color: #15803d !important;
+        }
+        .status-badge-5 { /* لغو شده */
+            background: #fee2e2 !important;
+            color: #b91c1c !important;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+        }
+
+        /* Progression Stepper */
+        .stepper-container {
+            margin-bottom: 35px !important;
+            padding: 10px 0 !important;
+            position: relative !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .stepper-track-bg {
+            position: absolute !important;
+            top: 34px !important;
+            right: 12.5% !important;
+            left: 12.5% !important;
+            height: 4px !important;
+            background: #e2e8f0 !important;
+            border-radius: 4px !important;
+            z-index: 1 !important;
+        }
+
+        .stepper-progress-fill {
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+            height: 100% !important;
+            background: linear-gradient(90deg, #10b981, #059669) !important;
+            border-radius: 4px !important;
+            z-index: 2 !important;
+            transition: width 0.4s ease !important;
+        }
+
+        .stepper {
+            display: flex !important;
+            justify-content: space-between !important;
+            position: relative !important;
+            align-items: flex-start !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            z-index: 3 !important;
+        }
+
+        .step-item {
+            position: relative !important;
+            z-index: 3 !important;
+            text-align: center !important;
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+
+        .step-circle {
+            width: 48px !important;
+            height: 48px !important;
+            border-radius: 50% !important;
+            background: #f8fafc !important;
+            border: 2px solid #cbd5e1 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 18px !important;
+            color: #94a3b8 !important;
+            transition: all 0.3s ease !important;
+            margin-bottom: 10px !important;
+        }
+
+        .step-item.active .step-circle {
+            background: #0284c7 !important;
+            border-color: #0284c7 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 5px rgba(2, 132, 199, 0.2) !important;
+        }
+
+        .step-item.completed .step-circle {
+            background: #10b981 !important;
+            border-color: #10b981 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15) !important;
+        }
+
+        .step-title {
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            color: #64748b !important;
+            line-height: 1.4 !important;
+        }
+
+        .step-item.active .step-title,
+        .step-item.completed .step-title {
+            color: #0f172a !important;
+        }
+
+        /* Order Details Table / Grid */
+        .order-info-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+            margin-bottom: 30px !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+        }
+
+        .info-cell {
+            background: #f8fafc !important;
+            border-radius: 14px !important;
+            padding: 16px 20px !important;
+            border: 1px solid #e2e8f0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            box-sizing: border-box !important;
+            min-height: 58px !important;
+            gap: 14px !important;
+        }
+
+        .info-cell-label {
+            font-size: 13.5px !important;
+            color: #64748b !important;
+            font-weight: 600 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex-shrink: 0 !important;
+        }
+
+        .info-cell-value {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            text-align: left !important;
+            direction: rtl !important;
+            word-break: break-word !important;
+        }
+
+        .info-cell-value.ltr-val {
+            direction: ltr !important;
+            text-align: left !important;
+        }
+
+        .info-cell-full {
+            grid-column: 1 / -1 !important;
+        }
+
+        /* Action Buttons */
+        .order-actions-bar {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 14px !important;
+            margin-top: 25px !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+        }
+
+        .btn-order-action {
+            height: 50px !important;
+            border-radius: 12px !important;
+            font-family: inherit !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            transition: all 0.25s ease !important;
+            box-sizing: border-box !important;
+        }
+
+        .btn-primary-action {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25) !important;
+        }
+
+        .btn-primary-action:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.35) !important;
+        }
+
+        .btn-secondary-action {
+            background: #f1f5f9 !important;
+            color: #334155 !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        .btn-secondary-action:hover {
+            background: #e2e8f0 !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* Toast */
+        #copyToast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #10b981;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+        }
+        #copyToast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .order-result-wrapper {
+                padding: 0 16px !important;
+                margin: 30px auto 50px auto !important;
+            }
+            .order-main-card {
+                padding: 26px 18px !important;
+                border-radius: 16px !important;
+            }
+            .order-info-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+            .order-actions-bar {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            .stepper-track-bg {
+                top: 29px !important;
+                right: 12.5% !important;
+                left: 12.5% !important;
+                height: 3px !important;
+            }
+            .step-circle {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 14px !important;
+            }
+            .step-title {
+                font-size: 11px !important;
+            }
+        }
+
+        /* Refill Compensation Box & Styles */
+        .refill-card-wrapper {
+            margin-top: 24px !important;
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            padding: 22px 24px !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .refill-header-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+            margin-bottom: 12px !important;
+        }
+
+        .refill-title {
+            font-size: 16.5px !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            margin: 0 !important;
+        }
+
+        .refill-desc {
+            font-size: 13.5px !important;
+            color: #475569 !important;
+            line-height: 1.75 !important;
+            margin: 0 0 14px 0 !important;
+        }
+
+        .refill-badge {
+            padding: 6px 14px !important;
+            border-radius: 50px !important;
+            font-size: 12.5px !important;
+            font-weight: 700 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+        }
+
+        .badge-pending {
+            background: #fef3c7 !important;
+            color: #b45309 !important;
+            border: 1px solid #fde68a !important;
+        }
+
+        .badge-processing {
+            background: #dbeafe !important;
+            color: #1d4ed8 !important;
+            border: 1px solid #bfdbfe !important;
+            animation: pulse-badge 2s infinite ease-in-out !important;
+        }
+
+        .badge-completed {
+            background: #dcfce7 !important;
+            color: #15803d !important;
+            border: 1px solid #bbf7d0 !important;
+        }
+
+        .badge-rejected {
+            background: #fee2e2 !important;
+            color: #b91c1c !important;
+            border: 1px solid #fecaca !important;
+        }
+
+        .badge-locked {
+            background: #f1f5f9 !important;
+            color: #64748b !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        .btn-refill-trigger {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 12px 24px !important;
+            font-family: inherit !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28) !important;
+            transition: all 0.25s ease !important;
+        }
+
+        .btn-refill-trigger:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.38) !important;
+        }
+
+        .refill-info-meta {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+            gap: 10px !important;
+            margin-top: 14px !important;
+            padding-top: 14px !important;
+            border-top: 1px dashed #cbd5e1 !important;
+            font-size: 13px !important;
+            color: #64748b !important;
+        }
+
+        .refill-note-box {
+            margin-top: 12px !important;
+            background: #ffffff !important;
+            border-right: 4px solid #0284c7 !important;
+            border-radius: 8px !important;
+            padding: 12px 16px !important;
+            font-size: 13px !important;
+            color: #334155 !important;
+            line-height: 1.6 !important;
+            border-top: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            border-left: 1px solid #e2e8f0 !important;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: rgba(15, 23, 42, 0.6) !important;
+            backdrop-filter: blur(4px) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px !important;
+            z-index: 99999 !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: all 0.25s ease !important;
+        }
+
+        .modal-overlay.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .modal-card {
+            background: #ffffff !important;
+            width: 100% !important;
+            max-width: 520px !important;
+            border-radius: 20px !important;
+            padding: 26px 28px !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+            direction: rtl !important;
+            box-sizing: border-box !important;
+            transform: scale(0.95) !important;
+            transition: transform 0.25s ease !important;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) !important;
+        }
+
+        .modal-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 18px !important;
+            padding-bottom: 14px !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+
+        .modal-header h3 {
+            margin: 0 !important;
+            font-size: 17.5px !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .modal-close-btn {
+            background: none !important;
+            border: none !important;
+            font-size: 24px !important;
+            color: #64748b !important;
+            cursor: pointer !important;
+            line-height: 1 !important;
+            transition: color 0.2s !important;
+        }
+
+        .modal-close-btn:hover {
+            color: #0f172a !important;
+        }
+
+        .modal-body {
+            font-size: 14px !important;
+            color: #334155 !important;
+            line-height: 1.6 !important;
+        }
+
+        .modal-info-summary {
+            background: #f8fafc !important;
+            border-radius: 12px !important;
+            padding: 14px 16px !important;
+            border: 1px solid #e2e8f0 !important;
+            font-size: 13.5px !important;
+            margin-bottom: 14px !important;
+        }
+
+        .modal-info-summary p {
+            margin: 6px 0 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .refill-textarea {
+            width: 100% !important;
+            min-height: 80px !important;
+            border-radius: 10px !important;
+            border: 1px solid #cbd5e1 !important;
+            padding: 10px 12px !important;
+            font-family: inherit !important;
+            font-size: 13px !important;
+            color: #0f172a !important;
+            box-sizing: border-box !important;
+            resize: vertical !important;
+            outline: none !important;
+            transition: border-color 0.2s !important;
+        }
+
+        .refill-textarea:focus {
+            border-color: #0284c7 !important;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+        }
+
+        .modal-footer {
+            display: flex !important;
+            justify-content: flex-end !important;
+            gap: 10px !important;
+            margin-top: 22px !important;
+            padding-top: 14px !important;
+            border-top: 1px solid #e2e8f0 !important;
+        }
+
+        .btn-cancel {
+            background: #f1f5f9 !important;
+            color: #475569 !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            padding: 10px 18px !important;
+            font-family: inherit !important;
+            font-size: 13.5px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: background 0.2s !important;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e8f0 !important;
+        }
+
+        .btn-submit-refill {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 10px 20px !important;
+            font-family: inherit !important;
+            font-size: 13.5px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            transition: all 0.2s !important;
+        }
+
+        .btn-submit-refill:hover {
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+
+        .btn-submit-refill:disabled {
+            opacity: 0.65 !important;
+            cursor: not-allowed !important;
+        }
+
+        .alert-box {
+            padding: 10px 14px !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+        }
+
+        .alert-danger {
+            background: #fee2e2 !important;
+            color: #b91c1c !important;
+            border: 1px solid #fecaca !important;
+        }
+    </style>
+<link rel="stylesheet" href="/static/assets/css/socialgrow_chat.css?v=20261015_v3">
+</head>
+<body>
+    <!-- Unified Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{% static 'images/logo.png' %}?v={{ current_time }}" alt="{{ settings.name|default:'لوگو' }}" width="40" height="40">
+                <span>{{ settings.name|default:'سوشال گرو' }}</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="/">خانه</a>
+                <a href="/products/">تعرفه‌ها و خدمات</a>
+                <a href="/new-order">ثبت سفارش</a>
+                <a href="/track-order">پیگیری سفارش</a>
+                <a href="/blog">وبلاگ</a>
+                <a href="/inquiry">استعلام قیمت</a>
+                <a href="/terms">قوانین</a>
+                <a href="#" onclick="openSocialGrowChat(event)">پشتیبانی</a>
+            </nav>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                    <div class="user-menu" id="userMenu">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{% static 'images/avatar.png' %}" alt="حساب کاربری" width="34" height="34">
+                                <span class="status"></span>
+                            </div>
+                            <div class="user-info">
+                                <span class="welcome">خوش آمدید</span>
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="/dashboard"><i class="fa-solid fa-gauge-high"></i> داشبورد</a>
+                            <a href="/orders"><i class="fa-solid fa-cart-shopping"></i> سفارش‌های من</a>
+                            <a href="/wallet"><i class="fa-solid fa-wallet"></i> کیف پول</a>
+                            <a href="/tickets"><i class="fa-solid fa-headset"></i> تیکت‌ها</a>
+                            <hr>
+                            <a href="/accounts/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> خروج</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/login" class="login">ورود / ثبت نام</a>
+                {% endif %}
+                <button class="menu-btn" id="menuBtn" aria-label="منوی موبایل"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="order-result-wrapper">
+        <div class="order-main-card">
+            <!-- Header Bar -->
+            <div class="order-head-bar">
+                <div class="order-id-group">
+                    <h1 class="order-id-title">وضعیت سفارش</h1>
+                    <div class="order-code-chip">
+                        <span>#{{ order.code }}</span>
+                        <button type="button" class="btn-copy-code" onclick="copyTrackingCode('{{ order.code }}')" title="کپی کد پیگیری">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    {% if order.status == "1" %}
+                        <span class="status-badge-lg status-badge-1">
+                            <i class="fa-solid fa-clock"></i> در انتظار پرداخت
+                        </span>
+                    {% elif order.status == "2" %}
+                        <span class="status-badge-lg status-badge-2">
+                            <i class="fa-solid fa-spinner fa-spin"></i> در انتظار تایید
+                        </span>
+                    {% elif order.status == "3" %}
+                        <span class="status-badge-lg status-badge-3">
+                            <i class="fa-solid fa-rocket"></i> در حال انجام
+                        </span>
+                    {% elif order.status == "4" %}
+                        <span class="status-badge-lg status-badge-4">
+                            <i class="fa-solid fa-circle-check"></i> تکمیل شد
+                        </span>
+                    {% else %}
+                        <span class="status-badge-lg status-badge-5">
+                            <i class="fa-solid fa-circle-xmark"></i> لغو شده
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Progression Stepper (If not cancelled) -->
+            {% if order.status != "5" %}
+                <div class="stepper-container">
+                    <!-- Symmetrical Progress Track (from circle 1 center to circle 4 center) -->
+                    <div class="stepper-track-bg">
+                        {% if order.status == "1" %}
+                            <div class="stepper-progress-fill" style="width: 0%;"></div>
+                        {% elif order.status == "2" %}
+                            <div class="stepper-progress-fill" style="width: 33.33%;"></div>
+                        {% elif order.status == "3" %}
+                            <div class="stepper-progress-fill" style="width: 66.66%;"></div>
+                        {% elif order.status == "4" %}
+                            <div class="stepper-progress-fill" style="width: 100%;"></div>
+                        {% endif %}
+                    </div>
+                    <div class="stepper">
+
+                        <!-- Step 1 -->
+                        <div class="step-item {% if order.status == '1' %}active{% else %}completed{% endif %}">
+                            <div class="step-circle"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <span class="step-title">ثبت اولیه</span>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-item {% if order.status == '2' %}active{% elif order.status == '3' or order.status == '4' %}completed{% endif %}">
+                            <div class="step-circle"><i class="fa-solid fa-receipt"></i></div>
+                            <span class="step-title">تایید پرداخت</span>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-item {% if order.status == '3' %}active{% elif order.status == '4' %}completed{% endif %}">
+                            <div class="step-circle"><i class="fa-solid fa-bolt"></i></div>
+                            <span class="step-title">در حال پردازش</span>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-item {% if order.status == '4' %}completed{% endif %}">
+                            <div class="step-circle"><i class="fa-solid fa-check-double"></i></div>
+                            <span class="step-title">تکمیل سفارش</span>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div style="background: #fee2e2; border-radius: 12px; padding: 16px 20px; color: #991b1b; margin-bottom: 25px; display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-circle-exclamation" style="font-size: 22px;"></i>
+                    <div>
+                        <strong>این سفارش لغو شده است:</strong>
+                        <p style="margin: 3px 0 0 0; font-size: 13.5px;">در صورت کسر وجه یا نیاز به بازبینی، با تیم پشتیبانی آنلاین یا ثبت تیکت در ارتباط باشید.</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Details Grid -->
+            <div class="order-info-grid">
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-solid fa-cubes" style="color: #0284c7;"></i> سرویس درخواستی</span>
+                    <span class="info-cell-value">{{ order.product.name }}</span>
+                </div>
+
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-solid fa-share-nodes" style="color: #0284c7;"></i> پلتفرم</span>
+                    <span class="info-cell-value">{{ order.product.get_app_display }}</span>
+                </div>
+
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-solid fa-layer-group" style="color: #0284c7;"></i> تعداد سفارش</span>
+                    <span class="info-cell-value ltr-val">{{ order.count_order }} عدد</span>
+                </div>
+
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-solid fa-wallet" style="color: #10b981;"></i> مبلغ فاکتور</span>
+                    <span class="info-cell-value" style="color: #059669;">{{ order.get_numberformat_price }} تومان</span>
+                </div>
+
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-regular fa-calendar-check" style="color: #0284c7;"></i> تاریخ ثبت</span>
+                    <span class="info-cell-value">{{ order.get_date }}</span>
+                </div>
+
+                <div class="info-cell">
+                    <span class="info-cell-label"><i class="fa-solid fa-credit-card" style="color: #0284c7;"></i> روش پرداخت</span>
+                    <span class="info-cell-value">{{ order.get_payment_method_display|default:order.payment_method }}</span>
+                </div>
+
+                <div class="info-cell info-cell-full">
+                    <span class="info-cell-label"><i class="fa-solid fa-link" style="color: #0284c7;"></i> لینک مقصد / آیدی پیج</span>
+                    <a href="{{ order.page_address }}" target="_blank" rel="noopener noreferrer" class="info-cell-value ltr-val" style="color: #0284c7; text-decoration: none; word-break: break-all;">
+                        {{ order.page_address }}
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 12px; margin-right: 4px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            {% if order.is_follower_or_member %}
+                <!-- Refill Compensation Section (بخش جبران ریزش) -->
+                <div class="refill-card-wrapper" id="refillSection">
+                    <div class="refill-header-row">
+                        <h3 class="refill-title">
+                            <i class="fa-solid fa-arrows-rotate" style="color: #0284c7;"></i>
+                            ضمانت و وضعیت جبران ریزش
+                        </h3>
+                        {% if order.latest_refill_request %}
+                            {% with refill=order.latest_refill_request %}
+                                {% if refill.status == 'pending' %}
+                                    <span class="refill-badge badge-pending">
+                                        <i class="fa-solid fa-clock"></i> در انتظار بررسی مدیریت
+                                    </span>
+                                {% elif refill.status == 'processing' %}
+                                    <span class="refill-badge badge-processing">
+                                        <i class="fa-solid fa-spinner fa-spin"></i> در حال انجام و ارسال جبرانی
+                                    </span>
+                                {% elif refill.status == 'completed' %}
+                                    <span class="refill-badge badge-completed">
+                                        <i class="fa-solid fa-check-double"></i> جبران ریزش تکمیل شد
+                                    </span>
+                                {% elif refill.status == 'rejected' %}
+                                    <span class="refill-badge badge-rejected">
+                                        <i class="fa-solid fa-circle-xmark"></i> درخواست رد شد
+                                    </span>
+                                {% endif %}
+                            {% endwith %}
+                        {% elif order.can_request_refill %}
+                            <span class="refill-badge" style="background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0;">
+                                <i class="fa-solid fa-shield-check"></i> فعال و آماده ثبت
+                            </span>
+                        {% else %}
+                            <span class="refill-badge badge-locked">
+                                <i class="fa-solid fa-lock"></i> قفل موقت (۲۴ ساعت اول)
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {% if order.latest_refill_request %}
+                        {% with refill=order.latest_refill_request %}
+                            <p class="refill-desc">
+                                {% if refill.status == 'pending' %}
+                                    درخواست جبران ریزش شما در سامانه ثبت شده است. کارشناسان ما مشخصات سفارش را بررسی کرده و ارسال فالوور/ممبر جبرانی را آغاز خواهند نمود.
+                                {% elif refill.status == 'processing' %}
+                                    درخواست جبران ریزش شما تأیید گردیده و ارسال فالوور یا ممبر جبرانی در حال انجام است. لطفاً تا پایان ارسال صبور باشید.
+                                {% elif refill.status == 'completed' %}
+                                    عملیات جبران ریزش این سفارش با موفقیت به پایان رسید و فالوورها یا ممبرهای تکمیلی به پیج/کانال شما افزوده شدند.
+                                {% elif refill.status == 'rejected' %}
+                                    درخواست جبران ریزش این سفارش پس از بررسی کارشناسان تأیید نگردید.
+                                {% endif %}
+                            </p>
+
+                            {% if refill.admin_note %}
+                                <div class="refill-note-box">
+                                    <strong style="color: #0284c7;"><i class="fa-solid fa-circle-info"></i> پاسخ / یادداشت مدیریت:</strong>
+                                    <p style="margin: 4px 0 0 0;">{{ refill.admin_note }}</p>
+                                </div>
+                            {% endif %}
+
+                            <div class="refill-info-meta">
+                                <div><i class="fa-regular fa-calendar-plus"></i> ثبت درخواست: <strong>{{ refill.get_created_date }}</strong></div>
+                                {% if refill.completed_at %}
+                                    <div><i class="fa-solid fa-calendar-check" style="color: #10b981;"></i> تاریخ تکمیل: <strong>{{ refill.get_completed_date }}</strong></div>
+                                {% endif %}
+                                {% if refill.user_description %}
+                                    <div style="grid-column: 1 / -1;"><i class="fa-regular fa-comment-dots"></i> یادداشت ارسالی شما: {{ refill.user_description }}</div>
+                                {% endif %}
+                            </div>
+                        {% endwith %}
+
+                    {% elif order.can_request_refill %}
+                        <p class="refill-desc">
+                            با گذشت بیش از ۲۴ ساعت از ثبت این سفارش، ضمانت جبران ریزش برای شما فعال است. در صورت مشاهده هرگونه افت، با کلیک روی دکمه زیر درخواست جبران ریزش خود را ارسال نمایید تا به پنل مدیریت ارسال شود.
+                        </p>
+                        <div style="margin-top: 14px;">
+                            <button type="button" class="btn-refill-trigger" onclick="openRefillModal()">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                ثبت درخواست جبران ریزش
+                            </button>
+                        </div>
+
+                    {% else %}
+                        <p class="refill-desc">
+                            ضمانت جبران ریزش پس از سپری شدن ۲۴ ساعت از زمان ثبت سفارش به‌صورت خودکار در این بخش فعال خواهد شد تا میزان افت احتمالی تثبیت شده و به دقیق‌ترین شکل جبران شود.
+                        </p>
+                        <div style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 14px; font-size: 13px; color: #475569;">
+                            <i class="fa-regular fa-hourglass-half" style="color: #eab308;"></i>
+                            <span>زمان فعال‌سازی دکمه: <strong>{{ order.refill_unlock_remaining_hours_text }}</strong></span>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <!-- Action Buttons -->
+            <div class="order-actions-bar">
+                <a href="/track-order" class="btn-order-action btn-secondary-action">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    پیگیری سفارش دیگر
+                </a>
+                <button type="button" class="btn-order-action btn-secondary-action" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i>
+                    چاپ فاکتور
+                </button>
+                <button type="button" class="btn-order-action btn-primary-action" onclick="openSocialGrowChat(event)">
+                    <i class="fa-solid fa-headset"></i>
+                    پشتیبانی آنلاین
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="copyToast"><i class="fa-solid fa-check"></i> کد پیگیری در کلیپ‌بورد کپی شد!</div>
+
+    <!-- Floating Phone Call Button -->
+    {% if settings.admin_phone_number and settings.admin_phone_number != 'notset' %}
+    <a href="tel:{{ settings.admin_phone_number }}" class="floating-call-btn" title="تماس با پشتیبانی تلفنی" aria-label="تماس با پشتیبانی تلفنی">
+        <i class="fa-solid fa-phone"></i>
+        <span class="call-tooltip">پشتیبانی تلفنی: {{ settings.admin_phone_number }}</span>
+    </a>
+    {% endif %}
+
+    <!-- Unified Footer -->
+    <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="site-footer-inner">
+            <div class="footer-col">
+                <p class="footer-col-title">درباره {{ settings.name|default:'ما' }}</p>
+                <p>{{ settings.footer_description }}</p>
+            </div>
+            {% if popular_products %}
+        <div class="footer-col">
+            <p class="footer-col-title">خدمات پرطرفدار</p>
+            <ul>
+                {% for p in popular_products %}
+                <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+                {% endfor %}
+                <li><a href="/products/">مشاهده تمام تعرفه‌ها</a></li>
+            </ul>
+        </div>
+        {% endif %}
+            <div class="footer-col">
+                <p class="footer-col-title">پشتیبانی و راهنما</p>
+                <ul>
+                    <li><a href="/track-order">پیگیری سفارش</a></li>
+                    <li><a href="/tickets">ارسال تیکت پشتیبانی</a></li>
+                    <li><a href="/faq">سوالات متداول</a></li>
+                    <li><a href="/terms">قوانین و مقررات</a></li>
+                    <li><a href="/inquiry">استعلام آنلاین قیمت</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">مجوز و نمادهای اعتماد</p>
+                <div class="enamad">
+                    {{ settings.enamad|safe }}
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://t.me/SocialGrowCH" target="_blank" class="tg-ch" title="کانال تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://t.me/SocialGrowRobot" target="_blank" class="tg-bot" title="ربات تلگرام"><i class="fa-solid fa-robot"></i></a>
+                    <a href="#" onclick="openSocialGrowChat(event)" class="crisp-btn" title="پشتیبانی آنلاین"><i class="fa-solid fa-headset"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>تمامی حقوق مادی و معنوی برای سوشال گرو محفوظ می‌باشد.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyTrackingCode(code) {
+            navigator.clipboard.writeText(code).then(function() {
+                var toast = document.getElementById('copyToast');
+                toast.classList.add('show');
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 2500);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var menuBtn = document.getElementById('menuBtn');
+            var nav = document.getElementById('nav');
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+            var userMenu = document.getElementById('userMenu');
+            if (userMenu) {
+                userMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userMenu.classList.toggle('active');
+                });
+                document.addEventListener('click', function() {
+                    userMenu.classList.remove('active');
+                });
+            }
+        });
+        function openSocialGrowChat(e) {
+            if (e) e.preventDefault();
+            if (window.$crisp) {
+                window.$crisp.push(['do', 'chat:open']);
+            }
+        }
+    </script>
+
+    {% if order.is_follower_or_member and order.can_request_refill and not order.latest_refill_request %}
+    <!-- Refill Request Modal (پاپ‌آپ ثبت درخواست جبران ریزش) -->
+    <div class="modal-overlay" id="refillModal" onclick="handleRefillModalOverlayClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-arrows-rotate" style="color: #10b981;"></i> ثبت درخواست جبران ریزش</h3>
+                <button type="button" class="modal-close-btn" onclick="closeRefillModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info-summary">
+                    <p><span><i class="fa-solid fa-cubes"></i> نام سرویس:</span> <strong>{{ order.product.name }}</strong></p>
+                    <p><span><i class="fa-solid fa-layer-group"></i> مقدار سفارش:</span> <strong class="ltr-val">{{ order.count_order }} عدد</strong></p>
+                    <p><span><i class="fa-solid fa-link"></i> پیج / لینک مقصد:</span> <span class="ltr-val" style="word-break: break-all; color: #0284c7;">{{ order.page_address }}</span></p>
+                </div>
+                <div style="margin-top: 14px;">
+                    <label for="refillUserDesc" style="font-weight: 700; font-size: 13.5px; display: block; margin-bottom: 6px; color: #334155;">
+                        توضیحات یا یادداشت تکمیلی (اختیاری):
+                    </label>
+                    <textarea id="refillUserDesc" class="refill-textarea" placeholder="مثلاً: تعداد ۲۰۰ عدد از فالوورها یا ممبرها کسر شده است..."></textarea>
+                </div>
+                <div id="refillModalAlert" style="display: none; margin-top: 12px;" class="alert-box"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" onclick="closeRefillModal()">انصراف</button>
+                <button type="button" id="btnSubmitRefill" class="btn-submit-refill" onclick="submitRefillRequest()">
+                    <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> ارسال به پشتیبانی</span>
+                    <span class="btn-spinner" style="display: none;"><i class="fa-solid fa-circle-notch fa-spin"></i> در حال ثبت...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        function openRefillModal() {
+            var modal = document.getElementById('refillModal');
+            if (modal) modal.classList.add('active');
+        }
+        function closeRefillModal() {
+            var modal = document.getElementById('refillModal');
+            if (modal) modal.classList.remove('active');
+        }
+        function handleRefillModalOverlayClick(e) {
+            if (e.target.id === 'refillModal') {
+                closeRefillModal();
+            }
+        }
+        function submitRefillRequest() {
+            var btn = document.getElementById('btnSubmitRefill');
+            if (!btn) return;
+            var btnText = btn.querySelector('.btn-text');
+            var btnSpinner = btn.querySelector('.btn-spinner');
+            var alertBox = document.getElementById('refillModalAlert');
+            var descElem = document.getElementById('refillUserDesc');
+            var desc = descElem ? descElem.value.trim() : '';
+
+            btn.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+            if (alertBox) alertBox.style.display = 'none';
+
+            fetch('/request-refill/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    code: '{{ order.code }}',
+                    phone: '{{ order.receiver_phone }}',
+                    description: desc
+                })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    closeRefillModal();
+                    var toast = document.getElementById('copyToast');
+                    if (toast) {
+                        toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + (data.message || 'درخواست جبران ریزش با موفقیت ثبت شد');
+                        toast.classList.add('show');
+                    }
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1200);
+                } else {
+                    if (alertBox) {
+                        alertBox.className = 'alert-box alert-danger';
+                        alertBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + (data.message || 'خطا در ثبت درخواست');
+                        alertBox.style.display = 'block';
+                    }
+                    btn.disabled = false;
+                    if (btnText) btnText.style.display = 'inline-flex';
+                    if (btnSpinner) btnSpinner.style.display = 'none';
+                }
+            })
+            .catch(function(err) {
+                if (alertBox) {
+                    alertBox.className = 'alert-box alert-danger';
+                    alertBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> خطای ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی نمایید.';
+                    alertBox.style.display = 'block';
+                }
+                btn.disabled = false;
+                if (btnText) btnText.style.display = 'inline-flex';
+                if (btnSpinner) btnSpinner.style.display = 'none';
+            });
+        }
+    </script>
+<script src="/static/assets/js/socialgrow_chat.js?v=20261015_v3" defer></script>
+</body>
+</html>

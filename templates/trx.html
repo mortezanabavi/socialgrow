@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>درگاه پرداخت ترون</title>
+		<link rel="stylesheet" href="{% static 'assets/css/trx.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+    </head>
+    <body>
+        <div class="section">
+            <div class="box">
+                <img src="../static/images/trx.png">
+                <h1>مشخصات پرداخت</h1>
+				<h5 style="font-family: kalameh">{{error}}</h5>
+                <div class="payment">
+                    <div class="detail">
+                        <span>مبلغ فاکتور : </span>
+                        <div class="detailbox copyTarget">
+							{% if payment %}
+								<span>{{payment.amount}} تومان</span>
+							{% else %}
+								<span>{{order.order_full_price}} تومان</span>
+							{% endif %}
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <span>کیف پول : </span>
+                        <div class="detailbox copyTarget">
+                            <span>{{wallet}}</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <span>قیمت ترون : </span>
+                        <div class="detailbox copyTarget">
+                            <span>{{trxprice}} تومان</span>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <span>مقدار ترون: </span>
+                        <div class="detailbox copyTarget">
+                            <span>{{trxamount}} عدد</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="checkout" onclick=checkout("{{wallet}}")>پرداخت کردم</button>
+				{% if user.is_authenticated %}
+					<button class="checkout" onclick="window.location.href = '/dashboard';">برگشت به داشبورد</button>
+				{% endif %}
+            </div>
+        </div>
+        <script>
+			var timeoutID = 0;
+			function clearAll(windowObject) {
+				var id = Math.max(
+				  windowObject.setInterval(noop, 1000),
+				  windowObject.setTimeout(noop, 1000)
+				);
+			  
+				while (id--) {
+				  windowObject.clearTimeout(id);
+				  windowObject.clearInterval(id);
+				}
+			  
+				function noop(){}
+			}
+			document.addEventListener('DOMContentLoaded', function() {
+				var copyTargets = document.querySelectorAll('.copyTarget');
+				function copyToClipboard(element) {
+					var textToCopy = element.querySelector('span').innerText;
+					var tempInput = document.createElement('textarea');
+					tempInput.value = textToCopy.replace(' تومان', '').replace(' عدد', '');
+					document.body.appendChild(tempInput);
+					tempInput.select();
+					tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+					document.execCommand('copy');
+					document.body.removeChild(tempInput);
+					showCustomAlert("در حافظه کپی شد", "#65CCA2");
+				}
+				copyTargets.forEach(function(element) {
+					element.addEventListener('click', function() {
+						copyToClipboard(element);
+					});
+				});
+			});
+
+			function showCustomAlert(text, color) {
+				clearAll(window);
+				var customAlert = document.createElement('div');
+				customAlert.className = 'copy-Alert';
+				customAlert.innerHTML = text;
+				document.body.appendChild(customAlert);
+				customAlert.style.display = 'block';
+				customAlert.style.backgroundColor = color;
+				timeoutID = setTimeout(function() {
+					document.body.removeChild(customAlert);
+				}, 2000);
+			}
+
+			function checkout(orderid) {
+				window.location.href = `/paid/${orderid}`;
+			}
+		</script>
+    </body>
+</html>

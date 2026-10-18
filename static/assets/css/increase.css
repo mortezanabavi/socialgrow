@@ -1,0 +1,229 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:dana;
+}
+body {
+	display:flex;
+    background:#0f172a;
+    color:#fff;
+    height:100vh;
+    overflow:hidden;
+	padding: 0;
+}
+.main{
+  flex:1;
+  padding:0;
+}
+.sidebar{
+  width:260px;
+  background:linear-gradient(180deg,#1e293b,#0f172a);
+  border-left:1px solid rgba(255,255,255,0.1);
+  padding:25px 18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:0.4s;
+}
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  color:#38bdf8;
+  margin-bottom:40px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.menu button{
+  border:none;
+  background:rgba(255,255,255,0.05);
+  color:white;
+  padding:16px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.menu button:hover{
+  background:#38bdf8;
+  transform:translateX(-5px);
+}
+
+.menu-toggle{
+  display:none;
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:1001;
+  background:#38bdf8;
+  border:none;
+  color:white;
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  font-size:22px;
+  cursor:pointer;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px 10px;
+}
+.header{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:25px;
+}
+.header h1{
+    font-size:18px;
+    margin-bottom:10px;
+}
+.header p{
+    color:#cbd5e1;
+    line-height:15px;
+	font-size: 12px;
+}
+.wallet-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:20px;
+}
+.balance{
+    background:linear-gradient(135deg,rgba(37,99,235,.35),rgba(15,23,42,.8));
+    border-radius:20px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+.balance span{
+    color:#cbd5e1;
+    font-size:12px;
+}
+.balance strong{
+    font-size:20px;
+    color:#60a5fa;
+}
+.form-group{
+    margin-bottom:22px;
+}
+.form-group label{
+    display:block;
+    color:#cbd5e1;
+    font-size:12px;
+    margin-bottom:10px;
+}
+.form-group input{
+    width:100%;
+    padding:13px;
+    background:#0f172a;
+    border:1px solid rgba(255,255,255,.1);
+    color:#fff;
+    border-radius:14px;
+    outline:none;
+    font-size:12px;
+}
+.form-group input:focus{
+    border-color:#3b82f6;
+}
+.payment-title{
+    margin:30px 0 15px;
+    font-size:15px;
+}
+.payment-methods{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+.payment-card{
+    position:relative;
+}
+.payment-card input{
+    display:none;
+}
+.payment-card label{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    cursor:pointer;
+    transition:.3s;
+}
+.payment-card label:hover{
+    background:rgba(255,255,255,.1);
+}
+.payment-card input:checked + label{
+    border-color:#3b82f6;
+    background:rgba(37,99,235,.15);
+}
+.payment-card i{
+    font-size:20px;
+}
+.bank i{
+    color:#22c55e;
+}
+.tron i{
+    color:#ef4444;
+}
+.payment-card span{
+    display:block;
+}
+.payment-card small{
+    color:#94a3b8;
+    margin-top:5px;
+}
+.info{
+    margin-top:25px;
+    background:rgba(255,255,255,.05);
+    border-radius:16px;
+    padding:14px;
+    color:#cbd5e1;
+    line-height:20px;
+}
+.submit{
+    width:100%;
+    margin-top:30px;
+    padding:13px;
+    border:none;
+    border-radius:15px;
+    background:#2563eb;
+    color:#fff;
+    font-size:13px;
+    cursor:pointer;
+    transition:.3s;
+}
+.submit:hover{
+    background:#1d4ed8;
+}
+@media(max-width:650px){
+    .container{
+        padding:15px;
+    }
+    .payment-methods{
+        grid-template-columns:1fr;
+    }
+    .balance{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+    .wallet-box{
+        padding:20px;
+    }
+}

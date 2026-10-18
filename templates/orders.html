@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>سفارشات من</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="{% static 'assets/css/orders.css' %}?v={{current_time}}">
+		<link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?v={{current_time}}">
+	</head>
+	<body>
+		<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+		<div class="sidebar" id="sidebar">
+		<div>
+			<div class="logo">داشبورد</div>
+				<div class="menu">
+					<button onclick="goHome()">🏠 صفحه اصلی</button>
+					<button onclick="buy()">🛍️ ثبت سفارش</button>
+					<button onclick="orders()">🛒 سفارشات من</button>
+					<button onclick="increaseBalance()">💰 شارژ حساب</button>
+					<button onclick="tickets()">📞 تیکت ها</button>
+					<button onclick="userinfo()">📄 اطلاعات کاربری</button>
+					<button onclick="logout()">🚪 خروج از حساب</button>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="header">
+					<div class="title">
+						<h2><i class="fa-solid fa-cart-shopping"></i>سفارشات من</h2>
+						<p>مشاهده وضعیت سفارش‌های ثبت شده</p>
+					</div>
+					<div class="stats">
+						<div class="stat-card"><i class="fa-solid fa-layer-group"></i>
+							<div>
+								<span>کل سفارش</span>
+								<strong>{{ total }}</strong>
+							</div>
+						</div>
+						<div class="stat-card success"><i class="fa-solid fa-circle-check"></i>
+							<div>
+								<span>تکمیل شده</span>
+								<strong>{{ finished }}</strong>
+							</div>
+						</div>
+						<div class="stat-card processing">
+							<i class="fa-solid fa-spinner"></i>
+							<div>
+								<span>در حال انجام</span>
+								<strong>{{ processing }}</strong>
+							</div>
+						</div>
+						<div class="stat-card cancels">
+							<i class="fa-solid fa-circle-xmark"></i>
+							<div>
+								<span>کنسل شده</span>
+								<strong>{{ canceled }}</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-box">
+					<table>
+						<thead>
+							<tr>
+								<th>کد سفارش</th>
+								<th>نام سرویس</th>
+								<th>مقدار سفارش</th>
+								<th>آدرس پیج مقصد</th>
+								<th>مبلغ</th>
+								<th>تاریخ ثبت</th>
+								<th>وضعیت</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for order in orders %}
+								<tr>
+									<td data-title="کد سفارش"><span class="code">{{ order.orderid }}</span></td>
+									<td data-title="نام سرویس">{{ order.product.name }}</td>
+									<td data-title="مقدار سفارش">{{ order.count_order }} عدد</td>
+									<td data-title="آدرس پیج مقصد"><a href="{{ order.page_address }}" class="page-url" target="_blank">{{ order.page_address }}</a></td>
+									<td data-title="مبلغ">{{ order.get_numberformat_price }} تومان</td>
+									<td data-title="تاریخ ثبت" style="direction:ltr">{{ order.get_date }}</td>
+									<td data-title="وضعیت"><span class="status {{ order.get_order_status_en }}">{{ order.get_order_status }}</span></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script>
+			const attachment=document.getElementById("attachment");
+			const filename=document.querySelector(".filename");
+			attachment.addEventListener("change",function(){
+				if(this.files.length){
+					filename.textContent=this.files[0].name;
+				} else {
+					filename.textContent="فایلی انتخاب نشده است";
+			}});
+			const chat=document.querySelector(".chat");
+			chat.scrollTop=chat.scrollHeight;
+			function toggleMenu(){
+			  document.getElementById("sidebar")
+			  .classList.toggle("active");
+			}
+			function goHome(){
+			  window.location.href = "/";
+			}
+			function buy(){
+			  window.location.href = "/new-order";
+			}
+			function orders(){
+			  window.location.href = "/orders";
+			}
+			function tickets(){
+				window.location.href = "/tickets";
+			}
+			function userinfo(){
+				window.location.href="/userinfo";
+			}
+			function viewTicket(id){
+				window.location.href = `/view-ticket/${id}`;
+			}
+			function increaseBalance(){
+			  window.location.href = "/payment";
+			}
+			function logout(){
+			  let confirmExit = confirm("آیا میخواهید خارج شوید؟");
+
+			  if(confirmExit){
+				window.location.href = "/accounts/logout";
+			  }
+			}
+		</script>
+	</body>
+</html>

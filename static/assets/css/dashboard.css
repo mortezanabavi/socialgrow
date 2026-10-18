@@ -1,0 +1,174 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:dana;
+}
+
+body{
+  background:#0f172a;
+  min-height:100vh;
+  display:flex;
+  color:#fff;
+  overflow-x:hidden;
+}
+.sidebar{
+  width:260px;
+  background:linear-gradient(180deg,#1e293b,#0f172a);
+  border-left:1px solid rgba(255,255,255,0.1);
+  padding:25px 18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:0.4s;
+}
+
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  color:#38bdf8;
+  margin-bottom:40px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.menu button{
+  border:none;
+  background:rgba(255,255,255,0.05);
+  color:white;
+  padding:16px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.menu button:hover{
+  background:#38bdf8;
+  transform:translateX(-5px);
+}
+
+.footer{
+  text-align:center;
+  color:#94a3b8;
+  font-size:14px;
+  margin-top:30px;
+}
+
+.main{
+  flex:1;
+  padding:35px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:35px;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.welcome{
+  font-size:32px;
+  font-weight:bold;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  transition:0.35s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#38bdf8;
+  box-shadow:0 15px 40px rgba(56,189,248,0.2);
+}
+
+.card h3{
+  color:#94a3b8;
+  margin-bottom:18px;
+  font-size:18px;
+}
+
+.card p{
+  font-size:17px;
+  font-weight:bold;
+  word-break:break-word;
+}
+
+.circle{
+  position:absolute;
+  width:140px;
+  height:140px;
+  background:rgba(56,189,248,0.12);
+  border-radius:50%;
+  top:-50px;
+  left:-50px;
+}
+
+.menu-toggle{
+  display:none;
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:1001;
+  background:#38bdf8;
+  border:none;
+  color:white;
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .sidebar{
+	position:fixed;
+	right:-280px;
+	top:0;
+	height:100%;
+	z-index:1000;
+  }
+
+  .sidebar.active{
+	right:0;
+  }
+
+  .menu-toggle{
+	display:block;
+  }
+
+  .main{
+	width:100%;
+	padding:80px 20px 20px;
+  }
+
+  .welcome{
+	font-size:24px;
+  }
+
+  .card p{
+	font-size:18px;
+  }
+
+}

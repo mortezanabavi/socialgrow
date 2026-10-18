@@ -1,0 +1,29 @@
+.custom-shape-divider-top-1749677369 {
+    position: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1749677369 svg {
+    position: block;
+    display: block;
+    width: calc(300% + 1.3px);
+    height: 180px;
+}
+
+.custom-shape-divider-top-1749677369 .shape-fill {
+    fill: #4A90E2;
+}
+
+.payment {
+    justify-content: center;
+}
+
+.error {
+    display: none;
+    color: red;
+    text-align: center;
+}
