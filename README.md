@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # 🚀 SocialGrow - Social Media Services & E-Commerce Platform
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
@@ -136,3 +137,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 =======
 # socialgrow
 >>>>>>> cc94b7fedf075661f22e187100616cef69308c73
+=======
+# socialgrow
+SocialGrow is an open-source project focused on social media growth and engagement. Explore the source code, contribute to development, report issues, and help improve the project. Contributions and community feedback are welcome!
+>>>>>>> d252b26ee1baf92116267dcdd1236d25c16e7988
